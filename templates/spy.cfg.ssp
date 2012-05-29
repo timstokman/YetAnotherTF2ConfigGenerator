@@ -150,7 +150,7 @@ alias disguise<%= disguise %>_f "disguise <%= disguiseFriendlyCycleClasses(disgu
 bind <%= disguiseScout %> "disguise 1 -1"
 bind <%= disguiseSoldier %> "disguise 3 -1"
 bind <%= disguisePyro %> "disguise 7 -1"
-bind <%= disguiseDemo %> "disguise 5 -1"
+bind <%= disguiseDemo %> "disguise 4 -1"
 bind <%= disguiseHeavy %> "disguise 6 -1"
 bind <%= disguiseEngineer %> "disguise 9 -1"
 bind <%= disguiseMedic %> "disguise 5 -1"
