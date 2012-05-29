@@ -128,7 +128,7 @@ alias weap_ding_<%= slot %> "tf_dingaling_pitchmaxdmg <%= classDingPitchMax(curr
 #end
 
 //ensures that when building the weapon switching doesn't get out of sync due to autoswitching to the wrench
-alias +buildandwrench "+attack; weap_ding_3; weap_sens_3; cross_3; alias current_weap_vis weap_vis_3; show_weapon"
+alias +buildandwrench "+attack; weap_ding_3; weap_sens_3; cross_3; alias current_weapon_vis weap_vis_3; alias othermeleeswap swapback; alias primsecswap swapback; show_weapon"
 alias -buildandwrench "-attack; bind <%= primAttack %> +attack"
 
 //quickbuild
