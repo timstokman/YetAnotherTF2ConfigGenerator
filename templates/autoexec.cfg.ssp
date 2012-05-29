@@ -1,0 +1,185 @@
+<%@ val dingEnable : Int %>
+<%@ val dingVolume : Double %>
+<%@ val graphicsConfig : String %>
+<%@ val networkConfig : String %>
+<%@ val movementLeft : String %>
+<%@ val movementRight : String %>
+<%@ val movementFwd : String %>
+<%@ val movementBack : String %>
+<%@ val fov : Int %>
+<%@ val autoreload : Int %>
+<%@ val fastswitch : Int %>
+<%@ val damagenumbers : Int %>
+<%@ val duck : String %>
+<%@ val reloadhud : String %>
+<%@ val suicide : String %>
+<%@ val screenshot : String %>
+<%@ val saveReplay : String %>
+<%@ val quickSwitch : String %>
+<%@ val teamOnlyTalk : String %>
+<%@ val normalTalk : String %>
+<%@ val scoreboardNetgraph : Int %>
+<%@ val medic : String %>
+<%@ val actionSlot : String %>
+<%@ val taunt : String %>
+<%@ val dropItem : String %>
+<%@ val inspect : String %>
+<%@ val say : String %>
+<%@ val teamSay : String %>
+<%@ val scoreboard : String %>
+<%@ val primAttack : String %>
+<%@ val secAttack : String %>
+<%@ val backpack : String %>
+<%@ val switchClass : String %>
+<%@ val switchTeam : String %>
+<%@ val console : String %>
+<%@ val voiceMenu1 : String %>
+<%@ val voiceMenu2 : String %>
+<%@ val voiceMenu3 : String %>
+<%@ val directWeapon1 : String %>
+<%@ val directWeapon2 : String %>
+<%@ val directWeapon3 : String %>
+<%@ val directWeapon4 : String %>
+<%@ val weaponShow : List[Boolean] %>
+<%@ val hideTracers : Boolean %>
+<%@ val weaponColors : List[(Int,Int,Int)] %>
+<%@ val weaponCrosshairs : List[String] %>
+<%@ val weaponScales : List[Int] %>
+<%@ val weaponShow : List[Boolean] %>
+<%@ val primSecSwap : String %>
+<%@ val meleeSwap : String %>
+<%@ val jump : String %>
+<%@ val normalJump : String %>
+<%@ val viewmodelFov : Int %>
+<%@ val sensitivity : Double %>
+<%@ val dingPitchMax : Int %>
+<%@ val dingPitchMin : Int %>
+<%@ val showHealBeam : Boolean %>
+<%@ val autocallThreshold : Int %>
+<%@ val medicRadar : String %>
+<%@ val fakeUber : String %>
+<%@ val secAttack : String %>
+<%@ val uberPopChat : Boolean %>
+<%@ val crouchJumpNotFor : List[String] %>
+<%@ val currentConfig : String %>
+<%@ val disguiseCycle : String %>
+<%@ val disguiseCycleClasses : List[Int] %>
+<%@ val disguiseFriendlyCycle : String %>
+<%@ val disguiseFriendlyCycleClasses : List[Int] %>
+<%@ val disguiseLast : String %>                       
+<%@ val disguiseScout : String %>
+<%@ val disguiseSoldier : String %>
+<%@ val disguisePyro : String %>
+<%@ val disguiseDemo : String %>
+<%@ val disguiseHeavy : String %>
+<%@ val disguiseEngineer : String %>
+<%@ val disguiseMedic : String %>
+<%@ val disguiseSniper : String %>
+<%@ val disguiseSpy : String %>
+<%@ val showFlames : Boolean %>
+<%@ val buildSentry : String %>
+<%@ val buildDispenser : String %>
+<%@ val buildEntrance : String %>
+<%@ val buildExit : String %>
+<%@ val zoomSensitivity : Double %>
+<%@ val fullChargeBell : Int %>
+<%@ val noCrossHairZoom : Int %>
+<%@ val enableCrouchJump : Boolean %>
+<%@ val classSpecificEnabled : Map[String, Boolean] %>
+<%@ val classWeaponColors : Map[String, List[(Int, Int, Int)]] %>
+<%@ val classWeaponCrosshairs : Map[String, List[String]] %>
+<%@ val classWeaponScales : Map[String, List[Int]] %>
+<%@ val classWeaponShow : Map[String, List[Boolean]] %>
+<%@ val classSpecificEnabled : Map[String, Boolean] %>
+<%@ val classSensitivity : Map[String, List[Double]] %>
+<%@ val classDingPitchMax : Map[String, List[Int]] %>
+<%@ val classDingPitchMin : Map[String, List[Int]] %>
+
+//exec other configs needed
+exec reset
+exec net
+
+#if (graphicsConfig != "none")
+exec <%= graphicsConfig %>
+#end
+
+#if (networkConfig != "none")
+net_<%= networkConfig %>
+#end
+
+//null-cancelling movement
+alias +move_forward "-back; +forward; alias if_forward +forward; current_weapon_vis"
+alias +move_back "-forward; +back; alias if_back +back; current_weapon_vis"
+alias +move_left "-moveright; +moveleft; alias if_left +moveleft; current_weapon_vis"
+alias +move_right "-moveleft; +moveright; alias if_right +moveright; current_weapon_vis"
+alias -move_forward "-forward; if_back; alias if_forward """
+alias -move_back "-back; if_forward; alias if_back """
+alias -move_left "-moveleft; if_right; alias if_left """
+alias -move_right "-moveright; if_left; alias if_right """
+alias if_forward ""
+alias if_back ""
+alias if_left ""
+alias if_right ""
+
+//weapon switch
+#for (slot <- 1 to 4)
+alias weapon<%= slot %> "slot<%= slot %>; weap_ding_<%= slot %>; weap_sens_<%= slot %>; cross_<%= slot %>; alias current_weapon_vis weap_vis_<%= slot %>; show_weapon"
+#end
+
+//setup swapping between primaries and secondaries
+alias primsecswap1 "weapon1; alias primsecswap primsecswap2; alias othermeleeswap swapdefault; alias swaptoweap primsecswap1; bind <%= primAttack %> +attack"
+alias primsecswap2 "weapon2; alias primsecswap primsecswap1; alias othermeleeswap swapdefault; alias swaptoweap primsecswap2; bind <%= primAttack %> +attack" 
+
+//setup swapping between melee and last weapon
+alias swapdefault "weapon3; alias othermeleeswap swapback; alias primsecswap swapback; bind <%= primAttack %> +attack"
+alias swapback "swaptoweap; alias othermeleeswap swapdefault; bind <%= primAttack %> +attack"
+
+//teamonly voicebind
+alias +teamonly "+teamtalk; +voicerecord"
+alias -teamonly "-teamtalk; -voicerecord"
+
+//crouch jump
+alias +crouchjump "+jump; +duck"
+alias -crouchjump "-duck; -jump"
+
+//scoreboard with netgraph
+alias +sb "+score; net_graph <%= scoreboardNetgraph %>"
+alias -sb "-score; net_graph 0"
+
+//options
+tf_dingalingaling <%= dingEnable %>
+tf_dingaling_volume <%= dingVolume.toString %>
+tf_remember_activeweapon 1 //this is needed for the weapon switching script
+fov_desired <%= fov %>
+cl_autoreload <%= autoreload %>
+hud_fastswitch <%= fastswitch %>
+hud_combattext <%= damagenumbers %>
+
+//binds
+bind <%= movementFwd %> +move_forward
+bind <%= movementBack %> +move_back
+bind <%= movementLeft %> +move_left
+bind <%= movementRight %> +move_right
+bind <%= quickSwitch %> +quickswitch
+bind <%= suicide %> kill
+bind <%= reloadhud %> hud_reloadscheme
+bind <%= screenshot %> screenshot
+bind <%= saveReplay %> save_replay
+bind <%= duck %> +duck
+bind <%= taunt %> taunt
+bind <%= say %> say
+bind <%= teamSay %> teamSay
+bind <%= teamOnlyTalk %> +teamonly
+bind <%= normalTalk %> +voicerecord
+bind <%= scoreboard %> +sb
+bind <%= inspect %> inspect
+bind <%= medic %> "voicemenu 0 0"
+bind <%= backpack %> open_charinfo_direct
+bind <%= dropItem %> dropitem
+bind <%= switchTeam %> changeteam
+bind <%= switchClass %> changeclass
+bind <%= console %> toggleconsole
+bind <%= actionSlot %> use_action_slot_item
+bind <%= voiceMenu1 %> voice_menu_1
+bind <%= voiceMenu2 %> voice_menu_2
+bind <%= voiceMenu3 %> voice_menu_3

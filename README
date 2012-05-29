@@ -1,0 +1,43 @@
+This program generates configuration files for team fortress 2
+
+Features:
+* Ability to specify for each weapon slot (or even each class if you want) the:
+  * Crosshair (color, type, scale)
+  * Sensitivity (by default all the same, possible to fuck with muscle memory that way, but some people prefer it)
+  * Showing/Hiding the weapon model
+  * Dingeling (for example, the sniper rifle has higher max damage then the scout bat, you're able to specify for each slot/class the max and min damage pitch)
+  The special twist here is, that when switching the weapon it will always show the weapon model at first, then, when you switch strafe directions (to avoid using the wait command),
+  it will hide (or not) the weapon depending on the settings for that slot.
+* Null-movement canceling: if you press two opposite strafe keys, you will no longer stand still. enables you to get rid of "null-movement" while strafing.
+* Option to set dingelings that vary based on how much damage you do
+* Fastswitch/Autoreload/Damage number options
+* Can include chris' network/graphics config
+* Option to hide the tracers (the lines that show when you shoot a hitscan weapon, they can be distracting)
+* Crouchjump bind, with the option to exclude it for certain classes (default excluded for demoman/soldier, because they need the ability to tab-crouch jump), makes it easier to trickjump or surf explosions
+* Team-only voice bind
+* Bind for quick-switching weapon loadouts
+* Bind for switching between primary and secondary, or current weapon and melee weapon
+* Bind for suicide and reloading the hud
+* option to show a netgraph with the scoreboard to identify network issues
+* you can change the normal binds as well
+* Medic: Medic radar bind, fake uber bind, option to communicate ubers automatically through chat, option to hide or show the viewmodel healbeam
+* Pyro: option to hide or show the viewmodel flames (they obscure your vision)
+* Spy: A disguise cycle bind (separate friendly and enemy disguise cycle) which cycles through a list of predefined disguises. Direct binds for each disguise (default on the f-keys)
+* Engineer: Quickbuild binds (default on the f-keys)
+* Sniper: option to disable the crosshair when zooming in, option to change the zoomed in sensitivity, option to sound a bell when the sniper rifle is charged
+
+Todo:
+* Something like stabby's crosshair script (changing crosshair colors when strafing), or a switching the crosshair color when firing your weapon 
+* P-Rec settings
+* Ability to do a lastweapon bind that ties in with the rest of the script, some people prefer that over the current weapon switch bind
+* Show with a pop-up with startup options you need for the graphics config you selected
+* Make the GUI a bit prettier
+* Maybe I missed a couple of keybinds?
+* Other requests?
+
+Known Bugs:
+* ??
+
+Installation:
+* Make sure you have the java runtime installed, this is a version without toolbar crap: http://www.oracle.com/technetwork/java/javase/downloads/jre-7u4-download-1591157.html
+* Unzip the program and double click on the jar file to start

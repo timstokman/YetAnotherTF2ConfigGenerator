@@ -1,0 +1,144 @@
+<%@ val dingEnable : Int %>
+<%@ val dingVolume : Double %>
+<%@ val graphicsConfig : String %>
+<%@ val networkConfig : String %>
+<%@ val movementLeft : String %>
+<%@ val movementRight : String %>
+<%@ val movementFwd : String %>
+<%@ val movementBack : String %>
+<%@ val fov : Int %>
+<%@ val autoreload : Int %>
+<%@ val fastswitch : Int %>
+<%@ val damagenumbers : Int %>
+<%@ val duck : String %>
+<%@ val reloadhud : String %>
+<%@ val suicide : String %>
+<%@ val screenshot : String %>
+<%@ val saveReplay : String %>
+<%@ val quickSwitch : String %>
+<%@ val teamOnlyTalk : String %>
+<%@ val normalTalk : String %>
+<%@ val scoreboardNetgraph : Int %>
+<%@ val medic : String %>
+<%@ val actionSlot : String %>
+<%@ val taunt : String %>
+<%@ val dropItem : String %>
+<%@ val inspect : String %>
+<%@ val say : String %>
+<%@ val teamSay : String %>
+<%@ val scoreboard : String %>
+<%@ val primAttack : String %>
+<%@ val secAttack : String %>
+<%@ val backpack : String %>
+<%@ val switchClass : String %>
+<%@ val switchTeam : String %>
+<%@ val console : String %>
+<%@ val voiceMenu1 : String %>
+<%@ val voiceMenu2 : String %>
+<%@ val voiceMenu3 : String %>
+<%@ val directWeapon1 : String %>
+<%@ val directWeapon2 : String %>
+<%@ val directWeapon3 : String %>
+<%@ val directWeapon4 : String %>
+<%@ val weaponShow : List[Boolean] %>
+<%@ val hideTracers : Boolean %>
+<%@ val weaponColors : List[(Int,Int,Int)] %>
+<%@ val weaponCrosshairs : List[String] %>
+<%@ val weaponScales : List[Int] %>
+<%@ val weaponShow : List[Boolean] %>
+<%@ val primSecSwap : String %>
+<%@ val meleeSwap : String %>
+<%@ val jump : String %>
+<%@ val normalJump : String %>
+<%@ val viewmodelFov : Int %>
+<%@ val sensitivity : Double %>
+<%@ val dingPitchMax : Int %>
+<%@ val dingPitchMin : Int %>
+<%@ val showHealBeam : Boolean %>
+<%@ val autocallThreshold : Int %>
+<%@ val medicRadar : String %>
+<%@ val fakeUber : String %>
+<%@ val secAttack : String %>
+<%@ val uberPopChat : Boolean %>
+<%@ val crouchJumpNotFor : List[String] %>
+<%@ val currentConfig : String %>
+<%@ val disguiseCycle : String %>
+<%@ val disguiseCycleClasses : List[Int] %>
+<%@ val disguiseFriendlyCycle : String %>
+<%@ val disguiseFriendlyCycleClasses : List[Int] %>
+<%@ val disguiseLast : String %>                       
+<%@ val disguiseScout : String %>
+<%@ val disguiseSoldier : String %>
+<%@ val disguisePyro : String %>
+<%@ val disguiseDemo : String %>
+<%@ val disguiseHeavy : String %>
+<%@ val disguiseEngineer : String %>
+<%@ val disguiseMedic : String %>
+<%@ val disguiseSniper : String %>
+<%@ val disguiseSpy : String %>
+<%@ val showFlames : Boolean %>
+<%@ val buildSentry : String %>
+<%@ val buildDispenser : String %>
+<%@ val buildEntrance : String %>
+<%@ val buildExit : String %>
+<%@ val zoomSensitivity : Double %>
+<%@ val fullChargeBell : Int %>
+<%@ val noCrossHairZoom : Int %>
+<%@ val enableCrouchJump : Boolean %>
+<%@ val classWeaponColors : Map[String, List[(Int, Int, Int)]] %>
+<%@ val classWeaponCrosshairs : Map[String, List[String]] %>
+<%@ val classWeaponScales : Map[String, List[Int]] %>
+<%@ val classWeaponShow : Map[String, List[Boolean]] %>
+<%@ val classSpecificEnabled : Map[String, Boolean] %>
+<%@ val classSensitivity : Map[String, List[Double]] %>
+<%@ val classDingPitchMax : Map[String, List[Int]] %>
+<%@ val classDingPitchMin : Map[String, List[Int]] %>
+
+exec reset
+
+#if (crouchJumpNotFor.contains(currentConfig))
+bind <%= jump %> +jump
+#else
+//bind <%= jump %> +jump
+#end
+
+//class specific crosshairs and weapon visibility and sensitivity
+#if(classSpecificEnabled(currentConfig))
+#for (slot <- 1 to 4)
+alias cross_<%= slot %> "cl_crosshair_red <%= classWeaponColors(currentConfig)(slot - 1)._1 %>; cl_crosshair_green <%= classWeaponColors(currentConfig)(slot - 1)._2 %>; cl_crosshair_blue <%= classWeaponColors(currentConfig)(slot - 1)._3 %>; cl_crosshair_scale <%= classWeaponScales(currentConfig)(slot - 1) %>; cl_crosshair_file <%= classWeaponCrosshairs(currentConfig)(slot - 1) %>"
+alias weap_sens_<%= slot %> "sensitivity <%= classSensitivity(currentConfig)(slot - 1).toString %>"
+alias weap_ding_<%= slot %> "tf_dingaling_pitchmaxdmg <%= classDingPitchMax(currentConfig)(slot - 1) %>; tf_dingaling_pitchmindmg <%= classDingPitchMin(currentConfig)(slot - 1) %>"
+<% if(classWeaponShow(currentConfig)(slot - 1)) { //stupid ssp limitations wrt nested ifs force me to do this
+"alias weapon_vis_" + slot + " show_weapon"
+} else {
+"alias weapon_vis_" + slot + " hide_weapon"
+} %>
+#end
+#else
+#for (slot <- 1 to 4)
+//alias cross_<%= slot %> "cl_crosshair_red <%= weaponColors(slot - 1)._1 %>; cl_crosshair_green <%= weaponColors(slot - 1)._2 %>; cl_crosshair_blue <%= weaponColors(slot - 1)._3 %>; cl_crosshair_scale <%= weaponScales(slot - 1) %>; cl_crosshair_file <%= weaponCrosshairs(slot - 1) %>"
+//alias weap_sens_<%= slot %> "sensitivity <%= sensitivity.toString %>"
+//alias weap_ding_<%= slot %> "tf_dingaling_pitchmaxdmg <%= dingPitchMax %>; tf_dingaling_pitchmindmg <%= dingPitchMin %>"
+<% if(weaponShow(slot - 1)) { //stupid ssp limitations wrt nested ifs force me to do this
+"alias weapon_vis_" + slot + " show_weapon"
+} else {
+"alias weapon_vis_" + slot + " hide_weapon"
+} %>
+#end
+#end
+
+//ensures that when building the weapon switching doesn't get out of sync due to autoswitching to the wrench
+alias +buildandwrench "+attack; weap_ding_3; weap_sens_3; cross_3; alias current_weapon_vis weap_vis_3; show_weapon"
+alias -buildandwrench "-attack; bind <%= primAttack %> +attack"
+
+//quickbuild
+alias bsentry "destroy 2; build 2; bind  <%= primAttack %> +buildandwrench"
+alias bdispenser "destroy 0; build 0; bind  <%= primAttack %> +buildandwrench"
+alias bentrance "destroy 1; build 1; bind  <%= primAttack %> +buildandwrench"
+alias bexit "destroy 3; build 3; bind  <%= primAttack %> +buildandwrench"
+
+//binds
+bind <%= buildSentry %> bsentry
+bind <%= buildDispenser %> bdispenser
+bind <%= buildEntrance %> bentrance
+bind <%= buildExit %> bexit
