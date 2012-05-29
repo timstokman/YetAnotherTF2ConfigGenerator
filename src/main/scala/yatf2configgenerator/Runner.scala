@@ -30,7 +30,6 @@ object Runner extends SwingApplication {
           c.fill = Fill.Horizontal
           c.weightx = 1.0
           c.weighty = 1.0
-          c.anchor = Anchor.FirstLineStart
           c.insets = new Insets(3, 3, 3, 3)
 
           var rowNum = 0
@@ -162,7 +161,6 @@ object Runner extends SwingApplication {
           c.fill = Fill.Horizontal
           c.weightx = 1.0
           c.weighty = 1.0
-          c.anchor = Anchor.FirstLineStart
           c.insets = new Insets(3, 3, 3, 3)
 
           var rowNum = 0
@@ -222,7 +220,6 @@ object Runner extends SwingApplication {
                 c.fill = Fill.Horizontal
                 c.weightx = 1.0
                 c.weighty = 1.0
-                c.anchor = Anchor.FirstLineStart
                 c.insets = new Insets(3, 3, 3, 3)
                 c.gridy = 0
                 c.gridx = 1
@@ -355,7 +352,6 @@ object Runner extends SwingApplication {
 
           val c = new Constraints
           c.fill = Fill.Horizontal
-          c.anchor = Anchor.FirstLineStart
           c.insets = new Insets(3, 3, 3, 3)
           c.weightx = 1.0
           c.weighty = 1.0
@@ -429,8 +425,22 @@ object Runner extends SwingApplication {
             reactions += {
               case ButtonClicked(_) => {
             	saveUIToConfig
-            	render.writeToDirectory(".")
-            	Dialog.showMessage(grid, "Done generating the configuration files", "Info", Dialog.Message.Info)
+            	val progressWindow = new Dialog() {
+            	  title = "Generating"
+                  contents = new FlowPanel {
+                    contents += new ProgressBar {
+                      indeterminate = true
+                    }
+                  }
+                }
+                progressWindow.open
+                new Thread {
+                  override def run {
+                    render.writeToDirectory(".")
+                    progressWindow.close                    
+                    Dialog.showMessage(grid, "Done generating the configuration files", "Info", Dialog.Message.Info)
+                  }
+                }.start
               }
             }
           }) = c
@@ -442,8 +452,22 @@ object Runner extends SwingApplication {
             	saveUIToConfig
             	if(steamField.text != "" && usernameCombo.selection.item != "") {
                   val directory = List(steamField.text, "steamapps", usernameCombo.selection.item, "team fortress 2", "tf", "cfg").mkString(File.separator)
-                  render.writeToDirectory(directory)
-                  Dialog.showMessage(grid, "Done generating the configuration files", "Info", Dialog.Message.Info)
+                  val progressWindow = new Dialog() {
+                    title = "Generating"
+                    contents = new FlowPanel {
+                      contents += new ProgressBar {
+                        indeterminate = true
+                      }
+                    }
+                  }
+                  progressWindow.open
+                  new Thread {
+                    override def run {
+                      render.writeToDirectory(directory)
+                      progressWindow.close                    
+                      Dialog.showMessage(grid, "Done generating the configuration files", "Info", Dialog.Message.Info)
+                    }
+                  }.start
             	} else {
                   Dialog.showMessage(grid, "No steam directory or username specified", "Error", Dialog.Message.Error)
                 }
