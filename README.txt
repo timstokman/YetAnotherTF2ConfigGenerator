@@ -36,6 +36,7 @@ Todo:
 * Shrink/Clean up the templates a bit
 * Something like stabby's crosshair script (changing crosshair colors when strafing), or a switching the crosshair color when firing your weapon 
 * P-Rec settings
+* variable cl_inter_ratio for different classes (or even weapons?)
 * Maybe I missed a couple of keybinds?
 * Other requests?
 

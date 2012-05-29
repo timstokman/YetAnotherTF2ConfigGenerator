@@ -104,7 +104,7 @@ exec <%= graphicsConfig %>
 #end
 
 #if (networkConfig != "none")
-net_<%= networkConfig %>
+<%= networkConfig %>_net
 #end
 
 //null-cancelling movement
