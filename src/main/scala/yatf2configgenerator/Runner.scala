@@ -18,6 +18,11 @@ object Runner extends SwingApplication {
     top.visible = true
   }
 
+  /*
+   * Generate the UI
+   * 
+   * Really really messy code, but UI code is always messy unless you use mvc or related
+   */
   def topFrame = new MainFrame {
     title = "Yet Another TF2 Config Generator"
     contents = new TabbedPane {
@@ -34,7 +39,10 @@ object Runner extends SwingApplication {
 
           var rowNum = 0
 
-          render.autoFieldGenInfo.foreach {
+          /*
+           * Generate the option panel from the metadata
+           */
+          render.optionMetadata.foreach {
             case (optionName, ('options, 'int, label)) => {
               c.gridy = rowNum; c.gridx = 0
               layout(new Label(label + ":")) = c
@@ -165,6 +173,9 @@ object Runner extends SwingApplication {
 
           var rowNum = 0
 
+          /*
+           * Generate the weapon panel
+           */
           for (slot <- 1 to 4) {
             c.gridy = rowNum; c.gridx = 0
             layout(new Label("Weapon " + slot.toString + ":")) = c
@@ -358,7 +369,10 @@ object Runner extends SwingApplication {
 
           var rowNum = 0
 
-          render.autoFieldGenInfo.foreach {
+          /*
+           * Generate the binds panel from metadata
+           */
+          render.optionMetadata.foreach {
             case (optionName, ('binds, 'key, label)) => {
               c.gridy = rowNum; c.gridx = 0
               layout(new Label(label + ":")) = c
@@ -482,8 +496,11 @@ object Runner extends SwingApplication {
     }
   }
 
+  /*
+   * Extract the info from the UI to the map necessary for the templates
+   */
   def saveUIToConfig {
-    render.autoFieldGenInfo.foreach {
+    render.optionMetadata.foreach {
       case (optionName, ('options, 'int, label)) => {
         render.options(optionName) = fields(optionName).asInstanceOf[TextField].text.toInt
       }

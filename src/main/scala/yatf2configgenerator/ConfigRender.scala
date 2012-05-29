@@ -9,6 +9,7 @@ class ConfigRender {
 
   val templateDir = "templates"
 
+  //list of templates
   val configNames = List(
     "autoexec",
     "reset",
@@ -28,6 +29,7 @@ class ConfigRender {
     "maxquality",
     "net")
 
+  // list of valid tf2 key codes
   val validKeyStrings = List(
     "MWHEELUP",
     "MWHEELDOWN",
@@ -78,6 +80,7 @@ class ConfigRender {
     "KP_MULTIPLY",
     "KP_SLASH")
 
+  //map from class to the disguise number
   val disguiseClassNumberMap = ListMap("scout" -> 1,
     "soldier" -> 3,
     "pyro" -> 7,
@@ -88,16 +91,26 @@ class ConfigRender {
     "medic" -> 5,
     "spy" -> 8)
     
+  //reversed disguise map
   val disguiseNumberClassMap = ListMap() ++ disguiseClassNumberMap.map(_.swap)
 
+  //list of graphics configs
   val graphicsConfigs = List("none", "highquality", "maxquality", "highframes", "maxframes", "dx9frames")
 
+  //list of network configs
   val networkConfigs = List("none", "bad", "good", "lan")
 
+  //list of crosshair types
   val crosshairTypes = List("none", "default", "crosshair1", "crosshair2", "crosshair3", "crosshair4", "crosshair5", "crosshair6", "crosshair7", "crosshair8", "crosshair9", "crosshair10", "crosshair11")
 
-  // this indicates for each field, the section in the gui and the field type and the label string
-  val autoFieldGenInfo = ListMap(
+  /*
+   * Option metadata necessary for UI generation
+   * in the tuple:
+   * * UI section
+   * * Type of option
+   * * Label for the option
+   */
+  val optionMetadata = ListMap(
     "dingEnable" -> ('options, 'intAsBoolean, "Enable weapon dingelings"),
     "dingVolume" -> ('options, 'double, "Dingeling volume"),
     "dingPitchMax" -> ('options, 'int, "Dingeling max pitch"),
@@ -191,6 +204,9 @@ class ConfigRender {
     "buildEntrance" -> ('binds, 'key, "Build entrance"),
     "buildExit" -> ('binds, 'key, "Build exit"))
 
+  /*
+   * Template options, including some defaults
+   */
   var options = collection.mutable.Map(
     "dingEnable" -> 1,
     "dingVolume" -> 1.5,
@@ -285,6 +301,9 @@ class ConfigRender {
     "buildEntrance" -> "F3",
     "buildExit" -> "F4")
 
+  /*
+   * Render the templates
+   */
   def render: Map[String, String] = {
     configNames.map((configname: String) => {
       val result: String = engine.layout("templates" + File.separator + configname + ".cfg.ssp", Map(options.toList : _*) + (("currentConfig", configname)), List())
@@ -292,6 +311,9 @@ class ConfigRender {
     }).toMap
   }
 
+  /*
+   * Write output templates to a directory
+   */
   def writeToDirectory(directory: String) {
     render.foreach {
       case (filename, rendered) => {
