@@ -109,9 +109,9 @@ alias cross_<%= slot %> "cl_crosshair_red <%= classWeaponColors(currentConfig)(s
 alias weap_sens_<%= slot %> "sensitivity <%= classSensitivity(currentConfig)(slot - 1).toString %>"
 alias weap_ding_<%= slot %> "tf_dingaling_pitchmaxdmg <%= classDingPitchMax(currentConfig)(slot - 1) %>; tf_dingaling_pitchmindmg <%= classDingPitchMin(currentConfig)(slot - 1) %>"
 <% if(classWeaponShow(currentConfig)(slot - 1)) { //stupid ssp limitations wrt nested ifs force me to do this
-"alias weapon_vis_" + slot + " show_weapon"
+"alias weap_vis_" + slot + " show_weapon"
 } else {
-"alias weapon_vis_" + slot + " hide_weapon"
+"alias weap_vis_" + slot + " hide_weapon"
 } %>
 #end
 #else
@@ -120,15 +120,15 @@ alias weap_ding_<%= slot %> "tf_dingaling_pitchmaxdmg <%= classDingPitchMax(curr
 //alias weap_sens_<%= slot %> "sensitivity <%= sensitivity.toString %>"
 //alias weap_ding_<%= slot %> "tf_dingaling_pitchmaxdmg <%= dingPitchMax %>; tf_dingaling_pitchmindmg <%= dingPitchMin %>"
 <% if(weaponShow(slot - 1)) { //stupid ssp limitations wrt nested ifs force me to do this
-"alias weapon_vis_" + slot + " show_weapon"
+"alias weap_vis_" + slot + " show_weapon"
 } else {
-"alias weapon_vis_" + slot + " hide_weapon"
+"alias weap_vis_" + slot + " hide_weapon"
 } %>
 #end
 #end
 
 //ensures that when building the weapon switching doesn't get out of sync due to autoswitching to the wrench
-alias +buildandwrench "+attack; weap_ding_3; weap_sens_3; cross_3; alias current_weapon_vis weap_vis_3; show_weapon"
+alias +buildandwrench "+attack; weap_ding_3; weap_sens_3; cross_3; alias current_weap_vis weap_vis_3; show_weapon"
 alias -buildandwrench "-attack; bind <%= primAttack %> +attack"
 
 //quickbuild

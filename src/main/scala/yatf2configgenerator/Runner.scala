@@ -392,7 +392,6 @@ object Runner extends SwingApplication {
 
           val c = new Constraints
           c.fill = Fill.Horizontal
-          c.anchor = Anchor.FirstLineStart
           c.insets = new Insets(3, 3, 3, 3)
           c.weightx = 1.0
           c.weighty = 0.0

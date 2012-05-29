@@ -100,9 +100,9 @@ alias cross_<%= slot %> "cl_crosshair_red <%= weaponColors(slot - 1)._1 %>; cl_c
 alias weap_sens_<%= slot %> "sensitivity <%= sensitivity.toString %>"
 alias weap_ding_<%= slot %> "tf_dingaling_pitchmaxdmg <%= dingPitchMax %>; tf_dingaling_pitchmindmg <%= dingPitchMin %>"
 #if (weaponShow(slot - 1))
-alias weapon_vis_<%= slot %> show_weapon
+alias weap_vis_<%= slot %> show_weapon
 #else
-alias weapon_vis_<%= slot %> hide_weapon
+alias weap_vis_<%= slot %> hide_weapon
 #end 
 #end
 
@@ -123,8 +123,8 @@ bind <%= directWeapon3 %> swapdefault
 bind <%= directWeapon4 %> weapon4
 bind <%= primSecSwap %> primsecswap
 bind <%= meleeSwap %> othermeleeswap
-bind <%= secAttack %> +attack
-bind <%= primAttack %> +attack2
+bind <%= primAttack %> +attack
+bind <%= secAttack %> +attack2
 bind <%= normalJump %> +jump
 #if (enableCrouchJump)
 bind <%= jump %> +crouchjump
