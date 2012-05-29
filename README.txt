@@ -45,4 +45,4 @@ Known Bugs:
 Installation:
 * Make sure you have the java runtime installed, this is a version without toolbar crap: http://www.oracle.com/technetwork/java/javase/downloads/jre-7u4-download-1591157.html
 * Unzip the program and double click on the jar file to start
-* When you generate the scripts, wait for the pop-up to say it's finished. It can take quite a while to finish generating, the price of flexibility I suppose
+* Generating the scripts can take a bit long, especially on older pcs, be patient and wait for the popup
