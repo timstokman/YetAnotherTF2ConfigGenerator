@@ -8,8 +8,8 @@ Features:
   * Sensitivity (by default all the same, possible to fuck with muscle memory that way, but some people prefer it)
   * Showing/Hiding the weapon model
   * Dingeling (for example, the sniper rifle has higher max damage then the scout bat, you're able to specify for each slot/class the max and min damage pitch)
-  The special twist here is, that when switching the weapon it will always show the weapon model at first, then, when you switch strafe directions (to avoid using the wait command),
-  it will hide (or not) the weapon depending on the settings for that slot.
+  * The special twist here is, that when switching the weapon it will always show the weapon model at first, then, when you switch strafe 
+    directions (to avoid using the wait command), it will hide (or not) the weapon depending on the settings for that slot.
 * Null-movement canceling: if you press two opposite strafe keys, you will no longer stand still. enables you to get rid of "null-movement" while strafing.
 * Option to set dingelings that vary based on how much damage you do
 * Fastswitch/Autoreload/Damage number options
@@ -34,8 +34,10 @@ Todo:
 * Show with a pop-up with startup options you need for the graphics config you selected
 * Make the GUI a bit prettier
 * Shrink/Clean up the templates a bit
-* Something like stabby's crosshair script (changing crosshair colors when strafing), or a switching the crosshair color when firing your weapon 
+* Something like stabby's crosshair script (changing crosshair colors when strafing), or a switching the crosshair color when firing your weapon
+* Zoom in bind 
 * P-Rec settings
+* Ability to turn off dings for weapons
 * variable cl_inter_ratio for different classes (or even weapons?)
 * Maybe I missed a couple of keybinds?
 * Other requests?
