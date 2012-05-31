@@ -440,8 +440,18 @@ object Runner extends SwingApplication {
               }
             }
           }) = c
+          
+          c.gridy = 2; c.gridx = 1
+          layout(new CheckBox("Custom Templates") {
+            selected = false
+            reactions += {
+              case ButtonClicked(_) => {
+                render.engine.allowReload = selected
+              }
+            }
+          }) = c
 
-          c.gridy = 2; c.gridx = 0
+          c.gridy = 3; c.gridx = 0
           layout(new Button("Generate scripts current directory") {
             reactions += {
               case ButtonClicked(_) => {
@@ -530,7 +540,7 @@ object Runner extends SwingApplication {
             }
           }) = c
           
-          c.gridx = 0; c.gridy = 3; c.weighty = 1.0
+          c.gridx = 0; c.gridy = 4; c.weighty = 1.0
           layout(new FlowPanel) = c
         }
       })

@@ -76,6 +76,15 @@
 <%@ val disguiseMedic : String %>
 <%@ val disguiseSniper : String %>
 <%@ val disguiseSpy : String %>
+<%@ val disguiseFriendlyScout : String %>
+<%@ val disguiseFriendlySoldier : String %>
+<%@ val disguiseFriendlyPyro : String %>
+<%@ val disguiseFriendlyDemo : String %>
+<%@ val disguiseFriendlyHeavy : String %>
+<%@ val disguiseFriendlyEngineer : String %>
+<%@ val disguiseFriendlyMedic : String %>
+<%@ val disguiseFriendlySniper : String %>
+<%@ val disguiseFriendlySpy : String %>
 <%@ val showFlames : Boolean %>
 <%@ val buildSentry : String %>
 <%@ val buildDispenser : String %>
@@ -170,6 +179,15 @@ bind <%= disguiseEngineer %> "disguise 9 -1"
 bind <%= disguiseMedic %> "disguise 5 -1"
 bind <%= disguiseSniper %> "disguise 2 -1"
 bind <%= disguiseSpy %> "disguise 8 -1"
+bind <%= disguiseFriendlyScout %> "disguise 1 -2"
+bind <%= disguiseFriendlySoldier %> "disguise 3 -2"
+bind <%= disguiseFriendlyPyro %> "disguise 7 -2"
+bind <%= disguiseFriendlyDemo %> "disguise 4 -2"
+bind <%= disguiseFriendlyHeavy %> "disguise 6 -2"
+bind <%= disguiseFriendlyEngineer %> "disguise 9 -2"
+bind <%= disguiseFriendlyMedic %> "disguise 5 -2"
+bind <%= disguiseFriendlySniper %> "disguise 2 -2"
+bind <%= disguiseFriendlySpy %> "disguise 8 -2"
 
 bind <%= disguiseCycle %> disguise_cycle
 bind <%= disguiseFriendlyCycle %> disguise_cycle_f

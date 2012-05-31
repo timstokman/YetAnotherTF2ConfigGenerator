@@ -76,6 +76,15 @@
 <%@ val disguiseMedic : String %>
 <%@ val disguiseSniper : String %>
 <%@ val disguiseSpy : String %>
+<%@ val disguiseFriendlyScout : String %>
+<%@ val disguiseFriendlySoldier : String %>
+<%@ val disguiseFriendlyPyro : String %>
+<%@ val disguiseFriendlyDemo : String %>
+<%@ val disguiseFriendlyHeavy : String %>
+<%@ val disguiseFriendlyEngineer : String %>
+<%@ val disguiseFriendlyMedic : String %>
+<%@ val disguiseFriendlySniper : String %>
+<%@ val disguiseFriendlySpy : String %>
 <%@ val showFlames : Boolean %>
 <%@ val buildSentry : String %>
 <%@ val buildDispenser : String %>

@@ -5,10 +5,13 @@ import scala.collection.immutable.ListMap
 import java.io.{ FileOutputStream, OutputStreamWriter, File }
 
 class ConfigRender {
+  val cacheDir = "cache"
+  val templateDir = "templates"  
+  System.setProperty("scalate.workdir", cacheDir)
+  
   val engine = new TemplateEngine
-
-  val templateDir = "templates"
-
+  engine.allowReload = false
+  
   //list of templates
   val configNames = List(
     "autoexec",
@@ -217,6 +220,15 @@ class ConfigRender {
     "disguiseMedic" -> ('binds, 'key, "Disguise medic"),
     "disguiseSniper" -> ('binds, 'key, "Disguise sniper"),
     "disguiseSpy" -> ('binds, 'key, "Disguise spy"),
+    "disguiseFriendlyScout" -> ('binds, 'key, "Disguise friendly scout"),
+    "disguiseFriendlySoldier" -> ('binds, 'key, "Disguise friendly soldier"),
+    "disguiseFriendlyPyro" -> ('binds, 'key, "Disguise friendly pyro"),
+    "disguiseFriendlyDemo" -> ('binds, 'key, "Disguise friendly demo"),
+    "disguiseFriendlyHeavy" -> ('binds, 'key, "Disguise friendly heavy"),
+    "disguiseFriendlyEngineer" -> ('binds, 'key, "Disguise friendly engineer"),
+    "disguiseFriendlyMedic" -> ('binds, 'key, "Disguise friendly medic"),
+    "disguiseFriendlySniper" -> ('binds, 'key, "Disguise friendly sniper"),
+    "disguiseFriendlySpy" -> ('binds, 'key, "Disguise friendly spy"),
     "buildSentry" -> ('binds, 'key, "Build sentry"),
     "buildDispenser" -> ('binds, 'key, "Build dispenser"),
     "buildEntrance" -> ('binds, 'key, "Build entrance"),
@@ -318,6 +330,15 @@ class ConfigRender {
     "disguiseMedic" -> "F7",
     "disguiseSniper" -> "F8",
     "disguiseSpy" -> "F9",
+    "disguiseFriendlyScout" -> "nothing",
+    "disguiseFriendlySoldier" -> "nothing",
+    "disguiseFriendlyPyro" -> "nothing",
+    "disguiseFriendlyDemo" -> "nothing",
+    "disguiseFriendlyHeavy" -> "nothing",
+    "disguiseFriendlyEngineer" -> "nothing",
+    "disguiseFriendlyMedic" -> "nothing",
+    "disguiseFriendlySniper" -> "nothing",
+    "disguiseFriendlySpy" -> "nothing",
     "buildSentry" -> "F1",
     "buildDispenser" -> "F2",
     "buildEntrance" -> "F3",
@@ -337,7 +358,7 @@ class ConfigRender {
    */
   def render: Map[String, String] = {
     configNames.map((configname: String) => {
-      val result: String = engine.layout("templates" + File.separator + configname + ".cfg.ssp", Map(options.toList : _*) + (("currentConfig", configname)), List())
+      val result: String = engine.layout(templateDir + File.separator + configname + ".cfg.ssp", Map(options.toList : _*) + (("currentConfig", configname)), List())
       (configname, result)
     }).toMap
   }
