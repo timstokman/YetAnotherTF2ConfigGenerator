@@ -5,11 +5,12 @@ import scala.collection.immutable.ListMap
 import java.io.{ FileOutputStream, OutputStreamWriter, File }
 
 class ConfigRender {
-  val cacheDir = "cache"
-  val templateDir = "templates"  
-  System.setProperty("scalate.workdir", cacheDir)
+  val cacheDir = "./cache"
+  val templateDir = "./templates"
   
   val engine = new TemplateEngine
+  engine.workingDirectory = new File(cacheDir)
+  engine.sourceDirectories = List(new File(templateDir))
   engine.allowReload = false
   
   //list of templates
@@ -358,7 +359,7 @@ class ConfigRender {
    */
   def render: Map[String, String] = {
     configNames.map((configname: String) => {
-      val result: String = engine.layout(templateDir + File.separator + configname + ".cfg.ssp", Map(options.toList : _*) + (("currentConfig", configname)), List())
+      val result: String = engine.layout(configname + ".cfg.ssp", Map(options.toList : _*) + (("currentConfig", configname)), List())
       (configname, result)
     }).toMap
   }
