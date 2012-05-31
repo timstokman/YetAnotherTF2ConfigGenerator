@@ -519,8 +519,9 @@ object Runner extends SwingApplication {
             	if(steamField.text != "" && usernameCombo.selection.item != "") {
                   val directory = List(steamField.text, "steamapps", usernameCombo.selection.item, "team fortress 2", "tf", "cfg").mkString(File.separator)
                   for(configFile <- render.configNames) {
-                    new File(directory + File.separator + configFile).delete
+                    new File(directory + File.separator + configFile + ".cfg").delete
                   }
+                  new File(directory + File.separator + "user.scr").delete
                   copyFile(new File("templates" + File.separator + "default_reset.cfg"), new File(directory + File.separator + "config.cfg"))
             	} else {
             	  Dialog.showMessage(grid, "No steam directory or username specified", "Error", Dialog.Message.Error)
