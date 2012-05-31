@@ -7,7 +7,7 @@ Features:
   * Crosshair (color, type, scale)
   * Sensitivity (by default all the same, possible to fuck with muscle memory that way, but some people prefer it)
   * Showing/Hiding the weapon model
-  * Dingeling (for example, the sniper rifle has higher max damage then the scout bat, you're able to specify for each slot/class the max and min damage pitch and volume)
+  * Dingeling (for example, the sniper rifle has higher max damage then the scout bat, you're able to specify for each slot/class the max and min damage pitch)
   * The special twist here is, that when switching the weapon it will always show the weapon model at first, then, when you switch strafe 
     directions (to avoid using the wait command), it will hide (or not) the weapon depending on the settings for that slot.
 * Null-movement canceling: if you press two opposite strafe keys, you will no longer stand still. enables you to get rid of "null-movement" while strafing.
