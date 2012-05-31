@@ -4,7 +4,7 @@ import scala.swing._
 import scala.swing.event._
 import Swing._
 import javax.swing.UIManager
-import java.io.File
+import java.io.{File, FileInputStream, FileOutputStream}
 import java.awt.Dimension
 
 object Runner extends SwingApplication {
@@ -259,10 +259,11 @@ object Runner extends SwingApplication {
                           weaponSensitivity.enabled = true
                           weaponSensitivity.text = fields("sensitivity").asInstanceOf[TextField].text
 
-                          val (weaponDingMax, weaponDingMin) = (fields("classDingPitchMax" + tfClass + slot).asInstanceOf[TextField], fields("classDingPitchMin" + tfClass + slot).asInstanceOf[TextField])
-                          weaponDingMax.enabled = true; weaponDingMin.enabled = true
+                          val (weaponDingMax, weaponDingMin, weaponDingVolume) = (fields("classDingPitchMax" + tfClass + slot).asInstanceOf[TextField], fields("classDingPitchMin" + tfClass + slot).asInstanceOf[TextField], fields("classDingVolume" + tfClass + slot).asInstanceOf[TextField])
+                          weaponDingMax.enabled = true; weaponDingMin.enabled = true; weaponDingVolume.enabled = true
                           weaponDingMax.text = fields("dingPitchMax").asInstanceOf[TextField].text
                           weaponDingMin.text = fields("dingPitchMin").asInstanceOf[TextField].text
+                          weaponDingVolume.text = fields("dingVolume").asInstanceOf[TextField].text
                           
                           val weaponShow = fields("classWeaponShow" + tfClass + slot).asInstanceOf[CheckBox]
                           weaponShow.enabled = true
@@ -279,6 +280,7 @@ object Runner extends SwingApplication {
                           fields("classDingPitchMax" + tfClass + slot).asInstanceOf[TextField].enabled = false
                           fields("classDingPitchMin" + tfClass + slot).asInstanceOf[TextField].enabled = false
                           fields("classWeaponShow" + tfClass + slot).asInstanceOf[CheckBox].enabled = false
+                          fields("classDingVolume" + tfClass + slot).asInstanceOf[TextField].enabled = false
                         }
                       }
                     }
@@ -333,8 +335,10 @@ object Runner extends SwingApplication {
 
                   val weaponDingMax = new TextField("") { enabled = false }
                   val weaponDingMin = new TextField("") { enabled = false }
+                  val weaponDingVolume = new TextField("") { enabled = false }
                   fields("classDingPitchMax" + tfClass + slot) = weaponDingMax
                   fields("classDingPitchMin" + tfClass + slot) = weaponDingMin
+                  fields("classDingVolume" + tfClass + slot) = weaponDingVolume
                   c.gridy = rowNum + 5; c.gridx = 0
                   layout(new Label("Ding max pitch:")) = c
                   c.gridx = 1
@@ -343,6 +347,10 @@ object Runner extends SwingApplication {
                   layout(new Label("Ding min pitch:")) = c
                   c.gridx = 3
                   layout(weaponDingMin) = c
+                  c.gridx = 4
+                  layout(new Label("Ding volume:")) = c
+                  c.gridx = 5
+                  layout(weaponDingVolume) = c
                   
                   val weaponShow = new CheckBox("Show Weapon") { enabled = false }
                   fields("classWeaponShow" + tfClass + slot) = weaponShow
@@ -433,7 +441,7 @@ object Runner extends SwingApplication {
             }
           }) = c
 
-          c.gridy = 2; c.gridx = 1
+          c.gridy = 2; c.gridx = 0
           layout(new Button("Generate scripts current directory") {
             reactions += {
               case ButtonClicked(_) => {
@@ -452,13 +460,21 @@ object Runner extends SwingApplication {
                     render.writeToDirectory(".")
                     progressWindow.close                    
                     Dialog.showMessage(grid, "Done generating the configuration files", "Info", Dialog.Message.Info)
+                    val graphicsConfig = render.options("graphicsConfig").asInstanceOf[String]
+                    val precEnabled = render.options("precEnabled").asInstanceOf[Boolean]
+                    if(graphicsConfig != "none") {
+                      Dialog.showMessage(grid, "You picked a graphics config, here is the necessary configuration information: \n" + render.graphicsConfigsInfo(graphicsConfig), "Info", Dialog.Message.Info)
+                    }
+                    if(precEnabled) {
+                      Dialog.showMessage(grid, "You configured P-Rec. More information and downloads for P-Rec can be found at http://orangad.com.ua/", "Info", Dialog.Message.Info)
+                    }
                   }
                 }.start
               }
             }
           }) = c
 
-          c.gridx = 2
+          c.gridx = 1
           layout(new Button("Generate scripts tf2 directory") {
             reactions += {
               case ButtonClicked(_) => {
@@ -479,6 +495,14 @@ object Runner extends SwingApplication {
                       render.writeToDirectory(directory)
                       progressWindow.close                    
                       Dialog.showMessage(grid, "Done generating the configuration files", "Info", Dialog.Message.Info)
+                      val graphicsConfig = render.options("graphicsConfig").asInstanceOf[String]
+                      val precEnabled = render.options("precEnabled").asInstanceOf[Boolean]
+                      if(graphicsConfig != "none") {
+                        Dialog.showMessage(grid, "You picked a graphics config, here is the necessary configuration information: \n" + render.graphicsConfigsInfo(graphicsConfig), "Info", Dialog.Message.Info)
+                      }
+                      if(precEnabled) {
+                        Dialog.showMessage(grid, "You configured P-Rec. More information about and downloads for P-Rec can be found at http://orangad.com.ua/", "Info", Dialog.Message.Info)
+                      }
                     }
                   }.start
             	} else {
@@ -488,13 +512,43 @@ object Runner extends SwingApplication {
             }
           }) = c
           
-          c.weighty = 1.0
+          c.gridx = 2
+          layout(new Button("Reset to default") {
+            reactions += {
+              case ButtonClicked(_) => {
+            	if(steamField.text != "" && usernameCombo.selection.item != "") {
+                  val directory = List(steamField.text, "steamapps", usernameCombo.selection.item, "team fortress 2", "tf", "cfg").mkString(File.separator)
+                  for(configFile <- render.configNames) {
+                    new File(directory + File.separator + configFile).delete
+                  }
+                  copyFile(new File("templates" + File.separator + "default_reset.cfg"), new File(directory + File.separator + "config.cfg"))
+            	} else {
+            	  Dialog.showMessage(grid, "No steam directory or username specified", "Error", Dialog.Message.Error)
+            	}
+              }
+            }
+          }) = c
+          
+          c.gridx = 0; c.gridy = 3; c.weighty = 1.0
           layout(new FlowPanel) = c
         }
       })
     }
   }
+  def copyFile(f1 : File, f2 : File) {
+    val in = new FileInputStream(f1);
+    val out = new FileOutputStream(f2);
 
+    val buf = new Array[Byte](1024);
+    var len = in.read(buf)
+    while (len > 0){
+      out.write(buf, 0, len)
+      len = in.read(buf)
+    }
+    in.close();
+    out.close();
+  }
+  
   /*
    * Extract the info from the UI to the map necessary for the templates
    */
@@ -644,6 +698,19 @@ object Runner extends SwingApplication {
         }
         render.options(optionName) = Map(weaponDing.toList : _*)
       }
+      case (optionName, ('weapons, 'classDingVolume, label)) => {
+        val weaponVolume = collection.mutable.Map[String, List[Double]]()
+        for(className <- render.disguiseClassNumberMap.keys) {
+          if(render.options("classSpecificEnabled").asInstanceOf[Map[String, Boolean]](className)) {
+            var volume = List[Double]()
+        	for(slot <- 1 to 4) {
+        	  volume :+= fields(optionName + className + slot).asInstanceOf[TextField].text.toDouble
+        	}
+            weaponVolume(className) = volume
+          }
+        }
+        render.options(optionName) = Map(weaponVolume.toList : _*)
+      }      
       case _ => {}
     }
   }

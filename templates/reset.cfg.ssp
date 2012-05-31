@@ -93,12 +93,25 @@
 <%@ val classSensitivity : Map[String, List[Double]] %>
 <%@ val classDingPitchMax : Map[String, List[Int]] %>
 <%@ val classDingPitchMin : Map[String, List[Int]] %>
+<%@ val classDingVolume : Map[String, List[Double]] %>
+<%@ val precEnabled : Boolean %>
+<%@ val precLog : Int %>
+<%@ val precScreens : Int %>
+<%@ val precDeleteUseless : Int %>
+<%@ val precMinStreak : Int %>
+<%@ val precKillDelay : Int %>
+<%@ val precDir : String %>
+<%@ val precMode : Int %>
+<%@ val precMark : String %>
+<%@ val zoom : String %>
+<%@ val zoomFactor : Double %>
 
 //setup the crosshairs/weapon visibility
 #for (slot <- 1 to 4)
 alias cross_<%= slot %> "cl_crosshair_red <%= weaponColors(slot - 1)._1 %>; cl_crosshair_green <%= weaponColors(slot - 1)._2 %>; cl_crosshair_blue <%= weaponColors(slot - 1)._3 %>; cl_crosshair_scale <%= weaponScales(slot - 1) %>; cl_crosshair_file <%= weaponCrosshairs(slot - 1) %>"
 alias weap_sens_<%= slot %> "sensitivity <%= sensitivity.toString %>"
-alias weap_ding_<%= slot %> "tf_dingaling_pitchmaxdmg <%= dingPitchMax %>; tf_dingaling_pitchmindmg <%= dingPitchMin %>"
+alias weap_zoom_sens_<%= slot %> "sensitivity <%= (sensitivity / zoomFactor).toString %>"
+alias weap_ding_<%= slot %> "tf_dingaling_pitchmaxdmg <%= dingPitchMax %>; tf_dingaling_pitchmindmg <%= dingPitchMin %>; tf_dingaling_volume <%= dingVolume.toString %>"
 #if (weaponShow(slot - 1))
 alias weap_vis_<%= slot %> show_weapon
 #else

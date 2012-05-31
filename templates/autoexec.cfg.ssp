@@ -94,6 +94,18 @@
 <%@ val classSensitivity : Map[String, List[Double]] %>
 <%@ val classDingPitchMax : Map[String, List[Int]] %>
 <%@ val classDingPitchMin : Map[String, List[Int]] %>
+<%@ val classDingVolume : Map[String, List[Double]] %>
+<%@ val precEnabled : Boolean %>
+<%@ val precLog : Int %>
+<%@ val precScreens : Int %>
+<%@ val precDeleteUseless : Int %>
+<%@ val precMinStreak : Int %>
+<%@ val precKillDelay : Int %>
+<%@ val precDir : String %>
+<%@ val precMode : Int %>
+<%@ val precMark : String %>
+<%@ val zoom : String %>
+<%@ val zoomFactor : Double %>
 
 //exec other configs needed
 exec reset
@@ -123,7 +135,7 @@ alias if_right ""
 
 //weapon switch
 #for (slot <- 1 to 4)
-alias weapon<%= slot %> "slot<%= slot %>; weap_ding_<%= slot %>; weap_sens_<%= slot %>; cross_<%= slot %>; alias current_weapon_vis weap_vis_<%= slot %>; show_weapon"
+alias weapon<%= slot %> "slot<%= slot %>; weap_ding_<%= slot %>; weap_sens_<%= slot %>; cross_<%= slot %>; alias current_weapon_vis weap_vis_<%= slot %>; alias current_weapon_sens weap_sens_<%= slot %>; alias current_zoom_sens weap_zoom_sens_<%= slot %>; show_weapon"
 #end
 
 //setup swapping between primaries and secondaries
@@ -146,9 +158,12 @@ alias -crouchjump "-duck; -jump"
 alias +sb "+score; net_graph <%= scoreboardNetgraph %>"
 alias -sb "-score; net_graph 0"
 
+//zoom-in bind
+alias +zoom_in "fov_desired <%= Math.round(fov / zoomFactor) %>; current_zoom_sens"
+alias -zoom_in "fov_desired <%= fov %>; current_weapon_sens"
+
 //options
 tf_dingalingaling <%= dingEnable %>
-tf_dingaling_volume <%= dingVolume.toString %>
 tf_remember_activeweapon 1 //this is needed for the weapon switching script
 fov_desired <%= fov %>
 cl_autoreload <%= autoreload %>
@@ -156,6 +171,7 @@ hud_fastswitch <%= fastswitch %>
 hud_combattext <%= damagenumbers %>
 
 //binds
+bind <%= zoom %> +zoom_in
 bind <%= movementFwd %> +move_forward
 bind <%= movementBack %> +move_back
 bind <%= movementLeft %> +move_left
@@ -183,3 +199,15 @@ bind <%= actionSlot %> use_action_slot_item
 bind <%= voiceMenu1 %> voice_menu_1
 bind <%= voiceMenu2 %> voice_menu_2
 bind <%= voiceMenu3 %> voice_menu_3
+
+#if(precEnabled)
+//P-Rec
+prec_log <%= precLog %>
+prec_screens <%= precScreens %>
+prec_delete_useless_demo <%= precDeleteUseless %>
+prec_min_streak <%= precMinStreak %>
+prec_kill_delay <%= precKillDelay %>
+prec_dir <%= precDir %>
+prec_mode <%= precMode %>
+bind <%= precMark %> prec_mark
+#end

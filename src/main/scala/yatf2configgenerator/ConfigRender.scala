@@ -29,8 +29,9 @@ class ConfigRender {
     "maxquality",
     "net")
 
-  // list of valid tf2 key codes
+  //list of valid tf2 key codes
   val validKeyStrings = List(
+    "nothing",
     "MWHEELUP",
     "MWHEELDOWN",
     "MOUSE1",
@@ -96,6 +97,12 @@ class ConfigRender {
 
   //list of graphics configs
   val graphicsConfigs = List("none", "highquality", "maxquality", "highframes", "maxframes", "dx9frames")
+  
+  val graphicsConfigsInfo = Map("highframes" -> "Chris' highframes config, designed to get you a large performance boost\nLaunch options: \nIMPORTANT: Remove -dxlevel 81 from the launch options after the first launch!\nFullscreen: -dxlevel 81 -full -w WIDTH -h HEIGHT -console -novid -useforcedmparms -noforcemaccel -noforcemspd\nWindowed:   -dxlevel 81 -sw -w WIDTH -h HEIGHT -console -noborder -novid -useforcedmparms -noforcemaccel -noforcemspd",
+                                "maxframes" ->  "Chris' maxframes config, designed to get you a large performance boost\nLaunch options: \nIMPORTANT: Remove -dxlevel 81 from the launch options after the first launch!\nFullscreen: -dxlevel 81 -full -w WIDTH -h HEIGHT -console -novid -useforcedmparms -noforcemaccel -noforcemspd\nWindowed:   -dxlevel 81 -sw -w WIDTH -h HEIGHT -console -noborder -novid -useforcedmparms -noforcemaccel -noforcemspd",
+                                "highquality" -> "Chris' highquality config, designed to get you excellent quality\nLaunch options: \nIMPORTANT: Remove -dxlevel 98 from the launch options after the first launch!\nFullscreen: -dxlevel 98 -full -w WIDTH -h HEIGHT -console -novid -useforcedmparms -noforcemaccel -noforcemspd\nWindowed:   -dxlevel 98 -sw -w WIDTH -h HEIGHT -console -noborder -novid -useforcedmparms -noforcemaccel -noforcemspd",
+                                "maxquality" -> "Chris' maxquality config, designed to get you excellent quality\nLaunch options: \nIMPORTANT: Remove -dxlevel 98 from the launch options after the first launch!\nFullscreen: -dxlevel 98 -full -w WIDTH -h HEIGHT -console -novid -useforcedmparms -noforcemaccel -noforcemspd\nWindowed:   -dxlevel 98 -sw -w WIDTH -h HEIGHT -console -noborder -novid -useforcedmparms -noforcemaccel -noforcemspd",
+                                "dx9frames" -> "Chris' dx9frames config, designed to get you a large performance boost\nLaunch options: \nIMPORTANT: Remove -dxlevel 90 from the launch options after the first launch!\nFullscreen: -dxlevel 90 -full -w WIDTH -h HEIGHT -console -novid -useforcedmparms -noforcemaccel -noforcemspd\nWindowed:   -dxlevel 90 -sw -w WIDTH -h HEIGHT -console -noborder -novid -useforcedmparms -noforcemaccel -noforcemspd")
 
   //list of network configs
   val networkConfigs = List("none", "bad", "good", "lan")
@@ -131,11 +138,20 @@ class ConfigRender {
     "uberPopChat" -> ('options, 'boolean, "Communicate uber through chat"),
     "showHealBeam" -> ('options, 'boolean, "Show viewmodel heal beam"),
     "fullChargeBell" -> ('options, 'intAsBoolean, "Sound when sniper rifle is charged"),
-    "zoomSensitivity" -> ('options, 'double, "Zoom sensitivity"),
+    "zoomSensitivity" -> ('options, 'double, "Zoom sensitivity (sniper)"),
+    "zoomFactor" -> ('options, 'double, "Zoom factor"),
     "noCrossHairZoom" -> ('options, 'intAsBoolean, "Disable crosshair on zoom"),
     "showFlames" -> ('options, 'boolean, "Show viewmodel flames"),
     "disguiseCycleClasses" -> ('options, 'classDisguiseList, "Disguise cyclelist enemy classes"),
-    "disguiseFriendlyCycleClasses" -> ('options, 'classDisguiseList, "Disguise cyclelist friendly classes"),
+    "disguiseFriendlyCycleClasses" -> ('options, 'classDisguiseList, "Disguise cyclelist friendly classes"), 
+    "precEnabled" -> ('options, 'boolean, "I Use P-Rec"),
+    "precLog" -> ('options, 'int, "P-Rec log"),
+    "precScreens" -> ('options, 'intAsBoolean, "P-Rec takes screenshots"),
+    "precDeleteUseless" -> ('options, 'intAsBoolean, "P-Rec deletes useless demos"),
+    "precMinStreak" -> ('options, 'int, "P-Rec minimum kill streak"),
+    "precKillDelay" -> ('options, 'int, "P-Rec kill delay"),
+    "precDir" -> ('options, 'string, "P-Rec demo directory"),
+    "precMode" -> ('options, 'int, "P-Rec Mode"),
     "weaponColors" -> ('weapons, 'colorList, "Weapon color"),
     "weaponCrosshairs" -> ('weapons, 'crosshairList, "Weapon crosshair"),
     "weaponScales" -> ('weapons, 'scaleList, "Weapon scale"),
@@ -148,6 +164,7 @@ class ConfigRender {
     "classSensitivity" -> ('weapons, 'classSensitivity, "Class specific weapon sensitivity"),
     "classDingPitchMax" -> ('weapons, 'classDingPitch, "Class specific weapon ding max pitch"),
     "classDingPitchMin" -> ('weapons, 'classDingPitch, "Class specific weapon ding min pitch"),
+    "classDingVolume" -> ('weapons, 'classDingVolume, "Class specific weapon ding volume"),
     "movementFwd" -> ('binds, 'key, "Move forward"),
     "movementLeft" -> ('binds, 'key, "Move left"),
     "movementBack" -> ('binds, 'key, "Move backward"),
@@ -187,6 +204,7 @@ class ConfigRender {
     "fakeUber" -> ('binds, 'key, "Fake uber"),
     "jump" -> ('binds, 'key, "Jump (possibly with crouch)"),
     "normalJump" -> ('binds, 'key, "Jump (always without crouch)"),
+    "zoom" -> ('binds, 'key, "Zoom in"),
     "disguiseCycle" -> ('binds, 'key, "Cycle normal disguise"),
     "disguiseFriendlyCycle" -> ('binds, 'key, "Cycle friendly disguise"),
     "disguiseLast" -> ('binds, 'key, "Last disguise"),
@@ -202,7 +220,8 @@ class ConfigRender {
     "buildSentry" -> ('binds, 'key, "Build sentry"),
     "buildDispenser" -> ('binds, 'key, "Build dispenser"),
     "buildEntrance" -> ('binds, 'key, "Build entrance"),
-    "buildExit" -> ('binds, 'key, "Build exit"))
+    "buildExit" -> ('binds, 'key, "Build exit"),
+    "precMark" -> ('binds, 'key, "P-Rec mark"))
 
   /*
    * Template options, including some defaults
@@ -237,6 +256,7 @@ class ConfigRender {
     "classSensitivity" -> Map[String, List[Double]](),
     "classDingPitchMax" -> Map[String, List[Int]](),
     "classDingPitchMin" -> Map[String, List[Int]](),
+    "classDingVolume" -> Map[String, List[Double]](),
     "primSecSwap" -> "q",
     "meleeSwap" -> "r",
     "voiceMenu1" -> "z",
@@ -255,7 +275,9 @@ class ConfigRender {
     "screenshot" -> "HOME",
     "saveReplay" -> "END",
     "quickSwitch" -> "t",
-    "teamOnlyTalk" -> "MOUSE3",
+    "teamOnlyTalk" -> "MOUSE4",
+    "zoom" -> "MOUSE3",
+    "zoomFactor" -> 2.5,
     "normalTalk" -> "v",
     "medic" -> "e",
     "scoreboard" -> "TAB",
@@ -299,7 +321,16 @@ class ConfigRender {
     "buildSentry" -> "F1",
     "buildDispenser" -> "F2",
     "buildEntrance" -> "F3",
-    "buildExit" -> "F4")
+    "buildExit" -> "F4",
+    "precEnabled" -> false,
+    "precLog" -> 1,
+    "precScreens" -> 1,
+    "precDeleteUseless" -> 0,
+    "precMinStreak" -> 4,
+    "precKillDelay" -> 15,
+    "precDir" -> "demos",
+    "precMode" -> 2,
+    "precMark" -> "PGUP")
 
   /*
    * Render the templates

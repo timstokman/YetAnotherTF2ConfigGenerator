@@ -28,18 +28,19 @@ Features:
 * Engineer: Quickbuild binds (default on the f-keys)
 * Sniper: option to disable the crosshair when zooming in, option to change the zoomed in sensitivity, option to sound a bell when the sniper rifle is charged
 * If you are brave, you can edit the templates and add your own stuff
-
-Todo:
-* Ability to do a lastweapon bind that ties in with the rest of the script, some people prefer that over the current weapon switch bind
-* Show with a pop-up with startup options you need for the graphics config you selected
-* Make the GUI a bit prettier
-* Shrink/Clean up the templates a bit
-* Something like stabby's crosshair script (changing crosshair colors when strafing), or a switching the crosshair color when firing your weapon
 * Zoom in bind 
 * P-Rec settings
 * Ability to turn off dings for weapons
+
+Todo:
+* Create cfg directory if it doesn't exist
+* Ability to do a lastweapon/invprev/invnext bind that ties in with the rest of the script, some people prefer that over the current weapon switch bind
+* Make the GUI a bit prettier
+* Shrink/Clean up the templates a bit
+* Something like stabby's crosshair script (changing crosshair colors when strafing), or a switching the crosshair color when firing your weapon
 * variable cl_inter_ratio for different classes (or even weapons?)
 * Maybe I missed a couple of keybinds?
+* Handle the disguise menu a bit better
 * Other requests?
 
 Known Bugs:
