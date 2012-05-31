@@ -33,6 +33,8 @@ Features:
 * Ability to turn off dings for weapons
 
 Todo:
+* Just destroy and *Just* build binds
+* Posibility to unbind keys
 * Create cfg directory if it doesn't exist
 * Ability to do a lastweapon/invprev/invnext bind that ties in with the rest of the script, some people prefer that over the current weapon switch bind
 * Make the GUI a bit prettier
