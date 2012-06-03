@@ -43,7 +43,7 @@ class ConfigRender {
     "MOUSE3",
     "MOUSE4",
     "MOUSE5",
-    "`", ".", ",",
+    "`", ".", ",", "-", "]", "'", "\\", "/",
     "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
     "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
     "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12",
@@ -53,6 +53,7 @@ class ConfigRender {
     "ALT",
     "RSHIFT",
     "RCTRL",
+    "ENTER",
     "TAB",
     "BACKSPACE",
     "SEMICOLOR",
@@ -62,12 +63,15 @@ class ConfigRender {
     "NUMLOCK",
     "END",
     "DEL",
+    "SEMICOLON",
     "PGUP",
     "PGDOWN",
     "UPARROW",
     "DOWNARROW",
     "LEFTARROW",
     "RIGHTARROW",
+    "ESCAPE", 
+    "PAUSE",
     "KP_INS",
     "KP_END",
     "KP_DOWNARROW",
@@ -230,11 +234,16 @@ class ConfigRender {
     "disguiseFriendlyMedic" -> ('binds, 'key, "Disguise friendly medic"),
     "disguiseFriendlySniper" -> ('binds, 'key, "Disguise friendly sniper"),
     "disguiseFriendlySpy" -> ('binds, 'key, "Disguise friendly spy"),
-    "buildSentry" -> ('binds, 'key, "Build sentry"),
-    "buildDispenser" -> ('binds, 'key, "Build dispenser"),
-    "buildEntrance" -> ('binds, 'key, "Build entrance"),
-    "buildExit" -> ('binds, 'key, "Build exit"),
-    "precMark" -> ('binds, 'key, "P-Rec mark"))
+    "buildSentry" -> ('binds, 'key, "Destroy and build new sentry"),
+    "buildDispenser" -> ('binds, 'key, "Destroy and build new dispenser"),
+    "buildEntrance" -> ('binds, 'key, "Destroy and build new entrance"),
+    "buildExit" -> ('binds, 'key, "Destroy and build new exit"),
+    "destroySentry" -> ('binds, 'key, "Destroy sentry"),
+    "destroyDispenser" -> ('binds, 'key, "Destroy dispenser"),
+    "destroyEntrance" -> ('binds, 'key, "Destroy entrance"),
+    "destroyExit" -> ('binds, 'key, "Destroy exit"),
+    "precMark" -> ('binds, 'key, "P-Rec mark"),
+    "unbindList" -> ('binds, 'keyList, "Unbind these keys"))
 
   /*
    * Template options, including some defaults
@@ -344,6 +353,10 @@ class ConfigRender {
     "buildDispenser" -> "F2",
     "buildEntrance" -> "F3",
     "buildExit" -> "F4",
+    "destroySentry" -> "F5",
+    "destroyDispenser" -> "F6",
+    "destroyEntrance" -> "F7",
+    "destroyExit" -> "F8",
     "precEnabled" -> false,
     "precLog" -> 1,
     "precScreens" -> 1,
@@ -352,7 +365,8 @@ class ConfigRender {
     "precKillDelay" -> 15,
     "precDir" -> "demos",
     "precMode" -> 2,
-    "precMark" -> "PGUP")
+    "precMark" -> "PGUP",
+    "unbindList" -> List[String]())
 
   /*
    * Render the templates

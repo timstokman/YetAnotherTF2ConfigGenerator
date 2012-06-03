@@ -34,9 +34,6 @@ Features:
 
 Todo:
 * Save prgress (quick json/xml dump of options map, whatever works)
-* Missing keys (right enter?)
-* Just destroy and *Just* build binds
-* Posibility to unbind keys
 * Create cfg directory if it doesn't exist
 * Conflicting binds detection
 * Ability to do a lastweapon/invprev/invnext bind that ties in with the rest of the script, some people prefer that over the current weapon switch bind

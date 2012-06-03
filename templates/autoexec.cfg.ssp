@@ -115,6 +115,11 @@
 <%@ val precMark : String %>
 <%@ val zoom : String %>
 <%@ val zoomFactor : Double %>
+<%@ val unbindList : List[String] %>
+<%@ val destroySentry : String %>
+<%@ val destroyDispenser : String %>
+<%@ val destroyEntrance : String %>
+<%@ val destroyExit : String %>
 
 //exec other configs needed
 exec reset
@@ -193,7 +198,7 @@ bind <%= saveReplay %> save_replay
 bind <%= duck %> +duck
 bind <%= taunt %> taunt
 bind <%= say %> say
-bind <%= teamSay %> teamSay
+bind <%= teamSay %> say_team
 bind <%= teamOnlyTalk %> +teamonly
 bind <%= normalTalk %> +voicerecord
 bind <%= scoreboard %> +sb
@@ -208,6 +213,11 @@ bind <%= actionSlot %> use_action_slot_item
 bind <%= voiceMenu1 %> voice_menu_1
 bind <%= voiceMenu2 %> voice_menu_2
 bind <%= voiceMenu3 %> voice_menu_3
+
+//unbind keys
+#for(i <- 1 to unbindList.size)
+  unbind <%= unbindList(i - 1) %>
+#end
 
 #if(precEnabled)
 //P-Rec

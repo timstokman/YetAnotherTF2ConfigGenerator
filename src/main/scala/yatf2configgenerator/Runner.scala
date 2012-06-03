@@ -140,7 +140,7 @@ object Runner extends SwingApplication {
               layout(new Button("Add") {
                 reactions += {
                   case ButtonClicked(_) => {
-                    list.listData = list.listData ++ List(render.disguiseClassNumberMap(classNamesCombo.selection.item))
+                    list.listData :+= render.disguiseClassNumberMap(classNamesCombo.selection.item)
                   }
                 }
               }) = c
@@ -385,9 +385,41 @@ object Runner extends SwingApplication {
               c.gridy = rowNum; c.gridx = 0
               layout(new Label(label + ":")) = c
               c.gridx = 1
-              fields = fields + ((optionName, new ComboBox(render.validKeyStrings) { selection.item = render.options(optionName).asInstanceOf[String] }))
+              fields(optionName) = new ComboBox(render.validKeyStrings) { selection.item = render.options(optionName).asInstanceOf[String] }
               layout(fields(optionName)) = c
               rowNum += 1
+            }
+            case (optionName, ('binds, 'keyList, label)) => {
+              c.gridy = rowNum; c.gridx = 0
+              layout(new Label(label + ":")) = c
+              c.gridx = 1
+              val list = new ListView(render.options("unbindList").asInstanceOf[List[String]]) { border = EtchedBorder(Raised) }
+              fields(optionName) = list
+              layout(list) = c
+              
+              c.gridy = rowNum + 1; c.gridx = 0
+              val keyCombo = new ComboBox("all" +: render.validKeyStrings.remove(_ == "nothing"))
+              layout(new Button("Add") {
+                reactions += {
+                  case ButtonClicked(_) => {
+                    list.listData :+= keyCombo.selection.item
+                  }
+                }
+              }) = c
+              c.gridx = 1
+              layout(keyCombo) = c
+              
+              c.gridy = rowNum + 2; c.gridx = 0
+              layout(new Button("Remove") {
+                reactions += {
+                  case ButtonClicked(_) => {
+                    if (list.peer.getSelectedValues.size > 0)
+                      list.listData = list.listData.filterNot(el => list.selection.items.exists(_ == el))
+                  }
+                }
+              }) = c
+              
+              rowNum += 3            
             }
             case _ => {}
           }
@@ -591,6 +623,9 @@ object Runner extends SwingApplication {
       }
       case (optionName, ('binds, 'key, label)) => {
         render.options(optionName) = fields(optionName).asInstanceOf[ComboBox[String]].selection.item
+      }
+      case (optionName, ('binds, 'keyList, label)) => {
+        render.options(optionName) = fields(optionName).asInstanceOf[ListView[String]].listData.toList
       }
       case (optionName, ('weapons, 'colorList, label)) => {
         var list = List[(Int, Int, Int)]()

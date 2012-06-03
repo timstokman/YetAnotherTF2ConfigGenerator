@@ -114,6 +114,11 @@
 <%@ val precMark : String %>
 <%@ val zoom : String %>
 <%@ val zoomFactor : Double %>
+<%@ val unbindList : List[String] %>
+<%@ val destroySentry : String %>
+<%@ val destroyDispenser : String %>
+<%@ val destroyEntrance : String %>
+<%@ val destroyExit : String %>
 
 exec reset
 
@@ -160,8 +165,18 @@ alias bdispenser "destroy 0; build 0; bind  <%= primAttack %> +buildandwrench"
 alias bentrance "destroy 1; build 1; bind  <%= primAttack %> +buildandwrench"
 alias bexit "destroy 3; build 3; bind  <%= primAttack %> +buildandwrench"
 
+//destroy
+alias dsentry "destroy 2"
+alias ddispenser "destroy 0"
+alias dentrance "destroy 1"
+alias dexit "destroy 3"
+
 //binds
 bind <%= buildSentry %> bsentry
 bind <%= buildDispenser %> bdispenser
 bind <%= buildEntrance %> bentrance
 bind <%= buildExit %> bexit
+bind <%= destroySentry %> dsentry
+bind <%= destroyDispenser %> ddispenser
+bind <%= destroyEntrance %> dentrance
+bind <%= destroyExit %> dexit 

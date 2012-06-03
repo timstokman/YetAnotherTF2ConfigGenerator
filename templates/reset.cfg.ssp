@@ -105,6 +105,11 @@
 <%@ val precMark : String %>
 <%@ val zoom : String %>
 <%@ val zoomFactor : Double %>
+<%@ val unbindList : List[String] %>
+<%@ val destroySentry : String %>
+<%@ val destroyDispenser : String %>
+<%@ val destroyEntrance : String %>
+<%@ val destroyExit : String %>
 
 //setup the crosshairs/weapon visibility
 #for (slot <- 1 to 4)
