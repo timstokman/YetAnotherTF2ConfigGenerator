@@ -534,6 +534,9 @@ object Runner extends SwingApplication {
                   progressWindow.open
                   new Thread {
                     override def run {
+                      val dirFile = new File(directory)
+                      if(!dirFile.exists)
+                        dirFile.mkdir
                       render.writeToDirectory(directory)
                       progressWindow.close                    
                       Dialog.showMessage(grid, "Done generating the configuration files", "Info", Dialog.Message.Info)
