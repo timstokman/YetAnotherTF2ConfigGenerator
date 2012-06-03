@@ -121,6 +121,11 @@
 <%@ val destroyEntrance : String %>
 <%@ val destroyExit : String %>
 
+//unbind keys
+#for(i <- 1 to unbindList.size)
+  unbind <%= unbindList(i - 1) %>
+#end
+
 //exec other configs needed
 exec reset
 exec net
@@ -213,11 +218,6 @@ bind <%= actionSlot %> use_action_slot_item
 bind <%= voiceMenu1 %> voice_menu_1
 bind <%= voiceMenu2 %> voice_menu_2
 bind <%= voiceMenu3 %> voice_menu_3
-
-//unbind keys
-#for(i <- 1 to unbindList.size)
-  unbind <%= unbindList(i - 1) %>
-#end
 
 #if(precEnabled)
 //P-Rec
