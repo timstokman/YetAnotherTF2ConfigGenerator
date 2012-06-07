@@ -2,16 +2,26 @@ package yatf2configgenerator
 
 import org.fusesource.scalate._
 import scala.collection.immutable.ListMap
-import java.io.{ FileOutputStream, OutputStreamWriter, File }
+import java.io.{ FileOutputStream, FileInputStream, OutputStreamWriter, File }
+import com.thoughtworks.xstream.{XStream, io}
 
 class ConfigRender {
   val cacheDir = "./cache"
   val templateDir = "./templates"
+  val settings = "./settings.xml"
   
   val engine = new TemplateEngine
   engine.workingDirectory = new File(cacheDir)
   engine.sourceDirectories = List(new File(templateDir))
   engine.allowReload = false
+  
+  val xstream = new XStream()
+  xstream.setMode(XStream.NO_REFERENCES);
+  registerClass(classOf[Map[_, _]])
+  registerClass(classOf[(Int, Int, Int)])
+  registerClass(classOf[collection.mutable.Map[_, _]])
+  registerClass(classOf[List[_]])
+  xstream.alias("innerlist", classOf[collection.immutable.::[_]])
   
   //list of templates
   val configNames = List(
@@ -389,5 +399,19 @@ class ConfigRender {
         out.close
       }
     }
+  }
+  
+  def registerClass(cls : Class[_]) {
+    xstream.processAnnotations(cls.asInstanceOf[Class[AnyRef]])
+    xstream.omitField(cls, "bitmap$0") //exclude some scala helper fields
+  }  
+  
+  def writeSettings {
+    xstream.toXML(options, new FileOutputStream(settings));
+  }
+  
+  def readSettings {
+    if(new File(settings).exists())
+      options = options ++ xstream.fromXML(new FileInputStream(settings)).asInstanceOf[collection.mutable.Map[String, Any]]
   }
 }

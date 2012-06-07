@@ -33,7 +33,8 @@ Features:
 * Ability to turn off dings for weapons
 
 Todo:
-* Save progress (quick json/xml dump of options map, whatever works)
+* Reset button should work better
+* Restore class specific content better
 * Conflicting binds detection
 * Ability to do a lastweapon/invprev/invnext bind that ties in with the rest of the script, some people prefer that over the current weapon switch bind
 * Make the GUI a bit prettier

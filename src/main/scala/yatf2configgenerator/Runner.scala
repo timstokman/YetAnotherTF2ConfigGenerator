@@ -9,6 +9,7 @@ import java.awt.Dimension
 
 object Runner extends SwingApplication {
   val render = new ConfigRender
+  render.readSettings
   var fields = collection.mutable.Map[String, Component]()
 
   override def startup(args: Array[String]) {
@@ -286,6 +287,7 @@ object Runner extends SwingApplication {
                     }
                   }
                 }
+                
                 fields("classSpecificEnabled" + tfClass) = classEnabled
                 layout(classEnabled) = c
 
@@ -458,9 +460,9 @@ object Runner extends SwingApplication {
                 }
                 chooser.showOpenDialog(grid)
                 val selected = chooser.selectedFile
-                val necessaryDirectories = List("steamapps", "steam", "Steam.exe")
-                println(selected.listFiles().toList.map(_.getName).mkString(","))
-                if (selected.listFiles().toList.map(_.getName).intersect(necessaryDirectories).size == necessaryDirectories.size) {
+                val necessaryDirectories = List("steamapps", "steam", "steam.exe")
+                println(selected.listFiles().toList.map(_.getName.toLowerCase).mkString(","))
+                if(selected.listFiles().toList.map(_.getName).intersect(necessaryDirectories).size == necessaryDirectories.size) {
                   steamField.text = selected.toString
                   val commonDirs = List("common", "downloading", "sourcemods", "temp")
                   val userNames = selected.listFiles.filter(_.getName == "steamapps")(0).listFiles.filter(file => !commonDirs.exists(_ == file.getName) && file.isDirectory).map(_.getName)
@@ -484,7 +486,7 @@ object Runner extends SwingApplication {
           }) = c
 
           c.gridy = 3; c.gridx = 0
-          layout(new Button("Generate scripts current directory") {
+          layout(new Button("Save configuration locally for inspection") {
             reactions += {
               case ButtonClicked(_) => {
             	saveUIToConfig
@@ -499,16 +501,23 @@ object Runner extends SwingApplication {
                 progressWindow.open
                 new Thread {
                   override def run {
-                    render.writeToDirectory(".")
-                    progressWindow.close                    
-                    Dialog.showMessage(grid, "Done generating the configuration files", "Info", Dialog.Message.Info)
-                    val graphicsConfig = render.options("graphicsConfig").asInstanceOf[String]
-                    val precEnabled = render.options("precEnabled").asInstanceOf[Boolean]
-                    if(graphicsConfig != "none") {
-                      Dialog.showMessage(grid, "You picked a graphics config, here is the necessary configuration information: \n" + render.graphicsConfigsInfo(graphicsConfig), "Info", Dialog.Message.Info)
-                    }
-                    if(precEnabled) {
-                      Dialog.showMessage(grid, "You configured P-Rec. More information and downloads for P-Rec can be found at http://orangad.com.ua/", "Info", Dialog.Message.Info)
+                    try {
+	                  render.writeToDirectory(".")
+	                  progressWindow.close                    
+	                  Dialog.showMessage(grid, "Done generating the configuration files", "Info", Dialog.Message.Info)
+	                  val graphicsConfig = render.options("graphicsConfig").asInstanceOf[String]
+	                  val precEnabled = render.options("precEnabled").asInstanceOf[Boolean]
+	                  if(graphicsConfig != "none") {
+	                    Dialog.showMessage(grid, "You picked a graphics config, here is the necessary configuration information: \n" + render.graphicsConfigsInfo(graphicsConfig), "Info", Dialog.Message.Info)
+	                  }
+	                  if(precEnabled) {
+	                    Dialog.showMessage(grid, "You configured P-Rec. More information and downloads for P-Rec can be found at http://orangad.com.ua/", "Info", Dialog.Message.Info)
+	                  }
+                    } catch {
+                      case (e : Exception) => {
+                        progressWindow.close
+                        Dialog.showMessage(grid, "Exception: " + e.getMessage, "Error", Dialog.Message.Error)
+                      }
                     }
                   }
                 }.start
@@ -517,7 +526,7 @@ object Runner extends SwingApplication {
           }) = c
 
           c.gridx = 1
-          layout(new Button("Generate scripts tf2 directory") {
+          layout(new Button("Save configuration in tf2") {
             reactions += {
               case ButtonClicked(_) => {
             	saveUIToConfig
@@ -557,8 +566,8 @@ object Runner extends SwingApplication {
             }
           }) = c
           
-          c.gridx = 2
-          layout(new Button("Reset to default") {
+          c.gridy = 4; c.gridx = 0
+          layout(new Button("Reset tf2 configuration") {
             reactions += {
               case ButtonClicked(_) => {
             	if(steamField.text != "" && usernameCombo.selection.item != "") {
@@ -575,7 +584,14 @@ object Runner extends SwingApplication {
             }
           }) = c
           
-          c.gridx = 0; c.gridy = 4; c.weighty = 1.0
+          c.gridx = 1
+          layout(new Button("Save current configuration settings for further editting later") {
+            reactions += {
+              case ButtonClicked(_) => render.writeSettings
+            }
+          }) = c
+          
+          c.gridx = 0; c.gridy = 5; c.weighty = 1.0
           layout(new FlowPanel) = c
         }
       })
