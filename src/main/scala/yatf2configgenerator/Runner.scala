@@ -4,7 +4,7 @@ import scala.swing._
 import scala.swing.event._
 import Swing._
 import javax.swing.UIManager
-import java.io.{File, FileInputStream, FileOutputStream}
+import java.io.{ File, FileInputStream, FileOutputStream }
 import java.awt.Dimension
 
 object Runner extends SwingApplication {
@@ -26,6 +26,7 @@ object Runner extends SwingApplication {
    */
   def topFrame = new MainFrame {
     title = "Yet Another TF2 Config Generator"
+    
     contents = new TabbedPane {
       import TabbedPane._
       pages += new Page("Options", new ScrollPane {
@@ -130,7 +131,7 @@ object Runner extends SwingApplication {
               c.gridx = 1
               val list = new ListView(render.options(optionName).asInstanceOf[List[Int]]) {
                 renderer = ListView.Renderer(item => render.disguiseNumberClassMap(item))
-                 border = EtchedBorder(Raised)
+                border = EtchedBorder(Raised)
               }
               fields(optionName) = list
               layout(list) = c
@@ -177,7 +178,7 @@ object Runner extends SwingApplication {
           /*
            * Generate the weapon panel
            */
-          for (slot <- 1 to 4) {
+          for (slot <- 1 to 3) {
             c.gridy = rowNum; c.gridx = 0
             layout(new Label("Weapon " + slot.toString + ":")) = c
 
@@ -237,67 +238,29 @@ object Runner extends SwingApplication {
                 c.gridx = 1
 
                 val classEnabled = new CheckBox("Settings " + tfClass) {
-                  selected = false
-
+                  selected = render.options("classSpecificEnabled").asInstanceOf[Map[String, Boolean]](tfClass)
+                  
                   reactions += {
                     case ButtonClicked(_) => {
-                      if (selected) {
-                        for (slot <- 1 to 4) {
-                          for (color <- List("Red", "Green", "Blue")) {
-                            val field = fields("classWeaponColors" + color + tfClass + slot).asInstanceOf[TextField]
-                            field.enabled = true
-                            field.text = fields("weaponColors" + color + slot).asInstanceOf[TextField].text
-                          }
-                          val weaponScale = fields("classWeaponScales" + tfClass + slot).asInstanceOf[TextField]
-                          weaponScale.enabled = true
-                          weaponScale.text = fields("weaponScales" + slot).asInstanceOf[TextField].text
-
-                          val weaponCrosshair = fields("classWeaponCrosshairs" + tfClass + slot).asInstanceOf[ComboBox[String]]
-                          weaponCrosshair.enabled = true
-                          weaponCrosshair.selection.item = fields("weaponCrosshairs" + slot).asInstanceOf[ComboBox[String]].selection.item
-
-                          val weaponSensitivity = fields("classSensitivity" + tfClass + slot).asInstanceOf[TextField]
-                          weaponSensitivity.enabled = true
-                          weaponSensitivity.text = fields("sensitivity").asInstanceOf[TextField].text
-
-                          val (weaponDingMax, weaponDingMin, weaponDingVolume) = (fields("classDingPitchMax" + tfClass + slot).asInstanceOf[TextField], fields("classDingPitchMin" + tfClass + slot).asInstanceOf[TextField], fields("classDingVolume" + tfClass + slot).asInstanceOf[TextField])
-                          weaponDingMax.enabled = true; weaponDingMin.enabled = true; weaponDingVolume.enabled = true
-                          weaponDingMax.text = fields("dingPitchMax").asInstanceOf[TextField].text
-                          weaponDingMin.text = fields("dingPitchMin").asInstanceOf[TextField].text
-                          weaponDingVolume.text = fields("dingVolume").asInstanceOf[TextField].text
-                          
-                          val weaponShow = fields("classWeaponShow" + tfClass + slot).asInstanceOf[CheckBox]
-                          weaponShow.enabled = true
-                          weaponShow.selected = fields("weaponShow" + slot).asInstanceOf[CheckBox].selected
-                        }
-                      } else {
-                        for (slot <- 1 to 4) {
-                          for (color <- List("Red", "Green", "Blue")) {
-                            fields("classWeaponColors" + color + tfClass + slot).asInstanceOf[TextField].enabled = false
-                          }
-                          fields("classWeaponScales" + tfClass + slot).asInstanceOf[TextField].enabled = false
-                          fields("classWeaponCrosshairs" + tfClass + slot).asInstanceOf[ComboBox[String]].enabled = false
-                          fields("classSensitivity" + tfClass + slot).asInstanceOf[TextField].enabled = false
-                          fields("classDingPitchMax" + tfClass + slot).asInstanceOf[TextField].enabled = false
-                          fields("classDingPitchMin" + tfClass + slot).asInstanceOf[TextField].enabled = false
-                          fields("classWeaponShow" + tfClass + slot).asInstanceOf[CheckBox].enabled = false
-                          fields("classDingVolume" + tfClass + slot).asInstanceOf[TextField].enabled = false
-                        }
-                      }
+                      toggleClassSpecificProfile(selected, tfClass)
                     }
                   }
                 }
-                
+
                 fields("classSpecificEnabled" + tfClass) = classEnabled
                 layout(classEnabled) = c
 
                 var rowNum = 1
 
-                for (slot <- 1 to 4) {
+                for (slot <- 1 to 3) {
                   c.gridy = rowNum; c.gridx = 0
                   layout(new Label("Weapon " + slot.toString + ":")) = c
 
-                  val (red, green, blue) = (new TextField("") { enabled = false }, new TextField("") { enabled = false }, new TextField("") { enabled = false })
+                  val classWeaponColors = render.options("classWeaponColors").asInstanceOf[Map[String, List[(Int, Int, Int)]]]
+                  val weaponColors = render.options("weaponColors").asInstanceOf[List[(Int, Int, Int)]]
+                  val (red, green, blue) = (new TextField(classWeaponColors.get(tfClass).map(_(slot - 1)._1).getOrElse { weaponColors(slot - 1)._1 }), 
+                                            new TextField(classWeaponColors.get(tfClass).map(_(slot - 1)._2).getOrElse { weaponColors(slot - 1)._2 }), 
+                                            new TextField(classWeaponColors.get(tfClass).map(_(slot - 1)._3).getOrElse { weaponColors(slot - 1)._3 }))
                   fields("classWeaponColorsRed" + tfClass + slot) = red
                   fields("classWeaponColorsGreen" + tfClass + slot) = green
                   fields("classWeaponColorsBlue" + tfClass + slot) = blue
@@ -314,30 +277,30 @@ object Runner extends SwingApplication {
                   c.gridx = 5
                   layout(blue) = c
 
-                  val weaponScale = new TextField("") { enabled = false }
+                  val weaponScale = new TextField(render.options("classWeaponScales").asInstanceOf[Map[String, List[Int]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("weaponScales").asInstanceOf[List[Int]](slot - 1) })
                   fields("classWeaponScales" + tfClass + slot) = weaponScale
                   c.gridy = rowNum + 2; c.gridx = 0
                   layout(new Label("Crosshair scale:")) = c
                   c.gridx = 1
                   layout(weaponScale) = c
 
-                  val weaponCrosshair = new ComboBox(render.crosshairTypes) { enabled = false }
+                  val weaponCrosshair = new ComboBox(render.crosshairTypes) { selection.item = render.options("classWeaponCrosshairs").asInstanceOf[Map[String, List[String]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("weaponCrosshairs").asInstanceOf[List[String]](slot - 1) } }
                   fields("classWeaponCrosshairs" + tfClass + slot) = weaponCrosshair
                   c.gridy = rowNum + 3; c.gridx = 0
                   layout(new Label("Crosshair:")) = c
                   c.gridx = 1
                   layout(weaponCrosshair) = c
 
-                  val weaponSensitivity = new TextField("") { enabled = false }
+                  val weaponSensitivity = new TextField(render.options("classSensitivity").asInstanceOf[Map[String, List[Double]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("sensitivity").asInstanceOf[Double] }.toString)
                   fields("classSensitivity" + tfClass + slot) = weaponSensitivity
                   c.gridy = rowNum + 4; c.gridx = 0
                   layout(new Label("Sensitivity:")) = c
                   c.gridx = 1
                   layout(weaponSensitivity) = c
 
-                  val weaponDingMax = new TextField("") { enabled = false }
-                  val weaponDingMin = new TextField("") { enabled = false }
-                  val weaponDingVolume = new TextField("") { enabled = false }
+                  val weaponDingMax = new TextField(render.options("classDingPitchMax").asInstanceOf[Map[String, List[Int]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("dingPitchMax").asInstanceOf[Int] })
+                  val weaponDingMin = new TextField(render.options("classDingPitchMin").asInstanceOf[Map[String, List[Int]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("dingPitchMin").asInstanceOf[Int] })
+                  val weaponDingVolume = new TextField(render.options("classDingVolume").asInstanceOf[Map[String, List[Double]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("dingVolume").asInstanceOf[Double] }.toString)
                   fields("classDingPitchMax" + tfClass + slot) = weaponDingMax
                   fields("classDingPitchMin" + tfClass + slot) = weaponDingMin
                   fields("classDingVolume" + tfClass + slot) = weaponDingVolume
@@ -353,14 +316,16 @@ object Runner extends SwingApplication {
                   layout(new Label("Ding volume:")) = c
                   c.gridx = 5
                   layout(weaponDingVolume) = c
-                  
-                  val weaponShow = new CheckBox("Show Weapon") { enabled = false }
+
+                  val weaponShow = new CheckBox("Show Weapon") { enabled = render.options("classWeaponShow").asInstanceOf[Map[String, List[Boolean]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("weaponShow").asInstanceOf[List[Boolean]](slot - 1) } }
                   fields("classWeaponShow" + tfClass + slot) = weaponShow
                   c.gridy = rowNum + 6; c.gridx = 1
                   layout(weaponShow) = c
 
                   rowNum += 7
                 }
+                
+                toggleClassSpecificProfile(classEnabled.selected, tfClass)
               })
             }
           }) = c
@@ -398,7 +363,7 @@ object Runner extends SwingApplication {
               val list = new ListView(render.options("unbindList").asInstanceOf[List[String]]) { border = EtchedBorder(Raised) }
               fields(optionName) = list
               layout(list) = c
-              
+
               c.gridy = rowNum + 1; c.gridx = 0
               val keyCombo = new ComboBox("all" +: render.validKeyStrings.remove(_ == "nothing"))
               layout(new Button("Add") {
@@ -410,7 +375,7 @@ object Runner extends SwingApplication {
               }) = c
               c.gridx = 1
               layout(keyCombo) = c
-              
+
               c.gridy = rowNum + 2; c.gridx = 0
               layout(new Button("Remove") {
                 reactions += {
@@ -420,8 +385,8 @@ object Runner extends SwingApplication {
                   }
                 }
               }) = c
-              
-              rowNum += 3            
+
+              rowNum += 3
             }
             case _ => {}
           }
@@ -462,7 +427,7 @@ object Runner extends SwingApplication {
                 val selected = chooser.selectedFile
                 val necessaryDirectories = List("steamapps", "steam", "steam.exe")
                 println(selected.listFiles().toList.map(_.getName.toLowerCase).mkString(","))
-                if(selected.listFiles().toList.map(_.getName).intersect(necessaryDirectories).size == necessaryDirectories.size) {
+                if (selected.listFiles().toList.map(_.getName).intersect(necessaryDirectories).size == necessaryDirectories.size) {
                   steamField.text = selected.toString
                   val commonDirs = List("common", "downloading", "sourcemods", "temp")
                   val userNames = selected.listFiles.filter(_.getName == "steamapps")(0).listFiles.filter(file => !commonDirs.exists(_ == file.getName) && file.isDirectory).map(_.getName)
@@ -474,7 +439,7 @@ object Runner extends SwingApplication {
               }
             }
           }) = c
-          
+
           c.gridy = 2; c.gridx = 1
           layout(new CheckBox("Custom Templates") {
             selected = false
@@ -489,9 +454,9 @@ object Runner extends SwingApplication {
           layout(new Button("Save configuration locally for inspection") {
             reactions += {
               case ButtonClicked(_) => {
-            	saveUIToConfig
-            	val progressWindow = new Dialog() {
-            	  title = "Generating"
+                saveUIToConfig
+                val progressWindow = new Dialog() {
+                  title = "Generating"
                   contents = new FlowPanel {
                     contents += new ProgressBar {
                       indeterminate = true
@@ -502,19 +467,19 @@ object Runner extends SwingApplication {
                 new Thread {
                   override def run {
                     try {
-	                  render.writeToDirectory(".")
-	                  progressWindow.close                    
-	                  Dialog.showMessage(grid, "Done generating the configuration files", "Info", Dialog.Message.Info)
-	                  val graphicsConfig = render.options("graphicsConfig").asInstanceOf[String]
-	                  val precEnabled = render.options("precEnabled").asInstanceOf[Boolean]
-	                  if(graphicsConfig != "none") {
-	                    Dialog.showMessage(grid, "You picked a graphics config, here is the necessary configuration information: \n" + render.graphicsConfigsInfo(graphicsConfig), "Info", Dialog.Message.Info)
-	                  }
-	                  if(precEnabled) {
-	                    Dialog.showMessage(grid, "You configured P-Rec. More information and downloads for P-Rec can be found at http://orangad.com.ua/", "Info", Dialog.Message.Info)
-	                  }
+                      render.writeToDirectory(".")
+                      progressWindow.close
+                      Dialog.showMessage(grid, "Done generating the configuration files", "Info", Dialog.Message.Info)
+                      val graphicsConfig = render.options("graphicsConfig").asInstanceOf[String]
+                      val precEnabled = render.options("precEnabled").asInstanceOf[Boolean]
+                      if (graphicsConfig != "none") {
+                        Dialog.showMessage(grid, "You picked a graphics config, here is the necessary configuration information: \n" + render.graphicsConfigsInfo(graphicsConfig), "Info", Dialog.Message.Info)
+                      }
+                      if (precEnabled) {
+                        Dialog.showMessage(grid, "You configured P-Rec. More information and downloads for P-Rec can be found at http://orangad.com.ua/", "Info", Dialog.Message.Info)
+                      }
                     } catch {
-                      case (e : Exception) => {
+                      case (e: Exception) => {
                         progressWindow.close
                         Dialog.showMessage(grid, "Exception: " + e.getMessage, "Error", Dialog.Message.Error)
                       }
@@ -529,8 +494,8 @@ object Runner extends SwingApplication {
           layout(new Button("Save configuration in tf2") {
             reactions += {
               case ButtonClicked(_) => {
-            	saveUIToConfig
-            	if(steamField.text != "" && usernameCombo.selection.item != "") {
+                saveUIToConfig
+                if (steamField.text != "" && usernameCombo.selection.item != "") {
                   val directory = List(steamField.text, "steamapps", usernameCombo.selection.item, "team fortress 2", "tf", "cfg").mkString(File.separator)
                   val progressWindow = new Dialog() {
                     title = "Generating"
@@ -544,73 +509,89 @@ object Runner extends SwingApplication {
                   new Thread {
                     override def run {
                       val dirFile = new File(directory)
-                      if(!dirFile.exists)
+                      if (!dirFile.exists)
                         dirFile.mkdir
                       render.writeToDirectory(directory)
-                      progressWindow.close                    
+                      progressWindow.close
                       Dialog.showMessage(grid, "Done generating the configuration files", "Info", Dialog.Message.Info)
                       val graphicsConfig = render.options("graphicsConfig").asInstanceOf[String]
                       val precEnabled = render.options("precEnabled").asInstanceOf[Boolean]
-                      if(graphicsConfig != "none") {
+                      if (graphicsConfig != "none") {
                         Dialog.showMessage(grid, "You picked a graphics config, here is the necessary configuration information: \n" + render.graphicsConfigsInfo(graphicsConfig), "Info", Dialog.Message.Info)
                       }
-                      if(precEnabled) {
+                      if (precEnabled) {
                         Dialog.showMessage(grid, "You configured P-Rec. More information about and downloads for P-Rec can be found at http://orangad.com.ua/", "Info", Dialog.Message.Info)
                       }
                     }
                   }.start
-            	} else {
+                } else {
                   Dialog.showMessage(grid, "No steam directory or username specified", "Error", Dialog.Message.Error)
                 }
               }
             }
           }) = c
-          
+
           c.gridy = 4; c.gridx = 0
           layout(new Button("Reset tf2 configuration") {
             reactions += {
               case ButtonClicked(_) => {
-            	if(steamField.text != "" && usernameCombo.selection.item != "") {
+                if (steamField.text != "" && usernameCombo.selection.item != "") {
                   val directory = List(steamField.text, "steamapps", usernameCombo.selection.item, "team fortress 2", "tf", "cfg").mkString(File.separator)
-                  for(configFile <- render.configNames) {
+                  for (configFile <- render.configNames) {
                     new File(directory + File.separator + configFile + ".cfg").delete
                   }
                   new File(directory + File.separator + "user.scr").delete
                   copyFile(new File("templates" + File.separator + "default_reset.cfg"), new File(directory + File.separator + "config.cfg"))
-            	} else {
-            	  Dialog.showMessage(grid, "No steam directory or username specified", "Error", Dialog.Message.Error)
-            	}
+                } else {
+                  Dialog.showMessage(grid, "No steam directory or username specified", "Error", Dialog.Message.Error)
+                }
               }
             }
           }) = c
-          
+
           c.gridx = 1
           layout(new Button("Save current configuration settings for further editting later") {
             reactions += {
               case ButtonClicked(_) => render.writeSettings
             }
           }) = c
-          
+
           c.gridx = 0; c.gridy = 5; c.weighty = 1.0
           layout(new FlowPanel) = c
         }
       })
     }
   }
-  def copyFile(f1 : File, f2 : File) {
+
+  def toggleClassSpecificProfile(enabled: Boolean, tfClass: String) {
+    for (slot <- 1 to 3) {
+      for (color <- List("Red", "Green", "Blue")) {
+        fields("classWeaponColors" + color + tfClass + slot).asInstanceOf[TextField].enabled = enabled
+      }
+      fields("classWeaponScales" + tfClass + slot).asInstanceOf[TextField].enabled = enabled
+      fields("classWeaponCrosshairs" + tfClass + slot).asInstanceOf[ComboBox[String]].enabled = enabled
+      fields("classSensitivity" + tfClass + slot).asInstanceOf[TextField].enabled = enabled
+      fields("classDingPitchMax" + tfClass + slot).asInstanceOf[TextField].enabled = enabled
+      fields("classDingPitchMin" + tfClass + slot).asInstanceOf[TextField].enabled = enabled
+      fields("classWeaponShow" + tfClass + slot).asInstanceOf[CheckBox].enabled = enabled
+      fields("classDingVolume" + tfClass + slot).asInstanceOf[TextField].enabled = enabled
+    }
+  }
+
+  def copyFile(f1: File, f2: File) {
     val in = new FileInputStream(f1);
     val out = new FileOutputStream(f2);
 
     val buf = new Array[Byte](1024);
     var len = in.read(buf)
-    while (len > 0){
+    while (len > 0) {
       out.write(buf, 0, len)
       len = in.read(buf)
     }
     in.close();
     out.close();
   }
-  
+
   /*
    * Extract the info from the UI to the map necessary for the templates
    */
@@ -620,7 +601,7 @@ object Runner extends SwingApplication {
         render.options(optionName) = fields(optionName).asInstanceOf[TextField].text.toInt
       }
       case (optionName, ('options, 'intAsBoolean, label)) => {
-        render.options(optionName) = if(fields(optionName).asInstanceOf[CheckBox].selected) 1 else 0
+        render.options(optionName) = if (fields(optionName).asInstanceOf[CheckBox].selected) 1 else 0
       }
       case (optionName, ('options, 'boolean, label)) => {
         render.options(optionName) = fields(optionName).asInstanceOf[CheckBox].selected
@@ -648,134 +629,134 @@ object Runner extends SwingApplication {
       }
       case (optionName, ('weapons, 'colorList, label)) => {
         var list = List[(Int, Int, Int)]()
-        for(slot <- 1 to 4) {
-          list :+= ((fields(optionName + "Red"   + slot).asInstanceOf[TextField].text.toInt,
-                     fields(optionName + "Green" + slot).asInstanceOf[TextField].text.toInt,
-                     fields(optionName + "Blue"  + slot).asInstanceOf[TextField].text.toInt))
+        for (slot <- 1 to 3) {
+          list :+= ((fields(optionName + "Red" + slot).asInstanceOf[TextField].text.toInt,
+            fields(optionName + "Green" + slot).asInstanceOf[TextField].text.toInt,
+            fields(optionName + "Blue" + slot).asInstanceOf[TextField].text.toInt))
         }
         render.options(optionName) = list
       }
       case (optionName, ('weapons, 'crosshairList, label)) => {
         var list = List[String]()
-        for(slot <- 1 to 4) {
+        for (slot <- 1 to 3) {
           list :+= fields(optionName + slot).asInstanceOf[ComboBox[String]].selection.item
         }
         render.options(optionName) = list
       }
       case (optionName, ('weapons, 'scaleList, label)) => {
         var list = List[Int]()
-        for(slot <- 1 to 4) {
+        for (slot <- 1 to 3) {
           list :+= fields(optionName + slot).asInstanceOf[TextField].text.toInt
         }
         render.options(optionName) = list
       }
       case (optionName, ('weapons, 'showList, label)) => {
         var list = List[Boolean]()
-        for(slot <- 1 to 4) {
+        for (slot <- 1 to 3) {
           list :+= fields(optionName + slot).asInstanceOf[CheckBox].selected
         }
         render.options(optionName) = list
       }
       case (optionName, ('weapons, 'classEnabledList, label)) => {
         var enabled = collection.mutable.Map[String, Boolean]()
-        for(className <- render.disguiseClassNumberMap.keys) {
+        for (className <- render.disguiseClassNumberMap.keys) {
           enabled(className) = fields(optionName + className).asInstanceOf[CheckBox].selected
         }
-        render.options(optionName) = Map(enabled.toList : _*)
+        render.options(optionName) = Map(enabled.toList: _*)
       }
       case (optionName, ('weapons, 'classColorList, label)) => {
-        val weaponColors = collection.mutable.Map[String, List[(Int,Int,Int)]]()
-        for(className <- render.disguiseClassNumberMap.keys) {
-          if(render.options("classSpecificEnabled").asInstanceOf[Map[String, Boolean]](className)) {
-            var colors = List[(Int,Int,Int)]()
-        	for(slot <- 1 to 4) {
-        	  colors :+= ((fields(optionName + "Red"   + className + slot).asInstanceOf[TextField].text.toInt,
-        	               fields(optionName + "Green" + className + slot).asInstanceOf[TextField].text.toInt,
-        	               fields(optionName + "Blue"  + className + slot).asInstanceOf[TextField].text.toInt))
-        	}
+        val weaponColors = collection.mutable.Map[String, List[(Int, Int, Int)]]()
+        for (className <- render.disguiseClassNumberMap.keys) {
+          if (render.options("classSpecificEnabled").asInstanceOf[Map[String, Boolean]](className)) {
+            var colors = List[(Int, Int, Int)]()
+            for (slot <- 1 to 3) {
+              colors :+= ((fields(optionName + "Red" + className + slot).asInstanceOf[TextField].text.toInt,
+                fields(optionName + "Green" + className + slot).asInstanceOf[TextField].text.toInt,
+                fields(optionName + "Blue" + className + slot).asInstanceOf[TextField].text.toInt))
+            }
             weaponColors(className) = colors
           }
         }
-        render.options(optionName) = Map(weaponColors.toList : _*)
+        render.options(optionName) = Map(weaponColors.toList: _*)
       }
       case (optionName, ('weapons, 'classCrosshairs, label)) => {
         val weaponCrosshairs = collection.mutable.Map[String, List[String]]()
-        for(className <- render.disguiseClassNumberMap.keys) {
-          if(render.options("classSpecificEnabled").asInstanceOf[Map[String, Boolean]](className)) {
+        for (className <- render.disguiseClassNumberMap.keys) {
+          if (render.options("classSpecificEnabled").asInstanceOf[Map[String, Boolean]](className)) {
             var crosshairs = List[String]()
-        	for(slot <- 1 to 4) {
-        	  crosshairs :+= fields(optionName + className + slot).asInstanceOf[ComboBox[String]].selection.item
-        	}
+            for (slot <- 1 to 3) {
+              crosshairs :+= fields(optionName + className + slot).asInstanceOf[ComboBox[String]].selection.item
+            }
             weaponCrosshairs(className) = crosshairs
           }
         }
-        render.options(optionName) = Map(weaponCrosshairs.toList : _*)
+        render.options(optionName) = Map(weaponCrosshairs.toList: _*)
       }
       case (optionName, ('weapons, 'classScaleList, label)) => {
         val weaponScales = collection.mutable.Map[String, List[Int]]()
-        for(className <- render.disguiseClassNumberMap.keys) {
-          if(render.options("classSpecificEnabled").asInstanceOf[Map[String, Boolean]](className)) {
+        for (className <- render.disguiseClassNumberMap.keys) {
+          if (render.options("classSpecificEnabled").asInstanceOf[Map[String, Boolean]](className)) {
             var scales = List[Int]()
-        	for(slot <- 1 to 4) {
-        	  scales :+= fields(optionName + className + slot).asInstanceOf[TextField].text.toInt
-        	}
+            for (slot <- 1 to 3) {
+              scales :+= fields(optionName + className + slot).asInstanceOf[TextField].text.toInt
+            }
             weaponScales(className) = scales
           }
         }
-        render.options(optionName) = Map(weaponScales.toList : _*)
+        render.options(optionName) = Map(weaponScales.toList: _*)
       }
       case (optionName, ('weapons, 'classShowList, label)) => {
         val weaponShow = collection.mutable.Map[String, List[Boolean]]()
-        for(className <- render.disguiseClassNumberMap.keys) {
-          if(render.options("classSpecificEnabled").asInstanceOf[Map[String, Boolean]](className)) {
+        for (className <- render.disguiseClassNumberMap.keys) {
+          if (render.options("classSpecificEnabled").asInstanceOf[Map[String, Boolean]](className)) {
             var show = List[Boolean]()
-        	for(slot <- 1 to 4) {
-        	  show :+= fields(optionName + className + slot).asInstanceOf[CheckBox].selected
-        	}
+            for (slot <- 1 to 3) {
+              show :+= fields(optionName + className + slot).asInstanceOf[CheckBox].selected
+            }
             weaponShow(className) = show
           }
         }
-        render.options(optionName) = Map(weaponShow.toList : _*)
+        render.options(optionName) = Map(weaponShow.toList: _*)
       }
       case (optionName, ('weapons, 'classSensitivity, label)) => {
         val weaponSensitivity = collection.mutable.Map[String, List[Double]]()
-        for(className <- render.disguiseClassNumberMap.keys) {
-          if(render.options("classSpecificEnabled").asInstanceOf[Map[String, Boolean]](className)) {
+        for (className <- render.disguiseClassNumberMap.keys) {
+          if (render.options("classSpecificEnabled").asInstanceOf[Map[String, Boolean]](className)) {
             var sensitivity = List[Double]()
-        	for(slot <- 1 to 4) {
-        	  sensitivity :+= fields(optionName + className + slot).asInstanceOf[TextField].text.toDouble
-        	}
+            for (slot <- 1 to 3) {
+              sensitivity :+= fields(optionName + className + slot).asInstanceOf[TextField].text.toDouble
+            }
             weaponSensitivity(className) = sensitivity
           }
         }
-        render.options(optionName) = Map(weaponSensitivity.toList : _*)
+        render.options(optionName) = Map(weaponSensitivity.toList: _*)
       }
       case (optionName, ('weapons, 'classDingPitch, label)) => {
         val weaponDing = collection.mutable.Map[String, List[Int]]()
-        for(className <- render.disguiseClassNumberMap.keys) {
-          if(render.options("classSpecificEnabled").asInstanceOf[Map[String, Boolean]](className)) {
+        for (className <- render.disguiseClassNumberMap.keys) {
+          if (render.options("classSpecificEnabled").asInstanceOf[Map[String, Boolean]](className)) {
             var dings = List[Int]()
-        	for(slot <- 1 to 4) {
-        	  dings :+= fields(optionName + className + slot).asInstanceOf[TextField].text.toInt
-        	}
+            for (slot <- 1 to 3) {
+              dings :+= fields(optionName + className + slot).asInstanceOf[TextField].text.toInt
+            }
             weaponDing(className) = dings
           }
         }
-        render.options(optionName) = Map(weaponDing.toList : _*)
+        render.options(optionName) = Map(weaponDing.toList: _*)
       }
       case (optionName, ('weapons, 'classDingVolume, label)) => {
         val weaponVolume = collection.mutable.Map[String, List[Double]]()
-        for(className <- render.disguiseClassNumberMap.keys) {
-          if(render.options("classSpecificEnabled").asInstanceOf[Map[String, Boolean]](className)) {
+        for (className <- render.disguiseClassNumberMap.keys) {
+          if (render.options("classSpecificEnabled").asInstanceOf[Map[String, Boolean]](className)) {
             var volume = List[Double]()
-        	for(slot <- 1 to 4) {
-        	  volume :+= fields(optionName + className + slot).asInstanceOf[TextField].text.toDouble
-        	}
+            for (slot <- 1 to 3) {
+              volume :+= fields(optionName + className + slot).asInstanceOf[TextField].text.toDouble
+            }
             weaponVolume(className) = volume
           }
         }
-        render.options(optionName) = Map(weaponVolume.toList : _*)
-      }      
+        render.options(optionName) = Map(weaponVolume.toList: _*)
+      }
       case _ => {}
     }
   }

@@ -33,6 +33,9 @@ Features:
 * Ability to turn off dings for weapons
 
 Todo:
+* Ragdolls/other graphical options
+* Switch net config with binding
+* Increase interp_ratio, decrease interp_ratio bindings
 * Reset button should work better
 * Restore class specific content better
 * Conflicting binds detection
@@ -43,13 +46,11 @@ Todo:
 * variable cl_inter_ratio for different classes (or even weapons?)
 * Handle the disguise menu a bit better
 * Write a "none/null" keybind to the config in a way that doesn't write error messages to the tf2 console
-* Improve the template generation time to something managable
 * Maybe I missed a couple of keybinds?
 * Other requests?
 
 Known Bugs:
 * Generating dialog label cut off for some people
-* Older pcs/java installation don't get through the script generation process
 * Using the disguise menu instead of the direct disguise binds/cycle disguise binds desyncs the crosshairs a bit. just press q twice to fix it
 
 Installation:

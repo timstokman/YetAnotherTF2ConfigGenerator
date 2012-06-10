@@ -153,7 +153,7 @@ alias if_left ""
 alias if_right ""
 
 //weapon switch
-#for (slot <- 1 to 4)
+#for (slot <- 1 to 3)
 alias weapon<%= slot %> "slot<%= slot %>; weap_ding_<%= slot %>; weap_sens_<%= slot %>; cross_<%= slot %>; alias current_weapon_vis weap_vis_<%= slot %>; alias current_weapon_sens weap_sens_<%= slot %>; alias current_zoom_sens weap_zoom_sens_<%= slot %>; show_weapon"
 #end
 

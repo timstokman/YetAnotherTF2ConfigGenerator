@@ -112,7 +112,7 @@
 <%@ val destroyExit : String %>
 
 //setup the crosshairs/weapon visibility
-#for (slot <- 1 to 4)
+#for (slot <- 1 to 3)
 alias cross_<%= slot %> "cl_crosshair_red <%= weaponColors(slot - 1)._1 %>; cl_crosshair_green <%= weaponColors(slot - 1)._2 %>; cl_crosshair_blue <%= weaponColors(slot - 1)._3 %>; cl_crosshair_scale <%= weaponScales(slot - 1) %>; cl_crosshair_file <%= weaponCrosshairs(slot - 1) %>"
 alias weap_sens_<%= slot %> "sensitivity <%= sensitivity.toString %>"
 alias weap_zoom_sens_<%= slot %> "sensitivity <%= (sensitivity / zoomFactor).toString %>"
@@ -138,7 +138,7 @@ alias hide_weapon "r_drawviewmodel 0"
 bind <%= directWeapon1 %> primsecswap1
 bind <%= directWeapon2 %> primsecswap2
 bind <%= directWeapon3 %> swapdefault
-bind <%= directWeapon4 %> weapon4
+bind <%= directWeapon4 %> slot4
 bind <%= primSecSwap %> primsecswap
 bind <%= meleeSwap %> othermeleeswap
 bind <%= primAttack %> +attack
