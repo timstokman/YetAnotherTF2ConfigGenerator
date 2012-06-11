@@ -26,6 +26,7 @@ object Runner extends SwingApplication {
    */
   def topFrame = new MainFrame {
     title = "Yet Another TF2 Config Generator"
+    preferredSize = new Dimension(900, 600)
     
     contents = new TabbedPane {
       import TabbedPane._
@@ -174,6 +175,7 @@ object Runner extends SwingApplication {
           c.insets = new Insets(3, 3, 3, 3)
 
           var rowNum = 0
+          val fieldSize = new Dimension(50, 22)
 
           /*
            * Generate the weapon panel
@@ -183,7 +185,9 @@ object Runner extends SwingApplication {
             layout(new Label("Weapon " + slot.toString + ":")) = c
 
             val weaponColors = render.options("weaponColors").asInstanceOf[List[(Int, Int, Int)]]
-            val (red, green, blue) = (new TextField(weaponColors(slot - 1)._1.toString), new TextField(weaponColors(slot - 1)._2.toString), new TextField(weaponColors(slot - 1)._3.toString))
+            val (red, green, blue) = (new TextField(weaponColors(slot - 1)._1.toString), 
+                                      new TextField(weaponColors(slot - 1)._2.toString) ,
+                                      new TextField(weaponColors(slot - 1)._3.toString))
             fields("weaponColorsRed" + slot) = red
             fields("weaponColorsGreen" + slot) = green
             fields("weaponColorsBlue" + slot) = blue
@@ -191,35 +195,35 @@ object Runner extends SwingApplication {
             layout(new Label("Crosshair color - Red:")) = c
             c.gridx = 1
             layout(red) = c
-            c.gridx = 2
-            layout(new Label("Green:")) = c
-            c.gridx = 3
+            c.gridy = rowNum + 2; c.gridx = 0
+            layout(new Label("Crosshair color - Green:")) = c
+            c.gridx = 1
             layout(green) = c
-            c.gridx = 4
-            layout(new Label("Blue:")) = c
-            c.gridx = 5
+            c.gridy = rowNum + 3; c.gridx = 0
+            layout(new Label("Crosshair color - Blue:")) = c
+            c.gridx = 1
             layout(blue) = c
 
-            val weaponScale = new TextField(render.options("weaponScales").asInstanceOf[List[Int]](slot - 1).toString)
+            val weaponScale = new TextField(render.options("weaponScales").asInstanceOf[List[Int]](slot - 1).toString) 
             fields("weaponScales" + slot) = weaponScale
-            c.gridy = rowNum + 2; c.gridx = 0
+            c.gridy = rowNum + 4; c.gridx = 0
             layout(new Label("Crosshair scale:")) = c
             c.gridx = 1
             layout(weaponScale) = c
 
             val weaponCrosshair = new ComboBox(render.crosshairTypes) { selection.item = render.options("weaponCrosshairs").asInstanceOf[List[String]](slot - 1) }
             fields("weaponCrosshairs" + slot) = weaponCrosshair
-            c.gridy = rowNum + 3; c.gridx = 0
+            c.gridy = rowNum + 5; c.gridx = 0
             layout(new Label("Crosshair:")) = c
             c.gridx = 1
             layout(weaponCrosshair) = c
 
             val weaponShow = new CheckBox("Show weapon") { selected = render.options("weaponShow").asInstanceOf[List[Boolean]](slot - 1) }
             fields("weaponShow" + slot) = weaponShow
-            c.gridy = rowNum + 4; c.gridx = 1
+            c.gridy = rowNum + 6; c.gridx = 1
             layout(weaponShow) = c
 
-            rowNum += 5
+            rowNum += 7
           }
 
           c.gridy = rowNum; c.gridx = 0
@@ -229,6 +233,7 @@ object Runner extends SwingApplication {
           layout(new TabbedPane {
             for (tfClass <- render.disguiseClassNumberMap.keys) {
               pages += new Page(tfClass, new GridBagPanel { grid =>
+                preferredSize = new Dimension(850, 1100)
                 val c = new Constraints
                 c.fill = Fill.Horizontal
                 c.weightx = 1.0
@@ -258,9 +263,9 @@ object Runner extends SwingApplication {
 
                   val classWeaponColors = render.options("classWeaponColors").asInstanceOf[Map[String, List[(Int, Int, Int)]]]
                   val weaponColors = render.options("weaponColors").asInstanceOf[List[(Int, Int, Int)]]
-                  val (red, green, blue) = (new TextField(classWeaponColors.get(tfClass).map(_(slot - 1)._1).getOrElse { weaponColors(slot - 1)._1 }), 
-                                            new TextField(classWeaponColors.get(tfClass).map(_(slot - 1)._2).getOrElse { weaponColors(slot - 1)._2 }), 
-                                            new TextField(classWeaponColors.get(tfClass).map(_(slot - 1)._3).getOrElse { weaponColors(slot - 1)._3 }))
+                  val (red, green, blue) = (new TextField(classWeaponColors.get(tfClass).map(_(slot - 1)._1).getOrElse { weaponColors(slot - 1)._1 }.toString), 
+                                            new TextField(classWeaponColors.get(tfClass).map(_(slot - 1)._2).getOrElse { weaponColors(slot - 1)._2 }.toString), 
+                                            new TextField(classWeaponColors.get(tfClass).map(_(slot - 1)._3).getOrElse { weaponColors(slot - 1)._3 }.toString))
                   fields("classWeaponColorsRed" + tfClass + slot) = red
                   fields("classWeaponColorsGreen" + tfClass + slot) = green
                   fields("classWeaponColorsBlue" + tfClass + slot) = blue
@@ -268,61 +273,61 @@ object Runner extends SwingApplication {
                   layout(new Label("Crosshair color - Red:")) = c
                   c.gridx = 1
                   layout(red) = c
-                  c.gridx = 2
-                  layout(new Label("Green:")) = c
-                  c.gridx = 3
+                  c.gridy = rowNum + 2; c.gridx = 0
+                  layout(new Label("Crosshair color - Green:")) = c
+                  c.gridx = 1
                   layout(green) = c
-                  c.gridx = 4
-                  layout(new Label("Blue:")) = c
-                  c.gridx = 5
+                  c.gridy = rowNum + 3; c.gridx = 0
+                  layout(new Label("Crosshair color - Blue:")) = c
+                  c.gridx = 1
                   layout(blue) = c
 
-                  val weaponScale = new TextField(render.options("classWeaponScales").asInstanceOf[Map[String, List[Int]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("weaponScales").asInstanceOf[List[Int]](slot - 1) })
+                  val weaponScale = new TextField(render.options("classWeaponScales").asInstanceOf[Map[String, List[Int]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("weaponScales").asInstanceOf[List[Int]](slot - 1) }.toString)
                   fields("classWeaponScales" + tfClass + slot) = weaponScale
-                  c.gridy = rowNum + 2; c.gridx = 0
+                  c.gridy = rowNum + 4; c.gridx = 0
                   layout(new Label("Crosshair scale:")) = c
                   c.gridx = 1
                   layout(weaponScale) = c
 
-                  val weaponCrosshair = new ComboBox(render.crosshairTypes) { selection.item = render.options("classWeaponCrosshairs").asInstanceOf[Map[String, List[String]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("weaponCrosshairs").asInstanceOf[List[String]](slot - 1) } }
+                  val weaponCrosshair = new ComboBox(render.crosshairTypes) { selection.item = render.options("classWeaponCrosshairs").asInstanceOf[Map[String, List[String]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("weaponCrosshairs").asInstanceOf[List[String]](slot - 1) }.toString }
                   fields("classWeaponCrosshairs" + tfClass + slot) = weaponCrosshair
-                  c.gridy = rowNum + 3; c.gridx = 0
+                  c.gridy = rowNum + 5; c.gridx = 0
                   layout(new Label("Crosshair:")) = c
                   c.gridx = 1
                   layout(weaponCrosshair) = c
 
                   val weaponSensitivity = new TextField(render.options("classSensitivity").asInstanceOf[Map[String, List[Double]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("sensitivity").asInstanceOf[Double] }.toString)
                   fields("classSensitivity" + tfClass + slot) = weaponSensitivity
-                  c.gridy = rowNum + 4; c.gridx = 0
+                  c.gridy = rowNum + 6; c.gridx = 0
                   layout(new Label("Sensitivity:")) = c
                   c.gridx = 1
                   layout(weaponSensitivity) = c
 
-                  val weaponDingMax = new TextField(render.options("classDingPitchMax").asInstanceOf[Map[String, List[Int]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("dingPitchMax").asInstanceOf[Int] })
-                  val weaponDingMin = new TextField(render.options("classDingPitchMin").asInstanceOf[Map[String, List[Int]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("dingPitchMin").asInstanceOf[Int] })
+                  val weaponDingMax = new TextField(render.options("classDingPitchMax").asInstanceOf[Map[String, List[Int]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("dingPitchMax").asInstanceOf[Int] }.toString) 
+                  val weaponDingMin = new TextField(render.options("classDingPitchMin").asInstanceOf[Map[String, List[Int]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("dingPitchMin").asInstanceOf[Int] }.toString)
                   val weaponDingVolume = new TextField(render.options("classDingVolume").asInstanceOf[Map[String, List[Double]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("dingVolume").asInstanceOf[Double] }.toString)
                   fields("classDingPitchMax" + tfClass + slot) = weaponDingMax
                   fields("classDingPitchMin" + tfClass + slot) = weaponDingMin
                   fields("classDingVolume" + tfClass + slot) = weaponDingVolume
-                  c.gridy = rowNum + 5; c.gridx = 0
+                  c.gridy = rowNum + 7; c.gridx = 0
                   layout(new Label("Ding max pitch:")) = c
                   c.gridx = 1
                   layout(weaponDingMax) = c
-                  c.gridx = 2
+                  c.gridy = rowNum + 8; c.gridx = 0
                   layout(new Label("Ding min pitch:")) = c
-                  c.gridx = 3
+                  c.gridx = 1
                   layout(weaponDingMin) = c
-                  c.gridx = 4
+                  c.gridy = rowNum + 9; c.gridx = 0
                   layout(new Label("Ding volume:")) = c
-                  c.gridx = 5
+                  c.gridx = 1
                   layout(weaponDingVolume) = c
 
-                  val weaponShow = new CheckBox("Show Weapon") { enabled = render.options("classWeaponShow").asInstanceOf[Map[String, List[Boolean]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("weaponShow").asInstanceOf[List[Boolean]](slot - 1) } }
+                  val weaponShow = new CheckBox("Show Weapon") { selected = render.options("classWeaponShow").asInstanceOf[Map[String, List[Boolean]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("weaponShow").asInstanceOf[List[Boolean]](slot - 1) } }
                   fields("classWeaponShow" + tfClass + slot) = weaponShow
-                  c.gridy = rowNum + 6; c.gridx = 1
+                  c.gridy = rowNum + 10; c.gridx = 1
                   layout(weaponShow) = c
 
-                  rowNum += 7
+                  rowNum += 11
                 }
                 
                 toggleClassSpecificProfile(classEnabled.selected, tfClass)
@@ -365,7 +370,7 @@ object Runner extends SwingApplication {
               layout(list) = c
 
               c.gridy = rowNum + 1; c.gridx = 0
-              val keyCombo = new ComboBox("all" +: render.validKeyStrings.remove(_ == "nothing"))
+              val keyCombo = new ComboBox("all" +: render.validKeyStrings.filterNot(_ == "nothing"))
               layout(new Button("Add") {
                 reactions += {
                   case ButtonClicked(_) => {
@@ -454,7 +459,6 @@ object Runner extends SwingApplication {
           layout(new Button("Save configuration locally for inspection") {
             reactions += {
               case ButtonClicked(_) => {
-                saveUIToConfig
                 val progressWindow = new Dialog() {
                   title = "Generating"
                   contents = new FlowPanel {
@@ -467,6 +471,7 @@ object Runner extends SwingApplication {
                 new Thread {
                   override def run {
                     try {
+                      saveUIToConfig
                       render.writeToDirectory(".")
                       progressWindow.close
                       Dialog.showMessage(grid, "Done generating the configuration files", "Info", Dialog.Message.Info)
@@ -479,9 +484,9 @@ object Runner extends SwingApplication {
                         Dialog.showMessage(grid, "You configured P-Rec. More information and downloads for P-Rec can be found at http://orangad.com.ua/", "Info", Dialog.Message.Info)
                       }
                     } catch {
-                      case (e: Exception) => {
+                      case e: Exception => {
                         progressWindow.close
-                        Dialog.showMessage(grid, "Exception: " + e.getMessage, "Error", Dialog.Message.Error)
+                        Dialog.showMessage(grid, "Exception: " + e.getStackTrace.map(_.toString).mkString("\n"), "Error", Dialog.Message.Error)
                       }
                     }
                   }
@@ -491,10 +496,9 @@ object Runner extends SwingApplication {
           }) = c
 
           c.gridx = 1
-          layout(new Button("Save configuration in tf2") {
+          layout(new Button("Save configuration to tf2") {
             reactions += {
               case ButtonClicked(_) => {
-                saveUIToConfig
                 if (steamField.text != "" && usernameCombo.selection.item != "") {
                   val directory = List(steamField.text, "steamapps", usernameCombo.selection.item, "team fortress 2", "tf", "cfg").mkString(File.separator)
                   val progressWindow = new Dialog() {
@@ -508,6 +512,8 @@ object Runner extends SwingApplication {
                   progressWindow.open
                   new Thread {
                     override def run {
+                      try {
+                      saveUIToConfig
                       val dirFile = new File(directory)
                       if (!dirFile.exists)
                         dirFile.mkdir
@@ -521,6 +527,12 @@ object Runner extends SwingApplication {
                       }
                       if (precEnabled) {
                         Dialog.showMessage(grid, "You configured P-Rec. More information about and downloads for P-Rec can be found at http://orangad.com.ua/", "Info", Dialog.Message.Info)
+                      }
+                      } catch {
+                        case e : Exception => {
+                          progressWindow.close
+                          Dialog.showMessage(grid, "Exception: " + e.getStackTrace.map(_.toString).mkString("\n"), "Error", Dialog.Message.Error)
+                        }
                       }
                     }
                   }.start
@@ -552,7 +564,14 @@ object Runner extends SwingApplication {
           c.gridx = 1
           layout(new Button("Save current configuration settings for further editting later") {
             reactions += {
-              case ButtonClicked(_) => render.writeSettings
+              case ButtonClicked(_) => {
+                try {
+                  saveUIToConfig
+                  render.writeSettings
+                } catch {
+                  case e: Exception => Dialog.showMessage(grid, "Exception: " + e.getStackTrace.map(_.toString).mkString("\n"), "Error", Dialog.Message.Error)
+                }
+              }
             }
           }) = c
 
@@ -671,8 +690,8 @@ object Runner extends SwingApplication {
             var colors = List[(Int, Int, Int)]()
             for (slot <- 1 to 3) {
               colors :+= ((fields(optionName + "Red" + className + slot).asInstanceOf[TextField].text.toInt,
-                fields(optionName + "Green" + className + slot).asInstanceOf[TextField].text.toInt,
-                fields(optionName + "Blue" + className + slot).asInstanceOf[TextField].text.toInt))
+                           fields(optionName + "Green" + className + slot).asInstanceOf[TextField].text.toInt,
+                           fields(optionName + "Blue" + className + slot).asInstanceOf[TextField].text.toInt))
             }
             weaponColors(className) = colors
           }
