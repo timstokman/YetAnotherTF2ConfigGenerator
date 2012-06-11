@@ -4,6 +4,7 @@ import org.fusesource.scalate._
 import scala.collection.immutable.ListMap
 import java.io.{ FileOutputStream, FileInputStream, OutputStreamWriter, File }
 import com.thoughtworks.xstream.{XStream, io}
+import io.xml.Xpp3Driver
 
 class ConfigRender {
   val cacheDir = "./cache"
@@ -15,7 +16,7 @@ class ConfigRender {
   engine.sourceDirectories = List(new File(templateDir))
   engine.allowReload = false
   
-  val xstream = new XStream()
+  val xstream = new XStream(new Xpp3Driver)
   xstream.setMode(XStream.NO_REFERENCES);
   registerClass(classOf[Map[_, _]])
   registerClass(classOf[(Int, Int, Int)])
