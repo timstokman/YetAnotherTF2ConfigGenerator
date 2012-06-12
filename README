@@ -33,6 +33,8 @@ Features:
 * Ability to turn off dings for weapons
 
 Todo:
+* Spawntoggle bind
+* Spectator tournament ui mode option
 * Ragdolls/other graphical options
 * Switch net config with binding
 * Increase interp_ratio, decrease interp_ratio bindings
