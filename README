@@ -37,8 +37,9 @@ Todo:
 * Switch net config with binding
 * Increase interp_ratio, decrease interp_ratio bindings
 * Reset button should work better
-* Restore class specific content better
 * Conflicting binds detection
+* Binds for accept/decline messages/trades
+* Bind for toggling friendly/enemy disguise in menu
 * Ability to do a lastweapon/invprev/invnext bind that ties in with the rest of the script, some people prefer that over the current weapon switch bind
 * Make the GUI a bit prettier
 * Shrink/Clean up the templates a bit
@@ -50,8 +51,8 @@ Todo:
 * Other requests?
 
 Known Bugs:
-* Generating dialog label cut off for some people
-* Using the disguise menu instead of the direct disguise binds/cycle disguise binds desyncs the crosshairs a bit. just press q twice to fix it
+* For some people it crashes in the background, report the full error message to me so I can fix it
+* Weird localized steam directory with translated folder names can give some trouble when writing the config files to the tf2 directory 
 
 Installation:
 * Make sure you have the java runtime installed, this is a version without toolbar crap: http://www.oracle.com/technetwork/java/javase/downloads/jre-7u4-download-1591157.html
