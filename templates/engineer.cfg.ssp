@@ -173,6 +173,10 @@ alias weap_zoom_sens_<%= slot %> "sensitivity <%= (classSensitivity(currentConfi
 alias +buildandwrench "+attack; weapon_admin_3"
 alias -buildandwrench "-attack; bind <%= primAttack %> +attack"
 
+//ensures that hauling a building will not cause things to get out of sync due to autoswitching to the wrench
+alias +haulandwrench "+attack2; bind <%= primAttack %> +buildandwrench"
+alias -haulandwrench -attack2
+
 //quickbuild
 alias bsentry "destroy 2; build 2; bind  <%= primAttack %> +buildandwrench"
 alias bdispenser "destroy 0; build 0; bind  <%= primAttack %> +buildandwrench"
@@ -194,3 +198,4 @@ bind <%= destroySentry %> dsentry
 bind <%= destroyDispenser %> ddispenser
 bind <%= destroyEntrance %> dentrance
 bind <%= destroyExit %> dexit 
+bind <%= secAttack %> +haulandwrench
