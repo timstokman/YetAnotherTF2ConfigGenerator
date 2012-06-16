@@ -121,6 +121,9 @@
 <%@ val enableRagdolls : Boolean %>
 <%@ val enableSprays : Boolean %>
 <%@ val enableGibs : Boolean %>
+<%@ val previousWeapon : String %>
+<%@ val nextInvWeapon : String %>
+<%@ val prevInvWeapon : String %>
 
 //setup the crosshairs/weapon visibility
 #for (slot <- 1 to 3)
@@ -146,12 +149,15 @@ alias hide_weapon "r_drawviewmodel 0"
 #end
 
 //reset some binds
-bind <%= directWeapon1 %> primsecswap1
-bind <%= directWeapon2 %> primsecswap2
-bind <%= directWeapon3 %> swapdefault
+bind <%= directWeapon1 %> weapon1
+bind <%= directWeapon2 %> weapon2
+bind <%= directWeapon3 %> weapon3
 bind <%= directWeapon4 %> slot4
 bind <%= primSecSwap %> primsecswap
 bind <%= meleeSwap %> othermeleeswap
+bind <%= previousWeapon %> previous_weapon
+bind <%= nextInvWeapon %> next_inv_weapon
+bind <%= prevInvWeapon %> prev_inv_weapon
 bind <%= primAttack %> +attack
 bind <%= secAttack %> +attack2
 bind <%= normalJump %> +jump
@@ -161,8 +167,5 @@ bind <%= jump %> +crouchjump
 bind <%= jump %> +jump
 #end
 
-//reset aliases and default weapon
+//start with weapon1
 weapon1
-alias swaptoweap primsecswap1
-alias primsecswap primsecswap2
-alias othermeleeswap swapdefault

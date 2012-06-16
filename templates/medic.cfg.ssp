@@ -130,6 +130,9 @@
 <%@ val enableRagdolls : Boolean %>
 <%@ val enableSprays : Boolean %>
 <%@ val enableGibs : Boolean %>
+<%@ val previousWeapon : String %>
+<%@ val nextInvWeapon : String %>
+<%@ val prevInvWeapon : String %>
 
 exec reset
 
@@ -183,7 +186,7 @@ alias +radar autocall_all
 alias -radar autocall_default
 
 //autoinforming people of uber
-alias +charge "+attack2;slot2;dropitem;say_team "*** CHARGE USED ***";voicemenu 0 0;autocall_initial"
+alias +charge "+attack2; say_team "*** CHARGE USED ***"; voicemenu 0 0; autocall_initial"
 alias -charge "-attack2"
 
 //binds

@@ -130,6 +130,9 @@
 <%@ val enableRagdolls : Boolean %>
 <%@ val enableSprays : Boolean %>
 <%@ val enableGibs : Boolean %>
+<%@ val previousWeapon : String %>
+<%@ val nextInvWeapon : String %>
+<%@ val prevInvWeapon : String %>
 
 exec reset
 
@@ -205,9 +208,7 @@ bind <%= disguiseFriendlyEngineer %> "disguise 9 -2"
 bind <%= disguiseFriendlyMedic %> "disguise 5 -2"
 bind <%= disguiseFriendlySniper %> "disguise 2 -2"
 bind <%= disguiseFriendlySpy %> "disguise 8 -2"
-
 bind <%= disguiseCycle %> disguise_cycle
 bind <%= disguiseFriendlyCycle %> disguise_cycle_f
 bind <%= disguiseLast %> lastdisguise
-
 bind <%= secAttack %> "+attack2; show_weapon" //when going invisible, show the weapon to show the invisibility status

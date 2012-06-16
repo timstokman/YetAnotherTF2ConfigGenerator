@@ -196,6 +196,9 @@ class ConfigRender {
     "secAttack" -> ('binds, 'key, "Secondary attack"),
     "primSecSwap" -> ('binds, 'key, "Swap primary and secondary weapon"),
     "meleeSwap" -> ('binds, 'key, "Swap current and melee weapon"),
+    "previousWeapon" -> ('binds, 'key, "Swap to previous weapon"),
+    "nextInvWeapon" -> ('binds, 'key, "Swap to next inventory weapon"),
+    "prevInvWeapon" -> ('binds, 'key, "Swap to previous inventory weapon"),
     "directWeapon1" -> ('binds, 'key, "Weapon 1"),
     "directWeapon2" -> ('binds, 'key, "Weapon 2"),
     "directWeapon3" -> ('binds, 'key, "Weapon 3"),
@@ -399,7 +402,10 @@ class ConfigRender {
     "enableSpecTournamentMode" -> 1,
     "enableRagdolls" -> true,
     "enableSprays" -> true,
-    "enableGibs" -> true)
+    "enableGibs" -> true,
+    "previousWeapon" -> "nothing",
+    "nextInvWeapon" -> "MWHEELDOWN",
+    "prevInvWeapon" -> "MWHEELUP")
     
   /*
    * Render the templates

@@ -130,6 +130,9 @@
 <%@ val enableRagdolls : Boolean %>
 <%@ val enableSprays : Boolean %>
 <%@ val enableGibs : Boolean %>
+<%@ val previousWeapon : String %>
+<%@ val nextInvWeapon : String %>
+<%@ val prevInvWeapon : String %>
 
 exec reset
 
