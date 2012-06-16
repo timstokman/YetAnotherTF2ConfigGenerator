@@ -199,3 +199,4 @@ bind <%= destroyDispenser %> ddispenser
 bind <%= destroyEntrance %> dentrance
 bind <%= destroyExit %> dexit 
 bind <%= secAttack %> +haulandwrench
+bind <%= directWeapon4 %> "slot4; bind <%= primAttack +buildandwrench"
