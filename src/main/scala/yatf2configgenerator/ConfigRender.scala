@@ -163,6 +163,10 @@ class ConfigRender {
     "showFlames" -> ('options, 'boolean, "Show viewmodel flames"),
     "disguiseCycleClasses" -> ('options, 'classDisguiseList, "Disguise cyclelist enemy classes"),
     "disguiseFriendlyCycleClasses" -> ('options, 'classDisguiseList, "Disguise cyclelist friendly classes"), 
+    "enableSpecTournamentMode" -> ('options, 'intAsBoolean, "Enable spectator tournament UI mode"),
+    "enableRagdolls" -> ('options, 'boolean, "Enable ragdolls"),
+    "enableSprays" -> ('options, 'boolean, "Enable sprays"),
+    "enableGibs" -> ('options, 'boolean, "Enable gibs"),
     "precEnabled" -> ('options, 'boolean, "I Use P-Rec"),
     "precLog" -> ('options, 'int, "P-Rec log"),
     "precScreens" -> ('options, 'intAsBoolean, "P-Rec takes screenshots"),
@@ -224,6 +228,13 @@ class ConfigRender {
     "jump" -> ('binds, 'key, "Jump (possibly with crouch)"),
     "normalJump" -> ('binds, 'key, "Jump (always without crouch)"),
     "zoom" -> ('binds, 'key, "Zoom in"),
+    "spray" -> ('binds , 'key, "Spray"),
+    "requestAccept" -> ('binds, 'key, "Accept notification request"),
+    "requestDecline" -> ('binds, 'key, "Decline notification request"),
+    "switchBadnet" -> ('binds, 'key, "Switch to a bad-network configuration"),
+    "switchGoodnet" -> ('binds, 'key, "Switch to a good-network configuration"),
+    "switchLannet" -> ('binds, 'key, "Switch to a lan-network configuration"),
+    "disguiseMenuToggle" -> ('binds, 'key, "Toggle disguises within disguise menu"),
     "disguiseCycle" -> ('binds, 'key, "Cycle normal disguise"),
     "disguiseFriendlyCycle" -> ('binds, 'key, "Cycle friendly disguise"),
     "disguiseLast" -> ('binds, 'key, "Last disguise"),
@@ -377,8 +388,19 @@ class ConfigRender {
     "precDir" -> "demos",
     "precMode" -> 2,
     "precMark" -> "PGUP",
-    "unbindList" -> List[String]())
-
+    "unbindList" -> List[String](),
+    "spray" -> "ENTER",
+    "requestAccept" -> "RSHIFT",
+    "requestDecline" -> "RCTRL",
+    "switchBadnet" -> "nothing",
+    "switchGoodnet" -> "nothing",
+    "switchLannet" -> "nothing",
+    "disguiseMenuToggle" -> "-",
+    "enableSpecTournamentMode" -> 1,
+    "enableRagdolls" -> true,
+    "enableSprays" -> true,
+    "enableGibs" -> true)
+    
   /*
    * Render the templates
    */

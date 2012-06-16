@@ -64,8 +64,8 @@ fps_max 0
 // ----------------------------------------------------------------------------
 
 // Disable sprays
-cl_playerspraydisable 1
-r_spray_lifetime 0
+//cl_playerspraydisable 1
+//r_spray_lifetime 0
 
 // Enable sprays -- uncomment this section if you want these settings
 //cl_playerspraydisable 0
@@ -115,12 +115,12 @@ r_teeth 0
 // ----------------------------------------------------------------------------
 
 // Disable ragdolls
-cl_ragdoll_fade_time 0
-cl_ragdoll_forcefade 1
-cl_ragdoll_physics_enable 0
-g_ragdoll_fadespeed 0
-g_ragdoll_lvfadespeed 0
-ragdoll_sleepaftertime 0
+//cl_ragdoll_fade_time 0
+//cl_ragdoll_forcefade 1
+//cl_ragdoll_physics_enable 0
+//g_ragdoll_fadespeed 0
+//g_ragdoll_lvfadespeed 0
+//ragdoll_sleepaftertime 0
 
 // Enable ragdolls -- uncomment this section if you want these settings
 //cl_ragdoll_fade_time 15
@@ -137,12 +137,12 @@ ragdoll_sleepaftertime 0
 // ----------------------------------------------------------------------------
 
 // Disable gibs
-cl_phys_props_enable 0
-cl_phys_props_max 0
-props_break_max_pieces 0
-r_propsmaxdist 1
-violence_agibs 0
-violence_hgibs 0
+//cl_phys_props_enable 0
+//cl_phys_props_max 0
+//props_break_max_pieces 0
+//r_propsmaxdist 1
+//violence_agibs 0
+//violence_hgibs 0
 
 // Enable gibs -- uncomment this section if you want these settings
 //cl_phys_props_enable 1

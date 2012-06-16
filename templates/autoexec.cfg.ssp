@@ -120,6 +120,17 @@
 <%@ val destroyDispenser : String %>
 <%@ val destroyEntrance : String %>
 <%@ val destroyExit : String %>
+<%@ val spray : String %>
+<%@ val requestAccept : String %>
+<%@ val requestDecline : String %>
+<%@ val switchBadnet : String %>
+<%@ val switchGoodnet : String %>
+<%@ val switchLannet : String %>
+<%@ val disguiseMenuToggle : String %>
+<%@ val enableSpecTournamentMode : Int %>
+<%@ val enableRagdolls : Boolean %>
+<%@ val enableSprays : Boolean %>
+<%@ val enableGibs : Boolean %>
 
 //unbind keys
 #for(i <- 1 to unbindList.size)
@@ -188,8 +199,61 @@ fov_desired <%= fov %>
 cl_autoreload <%= autoreload %>
 hud_fastswitch <%= fastswitch %>
 hud_combattext <%= damagenumbers %>
+cl_use_tournament_specgui <%= enableSpecTournamentMode %>
+
+//graphics options, I define them here so people won't have to edit stuff in the graphicsconfigs, they're outcommented in chris' graphics configs themselves
+#if(enableSprays)
+// Enable sprays
+cl_playerspraydisable 0
+r_spray_lifetime 2
+#else
+// Disable sprays
+cl_playerspraydisable 1
+r_spray_lifetime 0
+#end
+
+#if(enableGibs)
+// Enable gibs
+cl_phys_props_enable 1
+cl_phys_props_max 128
+props_break_max_pieces -1
+r_propsmaxdist 1000
+violence_agibs 1
+violence_hgibs 1
+#else
+// Disable gibs
+cl_phys_props_enable 0
+cl_phys_props_max 0
+props_break_max_pieces 0
+r_propsmaxdist 1
+violence_agibs 0
+violence_hgibs 0
+#end
+
+#if(enableRagdolls)
+// Enable ragdolls
+cl_ragdoll_fade_time 15
+cl_ragdoll_forcefade 0
+cl_ragdoll_physics_enable 1
+g_ragdoll_fadespeed 600
+g_ragdoll_lvfadespeed 100
+ragdoll_sleepaftertime "5.0f"
+#else
+// Disable ragdolls
+cl_ragdoll_fade_time 0
+cl_ragdoll_forcefade 1
+cl_ragdoll_physics_enable 0
+g_ragdoll_fadespeed 0
+g_ragdoll_lvfadespeed 0
+ragdoll_sleepaftertime 0
+#end
 
 //binds
+bind <%= requestAccept %> cl_trigger_first_notification
+bind <%= requestDecline %> cl_decline_first_notification
+bind <%= switchBadnet %> bad_net
+bind <%= switchGoodnet %> good_net
+bind <%= switchLannet %> lan_net
 bind <%= zoom %> +zoom_in
 bind <%= movementFwd %> +move_forward
 bind <%= movementBack %> +move_back

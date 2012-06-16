@@ -431,8 +431,7 @@ object Runner extends SwingApplication {
                 chooser.showOpenDialog(grid)
                 val selected = chooser.selectedFile
                 val necessaryDirectories = List("steamapps", "steam", "steam.exe")
-                println(selected.listFiles().toList.map(_.getName.toLowerCase).mkString(","))
-                if (selected.listFiles().toList.map(_.getName).intersect(necessaryDirectories).size == necessaryDirectories.size) {
+                if (selected.listFiles().toList.map(_.getName.toLowerCase).intersect(necessaryDirectories).size == necessaryDirectories.size) {
                   steamField.text = selected.toString
                   val commonDirs = List("common", "downloading", "sourcemods", "temp")
                   val userNames = selected.listFiles.filter(_.getName == "steamapps")(0).listFiles.filter(file => !commonDirs.exists(_ == file.getName) && file.isDirectory).map(_.getName)
@@ -553,7 +552,7 @@ object Runner extends SwingApplication {
                     new File(directory + File.separator + configFile + ".cfg").delete
                   }
                   new File(directory + File.separator + "user.scr").delete
-                  copyFile(new File("templates" + File.separator + "default_reset.cfg"), new File(directory + File.separator + "config.cfg"))
+                  Dialog.showMessage(grid, "Deleted configuration files, put -autoconfig in your team fortress 2 launch options (see team fortress 2 properties in steam) to reset the configuration changes, delete the launch option after you've launched the game once", "Information", Dialog.Message.Info)
                 } else {
                   Dialog.showMessage(grid, "No steam directory or username specified", "Error", Dialog.Message.Error)
                 }
@@ -595,20 +594,6 @@ object Runner extends SwingApplication {
       fields("classWeaponShow" + tfClass + slot).asInstanceOf[CheckBox].enabled = enabled
       fields("classDingVolume" + tfClass + slot).asInstanceOf[TextField].enabled = enabled
     }
-  }
-
-  def copyFile(f1: File, f2: File) {
-    val in = new FileInputStream(f1);
-    val out = new FileOutputStream(f2);
-
-    val buf = new Array[Byte](1024);
-    var len = in.read(buf)
-    while (len > 0) {
-      out.write(buf, 0, len)
-      len = in.read(buf)
-    }
-    in.close();
-    out.close();
   }
 
   /*

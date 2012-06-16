@@ -119,6 +119,17 @@
 <%@ val destroyDispenser : String %>
 <%@ val destroyEntrance : String %>
 <%@ val destroyExit : String %>
+<%@ val spray : String %>
+<%@ val requestAccept : String %>
+<%@ val requestDecline : String %>
+<%@ val switchBadnet : String %>
+<%@ val switchGoodnet : String %>
+<%@ val switchLannet : String %>
+<%@ val disguiseMenuToggle : String %>
+<%@ val enableSpecTournamentMode : Int %>
+<%@ val enableRagdolls : Boolean %>
+<%@ val enableSprays : Boolean %>
+<%@ val enableGibs : Boolean %>
 
 exec reset
 
@@ -175,6 +186,7 @@ alias disguise<%= disguise %>_f "disguise <%= disguiseFriendlyCycleClasses(disgu
 #end
 
 //binds
+bind <%= disguiseMenuToggle %> disguiseteam
 bind <%= disguiseScout %> "disguise 1 -1"
 bind <%= disguiseSoldier %> "disguise 3 -1"
 bind <%= disguisePyro %> "disguise 7 -1"

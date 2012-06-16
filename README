@@ -30,30 +30,21 @@ Features:
 * If you are brave, you can edit the templates and add your own stuff
 * Zoom in bind 
 * P-Rec settings
-* Ability to turn off dings for weapons
 
 Todo:
-* Spawntoggle bind
-* Spectator tournament ui mode option
-* Ragdolls/other graphical options
-* Switch net config with binding
-* Increase interp_ratio, decrease interp_ratio bindings
-* Reset button should work better
-* Conflicting binds detection
-* Binds for accept/decline messages/trades
-* Bind for toggling friendly/enemy disguise in menu
 * Ability to do a lastweapon/invprev/invnext bind that ties in with the rest of the script, some people prefer that over the current weapon switch bind
+* Spawntoggle bind
+* Conflicting binds detection
+* Backup config system
 * Make the GUI a bit prettier
 * Shrink/Clean up the templates a bit
-* Something like stabby's crosshair script (changing crosshair colors when strafing), or a switching the crosshair color when firing your weapon
+* Option to have an affect similar to stabby's crosshair script (changing crosshair colors when strafing), or a switching the crosshair color when firing your weapon
 * variable cl_inter_ratio for different classes (or even weapons?)
-* Handle the disguise menu a bit better
 * Write a "none/null" keybind to the config in a way that doesn't write error messages to the tf2 console
-* Maybe I missed a couple of keybinds?
 * Other requests?
 
 Known Bugs:
-* For some people it crashes in the background, report the full error message to me so I can fix it
+* For some people the config generator (not tf2) crashes in the background, report the full error message to me so I can fix it
 * Weird localized steam directory with translated folder names can give some trouble when writing the config files to the tf2 directory 
 
 Installation:

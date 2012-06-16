@@ -110,6 +110,17 @@
 <%@ val destroyDispenser : String %>
 <%@ val destroyEntrance : String %>
 <%@ val destroyExit : String %>
+<%@ val spray : String %>
+<%@ val requestAccept : String %>
+<%@ val requestDecline : String %>
+<%@ val switchBadnet : String %>
+<%@ val switchGoodnet : String %>
+<%@ val switchLannet : String %>
+<%@ val disguiseMenuToggle : String %>
+<%@ val enableSpecTournamentMode : Int %>
+<%@ val enableRagdolls : Boolean %>
+<%@ val enableSprays : Boolean %>
+<%@ val enableGibs : Boolean %>
 
 //setup the crosshairs/weapon visibility
 #for (slot <- 1 to 3)
