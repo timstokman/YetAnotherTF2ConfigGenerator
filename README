@@ -32,7 +32,6 @@ Features:
 * P-Rec settings
 
 Todo:
-* Ability to do a lastweapon/invprev/invnext bind that ties in with the rest of the script, some people prefer that over the current weapon switch bind
 * Spawntoggle bind
 * Conflicting binds detection
 * Backup config system
