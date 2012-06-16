@@ -137,7 +137,11 @@
 
 //unbind keys
 #for(i <- 1 to unbindList.size)
-  unbind <%= unbindList(i - 1) %>
+#if(unbindList(i - 1) == "all")
+unbindall
+else
+unbind <%= unbindList(i - 1) %>
+#end
 #end
 
 //exec other configs needed
