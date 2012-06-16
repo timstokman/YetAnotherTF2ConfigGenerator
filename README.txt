@@ -45,6 +45,7 @@ Todo:
 Known Bugs:
 * For some people the config generator (not tf2) crashes in the background, report the full error message to me so I can fix it
 * Weird localized steam directory with translated folder names can give some trouble when writing the config files to the tf2 directory 
+* When building as an engineer, when you put down the building with primary fire, and while holding down that button, switch weapon, it will continue attack with that weapon until you put -attack in the console
 
 Installation:
 * Make sure you have the java runtime installed, this is a version without toolbar crap: http://www.oracle.com/technetwork/java/javase/downloads/jre-7u4-download-1591157.html
