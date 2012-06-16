@@ -138,6 +138,41 @@ alias weap_vis_<%= slot %> hide_weapon
 #end 
 #end
 
+//undo class specific stuff
+unbind <%= buildSentry %>
+unbind <%= buildDispenser %>
+unbind <%= buildEntrance %>
+unbind <%= buildExit %>
+unbind <%= destroySentry %>
+unbind <%= destroyDispenser %>
+unbind <%= destroyEntrance %>
+unbind <%= destroyExit %>
+unbind <%= directWeapon4 %>
+unbind <%= medicRadar %>
+unbind <%= fakeUber %>
+unbind <%= disguiseMenuToggle %> 
+unbind <%= disguiseScout %> 
+unbind <%= disguiseSoldier %> 
+unbind <%= disguisePyro %> 
+unbind <%= disguiseDemo %> 
+unbind <%= disguiseHeavy %> 
+unbind <%= disguiseEngineer %> 
+unbind <%= disguiseMedic %> 
+unbind <%= disguiseSniper %> 
+unbind <%= disguiseSpy %> 
+unbind <%= disguiseFriendlyScout %> 
+unbind <%= disguiseFriendlySoldier %> 
+unbind <%= disguiseFriendlyPyro %> 
+unbind <%= disguiseFriendlyDemo %>
+unbind <%= disguiseFriendlyHeavy %> 
+unbind <%= disguiseFriendlyEngineer %> 
+unbind <%= disguiseFriendlyMedic %> 
+unbind <%= disguiseFriendlySniper %> 
+unbind <%= disguiseFriendlySpy %>
+unbind <%= disguiseCycle %> 
+unbind <%= disguiseFriendlyCycle %> 
+unbind <%= disguiseLast %> 
+
 //defaults for how hiding weapons is done
 #if (hideTracers)
 alias show_weapon "viewmodel_fov <%= viewmodelFov %>; r_drawviewmodel 1"
@@ -152,7 +187,6 @@ alias hide_weapon "r_drawviewmodel 0"
 bind <%= directWeapon1 %> weapon1
 bind <%= directWeapon2 %> weapon2
 bind <%= directWeapon3 %> weapon3
-bind <%= directWeapon4 %> slot4
 bind <%= primSecSwap %> primsecswap
 bind <%= meleeSwap %> othermeleeswap
 bind <%= previousWeapon %> previous_weapon
