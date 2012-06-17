@@ -289,6 +289,7 @@ bind <%= actionSlot %> use_action_slot_item
 bind <%= voiceMenu1 %> voice_menu_1
 bind <%= voiceMenu2 %> voice_menu_2
 bind <%= voiceMenu3 %> voice_menu_3
+bind <%= spray %> "impulse 201"
 
 #if(precEnabled)
 //P-Rec
