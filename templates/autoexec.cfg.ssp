@@ -180,7 +180,7 @@ alias weapon_slot_spec_admin_<%= slot %> "alias primsecswap weapon1;         ali
 #else
 alias weapon_slot_spec_admin_<%= slot %> "alias primsecswap previous_weapon; alias othermeleeswap previous_weapon; set_previous_weapon_<%= slot %>; alias set_previous_weapon_1 "alias previous_weapon weapon3"; alias set_previous_weapon_2 "alias previous_weapon weapon3"; alias set_previous_weapon_3 ""                             "
 #end
-alias weapon<%= slot %> "slot<%= slot %>; weapon_admin_<%= slot %>; bind <%= primAttack %> +attack"
+alias weapon<%= slot %> "slot<%= slot %>; weapon_admin_<%= slot %>"
 #end
 
 //teamonly voicebind
