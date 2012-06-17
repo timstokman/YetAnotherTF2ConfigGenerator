@@ -293,7 +293,7 @@ class ConfigRender {
     "hideTracers" -> true,
     "weaponColors" -> List((0, 255, 0), (0, 255, 0), (0, 255, 0)),
     "weaponCrosshairs" -> List("crosshair5", "crosshair4", "crosshair7"),
-    "weaponScales" -> List(10, 15, 14),
+    "weaponScales" -> List(15, 30, 20),
     "weaponShow" -> List(false, false, true),
     "classWeaponColors" -> Map[String, List[(Int, Int, Int)]](),
     "classWeaponCrosshairs" -> Map[String, List[String]](),
