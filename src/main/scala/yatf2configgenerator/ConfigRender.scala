@@ -416,8 +416,7 @@ class ConfigRender {
     "nextInvWeapon" -> "MWHEELDOWN",
     "prevInvWeapon" -> "MWHEELUP",
     "startSpawnSwitch" -> "UPARROW",
-    "finishSpawnSwitch" -> "DOWNARROW",
-    "bindif" -> ((key : String, to : String) => (if(key == "none") "" else "bind " + key + " " + to)))
+    "finishSpawnSwitch" -> "DOWNARROW")
     
   /*
    * Render the templates
