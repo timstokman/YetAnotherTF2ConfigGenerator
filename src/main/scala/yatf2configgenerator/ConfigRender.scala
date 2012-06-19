@@ -6,12 +6,19 @@ import java.io.{ FileOutputStream, FileInputStream, OutputStreamWriter, File }
 import com.thoughtworks.xstream.{XStream, io}
 import io.xml.Xpp3Driver
 
+object ConfigRender {
+  def bindif(key : String, to : String) = if(key == "nothing") "" else "bind " + key + " " + to   
+  
+  def unbindif(key : String) = if(key == "all") "unbindall" else if(key == "nothing") "" else "unbind " + key
+}
+
 class ConfigRender {
   val cacheDir = "./cache"
   val templateDir = "./templates"
   val settings = "./settings.xml"
   
   val engine = new TemplateEngine
+  engine.escapeMarkup = false
   engine.workingDirectory = new File(cacheDir)
   engine.sourceDirectories = List(new File(templateDir))
   engine.allowReload = false
@@ -237,6 +244,8 @@ class ConfigRender {
     "switchBadnet" -> ('binds, 'key, "Switch to a bad-network configuration"),
     "switchGoodnet" -> ('binds, 'key, "Switch to a good-network configuration"),
     "switchLannet" -> ('binds, 'key, "Switch to a lan-network configuration"),
+    "startSpawnSwitch" -> ('binds, 'key, "Switch spawn by joining a random class"),
+    "finishSpawnSwitch" -> ('binds, 'key, "Switch back in the new spawn to your original class"),
     "disguiseMenuToggle" -> ('binds, 'key, "Toggle disguises within disguise menu"),
     "disguiseCycle" -> ('binds, 'key, "Cycle normal disguise"),
     "disguiseFriendlyCycle" -> ('binds, 'key, "Cycle friendly disguise"),
@@ -405,7 +414,10 @@ class ConfigRender {
     "enableGibs" -> true,
     "previousWeapon" -> "nothing",
     "nextInvWeapon" -> "MWHEELDOWN",
-    "prevInvWeapon" -> "MWHEELUP")
+    "prevInvWeapon" -> "MWHEELUP",
+    "startSpawnSwitch" -> "UPARROW",
+    "finishSpawnSwitch" -> "DOWNARROW",
+    "bindif" -> ((key : String, to : String) => (if(key == "none") "" else "bind " + key + " " + to)))
     
   /*
    * Render the templates

@@ -2,7 +2,7 @@ import AssemblyKeys._
 
 name := "YetAnotherTF2ConfigGenerator"
 
-version := "0.6.0"
+version := "0.7.0"
 
 scalaVersion := "2.9.2"
 

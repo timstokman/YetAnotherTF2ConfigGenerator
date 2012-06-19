@@ -135,13 +135,11 @@
 <%@ val nextInvWeapon : String %>
 <%@ val prevInvWeapon : String %>
 
+#import(yatf2configgenerator.ConfigRender._)
+
 //unbind keys
 #for(i <- 1 to unbindList.size)
-#if(unbindList(i - 1) == "all")
-unbindall
-else
-unbind <%= unbindList(i - 1) %>
-#end
+<%= unbindif(unbindList(i - 1)) %>
 #end
 
 //exec other configs needed
@@ -256,40 +254,42 @@ ragdoll_sleepaftertime 0
 #end
 
 //binds
-bind <%= requestAccept %> cl_trigger_first_notification
-bind <%= requestDecline %> cl_decline_first_notification
-bind <%= switchBadnet %> bad_net
-bind <%= switchGoodnet %> good_net
-bind <%= switchLannet %> lan_net
-bind <%= zoom %> +zoom_in
-bind <%= movementFwd %> +move_forward
-bind <%= movementBack %> +move_back
-bind <%= movementLeft %> +move_left
-bind <%= movementRight %> +move_right
-bind <%= quickSwitch %> +quickswitch
-bind <%= suicide %> kill
-bind <%= reloadhud %> hud_reloadscheme
-bind <%= screenshot %> screenshot
-bind <%= saveReplay %> save_replay
-bind <%= duck %> +duck
-bind <%= taunt %> taunt
-bind <%= say %> say
-bind <%= teamSay %> say_team
-bind <%= teamOnlyTalk %> +teamonly
-bind <%= normalTalk %> +voicerecord
-bind <%= scoreboard %> +sb
-bind <%= inspect %> inspect
-bind <%= medic %> "voicemenu 0 0"
-bind <%= backpack %> open_charinfo_direct
-bind <%= dropItem %> dropitem
-bind <%= switchTeam %> changeteam
-bind <%= switchClass %> changeclass
-bind <%= console %> toggleconsole
-bind <%= actionSlot %> use_action_slot_item
-bind <%= voiceMenu1 %> voice_menu_1
-bind <%= voiceMenu2 %> voice_menu_2
-bind <%= voiceMenu3 %> voice_menu_3
-bind <%= spray %> "impulse 201"
+<%= bindif(requestAccept, "cl_trigger_first_notification") %>
+<%= bindif(requestDecline, "cl_decline_first_notification") %>
+<%= bindif(switchBadnet, "bad_net") %>
+<%= bindif(switchGoodnet, "good_net") %>
+<%= bindif(switchLannet, "lan_net") %>
+<%= bindif(zoom, "+zoom_in") %>
+<%= bindif(movementFwd, "+move_forward") %>
+<%= bindif(movementBack, "+move_back") %>
+<%= bindif(movementLeft, "+move_left") %>
+<%= bindif(movementRight, "+move_right") %>
+<%= bindif(quickSwitch, "+quickswitch") %>
+<%= bindif(suicide, "kill") %>
+<%= bindif(reloadhud, "hud_reloadscheme") %>
+<%= bindif(screenshot, "screenshot") %>
+<%= bindif(saveReplay, "save_replay") %>
+<%= bindif(duck, "+duck") %>
+<%= bindif(taunt, "taunt") %>
+<%= bindif(say, "say") %>
+<%= bindif(teamSay, "say_team") %>
+<%= bindif(teamOnlyTalk, "+teamonly") %>
+<%= bindif(normalTalk, "+voicerecord") %>
+<%= bindif(scoreboard, "+sb") %>
+<%= bindif(inspect, "inspect") %>
+<%= bindif(medic, "") %>"voicemenu 0 0"
+<%= bindif(backpack, "open_charinfo_direct") %>
+<%= bindif(dropItem, "dropitem") %>
+<%= bindif(switchTeam, "changeteam") %>
+<%= bindif(switchClass, "changeclass") %>
+<%= bindif(console, "toggleconsole") %>
+<%= bindif(actionSlot, "use_action_slot_item") %>
+<%= bindif(voiceMenu1, "voice_menu_1") %>
+<%= bindif(voiceMenu2, "voice_menu_2") %>
+<%= bindif(voiceMenu3, "voice_menu_3") %>
+<%= bindif(spray, "\"impulse 201\"") %>
+<%= bindif(startSpawnSwitch, "start_spawn_switch") %>
+<%= bindif(finishSpawnSwitch, "finish_spawn_switch") %>
 
 #if(precEnabled)
 //P-Rec
@@ -300,5 +300,5 @@ prec_min_streak <%= precMinStreak %>
 prec_kill_delay <%= precKillDelay %>
 prec_dir <%= precDir %>
 prec_mode <%= precMode %>
-bind <%= precMark %> prec_mark
+<%= bindif(precMark, "prec_mark") %>
 #end

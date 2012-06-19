@@ -485,7 +485,8 @@ object Runner extends SwingApplication {
                     } catch {
                       case e: Exception => {
                         progressWindow.close
-                        Dialog.showMessage(grid, "Exception: " + e.getStackTrace.map(_.toString).mkString("\n"), "Error", Dialog.Message.Error)
+                        e.printStackTrace
+                        Dialog.showMessage(grid, "Exception: " + e.getMessage + "\n" + e.getStackTrace.map(_.toString).mkString("\n"), "Error", Dialog.Message.Error)
                       }
                     }
                   }
@@ -530,7 +531,8 @@ object Runner extends SwingApplication {
                       } catch {
                         case e : Exception => {
                           progressWindow.close
-                          Dialog.showMessage(grid, "Exception: " + e.getStackTrace.map(_.toString).mkString("\n"), "Error", Dialog.Message.Error)
+                          e.printStackTrace
+                          Dialog.showMessage(grid, "Exception: " + e.getMessage + "\n" + e.getStackTrace.map(_.toString).mkString("\n"), "Error", Dialog.Message.Error)
                         }
                       }
                     }
@@ -568,7 +570,10 @@ object Runner extends SwingApplication {
                   saveUIToConfig
                   render.writeSettings
                 } catch {
-                  case e: Exception => Dialog.showMessage(grid, "Exception: " + e.getStackTrace.map(_.toString).mkString("\n"), "Error", Dialog.Message.Error)
+                  case e: Exception => {
+                    e.printStackTrace
+                    Dialog.showMessage(grid, "Exception: " + e.getMessage + "\n" + e.getStackTrace.map(_.toString).mkString("\n"), "Error", Dialog.Message.Error)
+                  }
                 }
               }
             }

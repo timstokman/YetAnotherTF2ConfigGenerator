@@ -134,12 +134,16 @@
 <%@ val nextInvWeapon : String %>
 <%@ val prevInvWeapon : String %>
 
+#import(yatf2configgenerator.ConfigRender._)
+
 exec reset
 
+alias start_spawn_switch "alias finish_spawn_switch "join_class <%= currentConfig %>"; join_class random"
+
 #if (crouchJumpNotFor.contains(currentConfig))
-bind <%= jump %> +jump
+<%= bindif(jump, "+jump") %>
 #else
-//bind <%= jump %> +jump
+//<%= bindif(jump, "+jump") %>
 #end
 
 //class specific crosshairs and weapon visibility and sensitivity
@@ -189,27 +193,27 @@ alias disguise<%= disguise %>_f "disguise <%= disguiseFriendlyCycleClasses(disgu
 #end
 
 //binds
-bind <%= disguiseMenuToggle %> disguiseteam
-bind <%= disguiseScout %> "disguise 1 -1"
-bind <%= disguiseSoldier %> "disguise 3 -1"
-bind <%= disguisePyro %> "disguise 7 -1"
-bind <%= disguiseDemo %> "disguise 4 -1"
-bind <%= disguiseHeavy %> "disguise 6 -1"
-bind <%= disguiseEngineer %> "disguise 9 -1"
-bind <%= disguiseMedic %> "disguise 5 -1"
-bind <%= disguiseSniper %> "disguise 2 -1"
-bind <%= disguiseSpy %> "disguise 8 -1"
-bind <%= disguiseFriendlyScout %> "disguise 1 -2"
-bind <%= disguiseFriendlySoldier %> "disguise 3 -2"
-bind <%= disguiseFriendlyPyro %> "disguise 7 -2"
-bind <%= disguiseFriendlyDemo %> "disguise 4 -2"
-bind <%= disguiseFriendlyHeavy %> "disguise 6 -2"
-bind <%= disguiseFriendlyEngineer %> "disguise 9 -2"
-bind <%= disguiseFriendlyMedic %> "disguise 5 -2"
-bind <%= disguiseFriendlySniper %> "disguise 2 -2"
-bind <%= disguiseFriendlySpy %> "disguise 8 -2"
-bind <%= disguiseCycle %> disguise_cycle
-bind <%= disguiseFriendlyCycle %> disguise_cycle_f
-bind <%= disguiseLast %> lastdisguise
-bind <%= secAttack %> "+attack2; show_weapon" //when going invisible, show the weapon to show the invisibility status
-bind <%= directWeapon4 %> slot4
+<%= bindif(disguiseMenuToggle, "disguiseteam") %>
+<%= bindif(disguiseScout, "\"disguise 1 -1\"") %>
+<%= bindif(disguiseSoldier, "\"disguise 3 -1\"") %>
+<%= bindif(disguisePyro, "\"disguise 7 -1\"") %>
+<%= bindif(disguiseDemo, "\"disguise 4 -1\"") %>
+<%= bindif(disguiseHeavy, "\"disguise 6 -1\"") %>
+<%= bindif(disguiseEngineer, "\"disguise 9 -1\"") %>
+<%= bindif(disguiseMedic, "\"disguise 5 -1\"") %>
+<%= bindif(disguiseSniper, "\"disguise 2 -1\"") %>
+<%= bindif(disguiseSpy, "\"disguise 8 -1\"") %>
+<%= bindif(disguiseFriendlyScout, "\"disguise 1 -2\"") %>
+<%= bindif(disguiseFriendlySoldier, "\"disguise 3 -2\"") %>
+<%= bindif(disguiseFriendlyPyro, "\"disguise 7 -2\"") %>
+<%= bindif(disguiseFriendlyDemo, "\"disguise 4 -2\"") %>
+<%= bindif(disguiseFriendlyHeavy, "\"disguise 6 -2\"") %>
+<%= bindif(disguiseFriendlyEngineer, "\"disguise 9 -2\"") %>
+<%= bindif(disguiseFriendlyMedic, "\"disguise 5 -2\"") %>
+<%= bindif(disguiseFriendlySniper, "\"disguise 2 -2\"") %>
+<%= bindif(disguiseFriendlySpy, "\"disguise 8 -2\"") %>
+<%= bindif(disguiseCycle, "disguise_cycle") %>
+<%= bindif(disguiseFriendlyCycle, "disguise_cycle_f") %>
+<%= bindif(disguiseLast, "lastdisguise") %>
+<%= bindif(secAttack, "\"+attack2; show_weapon\"") %> //when going invisible, show the weapon to show the invisibility status
+<%= bindif(directWeapon4, "slot4") %>

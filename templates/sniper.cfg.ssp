@@ -134,12 +134,16 @@
 <%@ val nextInvWeapon : String %>
 <%@ val prevInvWeapon : String %>
 
+#import(yatf2configgenerator.ConfigRender._)
+
 exec reset
 
+alias start_spawn_switch "alias finish_spawn_switch "join_class <%= currentConfig %>"; join_class random"
+
 #if (crouchJumpNotFor.contains(currentConfig))
-bind <%= jump %> +jump
+<%= bindif(jump, "+jump") %>
 #else
-//bind <%= jump %> +jump
+//<%= bindif(jump, "+jump") %>
 #end
 
 //class specific crosshairs and weapon visibility and sensitivity

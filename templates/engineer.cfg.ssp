@@ -134,12 +134,14 @@
 <%@ val nextInvWeapon : String %>
 <%@ val prevInvWeapon : String %>
 
+#import(yatf2configgenerator.ConfigRender._)
+
 exec reset
 
 #if (crouchJumpNotFor.contains(currentConfig))
-bind <%= jump %> +jump
+<%= bindif(jump, "+jump") %>
 #else
-//bind <%= jump %> +jump
+//<%= bindif(jump, "+jump") %>
 #end
 
 //class specific crosshairs and weapon visibility and sensitivity
@@ -171,10 +173,10 @@ alias weap_zoom_sens_<%= slot %> "sensitivity <%= (classSensitivity(currentConfi
 
 //ensures that when building the weapon switching doesn't get out of sync due to autoswitching to the wrench
 alias +buildandwrench "+attack; weapon_admin_3"
-alias -buildandwrench "-attack; bind <%= primAttack %> +attack"
+alias -buildandwrench "-attack; <%= bindif(primAttack, "+attack") %>"
 
 //ensures that hauling a building will not cause things to get out of sync due to autoswitching to the wrench
-alias +haulandwrench "+attack2; bind <%= primAttack %> +buildandwrench"
+alias +haulandwrench "+attack2; <%= bindif(primAttack, "+buildandwrench") %>"
 alias -haulandwrench -attack2
 
 //quickbuild
@@ -190,13 +192,13 @@ alias dentrance "destroy 1"
 alias dexit "destroy 3"
 
 //binds
-bind <%= buildSentry %> bsentry
-bind <%= buildDispenser %> bdispenser
-bind <%= buildEntrance %> bentrance
-bind <%= buildExit %> bexit
-bind <%= destroySentry %> dsentry
-bind <%= destroyDispenser %> ddispenser
-bind <%= destroyEntrance %> dentrance
-bind <%= destroyExit %> dexit 
-bind <%= secAttack %> +haulandwrench
-bind <%= directWeapon4 %> "slot4; bind <%= primAttack %> +buildandwrench"
+<%= bindif(buildSentry, "bsentry") %>
+<%= bindif(buildDispenser, "bdispenser") %>
+<%= bindif(buildEntrance, "bentrance") %>
+<%= bindif(buildExit, "bexit") %>
+<%= bindif(destroySentry, "dsentry") %>
+<%= bindif(destroyDispenser, "ddispenser") %>
+<%= bindif(destroyEntrance, "dentrance") %>
+<%= bindif(destroyExit, "dexit") %> 
+<%= bindif(secAttack, "+haulandwrench") %>
+<%= bindif(directWeapon4, "\"slot4; bind " + primAttack + " +buildandwrench\"") %>

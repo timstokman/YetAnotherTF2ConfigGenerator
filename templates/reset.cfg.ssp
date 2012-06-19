@@ -134,6 +134,8 @@
 <%@ val nextInvWeapon : String %>
 <%@ val prevInvWeapon : String %>
 
+#import(yatf2configgenerator.ConfigRender._)
+
 //setup the crosshairs/weapon visibility
 #for (slot <- 1 to 3)
 alias cross_<%= slot %> "cl_crosshair_red <%= weaponColors(slot - 1)._1 %>; cl_crosshair_green <%= weaponColors(slot - 1)._2 %>; cl_crosshair_blue <%= weaponColors(slot - 1)._3 %>; cl_crosshair_scale <%= weaponScales(slot - 1) %>; cl_crosshair_file <%= weaponCrosshairs(slot - 1) %>"
@@ -148,39 +150,39 @@ alias weap_vis_<%= slot %> hide_weapon
 #end
 
 //undo class specific stuff
-unbind <%= buildSentry %>
-unbind <%= buildDispenser %>
-unbind <%= buildEntrance %>
-unbind <%= buildExit %>
-unbind <%= destroySentry %>
-unbind <%= destroyDispenser %>
-unbind <%= destroyEntrance %>
-unbind <%= destroyExit %>
-unbind <%= directWeapon4 %>
-unbind <%= medicRadar %>
-unbind <%= fakeUber %>
-unbind <%= disguiseMenuToggle %> 
-unbind <%= disguiseScout %> 
-unbind <%= disguiseSoldier %> 
-unbind <%= disguisePyro %> 
-unbind <%= disguiseDemo %> 
-unbind <%= disguiseHeavy %> 
-unbind <%= disguiseEngineer %> 
-unbind <%= disguiseMedic %> 
-unbind <%= disguiseSniper %> 
-unbind <%= disguiseSpy %> 
-unbind <%= disguiseFriendlyScout %> 
-unbind <%= disguiseFriendlySoldier %> 
-unbind <%= disguiseFriendlyPyro %> 
-unbind <%= disguiseFriendlyDemo %>
-unbind <%= disguiseFriendlyHeavy %> 
-unbind <%= disguiseFriendlyEngineer %> 
-unbind <%= disguiseFriendlyMedic %> 
-unbind <%= disguiseFriendlySniper %> 
-unbind <%= disguiseFriendlySpy %>
-unbind <%= disguiseCycle %> 
-unbind <%= disguiseFriendlyCycle %> 
-unbind <%= disguiseLast %> 
+<%= unbindif(buildSentry) %>
+<%= unbindif(buildDispenser) %>
+<%= unbindif(buildEntrance) %>
+<%= unbindif(buildExit) %>
+<%= unbindif(destroySentry) %>
+<%= unbindif(destroyDispenser) %>
+<%= unbindif(destroyEntrance) %>
+<%= unbindif(destroyExit) %>
+<%= unbindif(directWeapon4) %>
+<%= unbindif(medicRadar) %>
+<%= unbindif(fakeUber) %>
+<%= unbindif(disguiseMenuToggle) %> 
+<%= unbindif(disguiseScout) %> 
+<%= unbindif(disguiseSoldier) %> 
+<%= unbindif(disguisePyro) %> 
+<%= unbindif(disguiseDemo) %> 
+<%= unbindif(disguiseHeavy) %> 
+<%= unbindif(disguiseEngineer) %> 
+<%= unbindif(disguiseMedic) %> 
+<%= unbindif(disguiseSniper) %> 
+<%= unbindif(disguiseSpy) %> 
+<%= unbindif(disguiseFriendlyScout) %> 
+<%= unbindif(disguiseFriendlySoldier) %> 
+<%= unbindif(disguiseFriendlyPyro) %> 
+<%= unbindif(disguiseFriendlyDemo) %>
+<%= unbindif(disguiseFriendlyHeavy) %> 
+<%= unbindif(disguiseFriendlyEngineer) %> 
+<%= unbindif(disguiseFriendlyMedic) %> 
+<%= unbindif(disguiseFriendlySniper) %> 
+<%= unbindif(disguiseFriendlySpy) %>
+<%= unbindif(disguiseCycle) %> 
+<%= unbindif(disguiseFriendlyCycle) %> 
+<%= unbindif(disguiseLast) %> 
 
 //defaults for how hiding weapons is done
 #if (hideTracers)
@@ -193,21 +195,21 @@ alias hide_weapon "r_drawviewmodel 0"
 #end
 
 //reset some binds
-bind <%= directWeapon1 %> weapon1
-bind <%= directWeapon2 %> weapon2
-bind <%= directWeapon3 %> weapon3
-bind <%= primSecSwap %> primsecswap
-bind <%= meleeSwap %> othermeleeswap
-bind <%= previousWeapon %> previous_weapon
-bind <%= nextInvWeapon %> next_inv_weapon
-bind <%= prevInvWeapon %> prev_inv_weapon
-bind <%= primAttack %> +attack
-bind <%= secAttack %> +attack2
-bind <%= normalJump %> +jump
+<%= bindif(directWeapon1, "weapon1") %>
+<%= bindif(directWeapon2, "weapon2") %>
+<%= bindif(directWeapon3, "weapon3") %>
+<%= bindif(primSecSwap, "primsecswap") %>
+<%= bindif(meleeSwap, "othermeleeswap") %>
+<%= bindif(previousWeapon, "previous_weapon") %>
+<%= bindif(nextInvWeapon, "next_inv_weapon") %>
+<%= bindif(prevInvWeapon, "prev_inv_weapon") %>
+<%= bindif(primAttack, "+attack") %>
+<%= bindif(secAttack, "+attack2") %>
+<%= bindif(normalJump, "+jump") %>
 #if (enableCrouchJump)
-bind <%= jump %> +crouchjump
+<%= bindif(jump, "+crouchjump") %>
 #else
-bind <%= jump %> +jump
+<%= bindif(jump, "+jump") %>
 #end
 
 //start with weapon1
