@@ -134,6 +134,8 @@
 <%@ val previousWeapon : String %>
 <%@ val nextInvWeapon : String %>
 <%@ val prevInvWeapon : String %>
+<%@ val startSpawnSwitch : String %>
+<%@ val finishSpawnSwitch : String %>
 
 #import(yatf2configgenerator.ConfigRender._)
 

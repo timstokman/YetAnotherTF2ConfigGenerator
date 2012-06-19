@@ -133,10 +133,14 @@
 <%@ val previousWeapon : String %>
 <%@ val nextInvWeapon : String %>
 <%@ val prevInvWeapon : String %>
+<%@ val startSpawnSwitch : String %>
+<%@ val finishSpawnSwitch : String %>
 
 #import(yatf2configgenerator.ConfigRender._)
 
 exec reset
+
+alias start_spawn_switch "alias finish_spawn_switch "join_class <%= currentConfig %>"; join_class random"
 
 #if (crouchJumpNotFor.contains(currentConfig))
 <%= bindif(jump, "+jump") %>
