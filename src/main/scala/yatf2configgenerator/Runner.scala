@@ -6,6 +6,11 @@ import Swing._
 import javax.swing.UIManager
 import java.io.{ File, FileInputStream, FileOutputStream }
 import java.awt.Dimension
+import javax.swing.JColorChooser
+import java.awt.Color
+import javax.imageio.ImageIO
+import java.awt.AlphaComposite
+import java.awt.image.BufferedImage
 
 object Runner extends SwingApplication {
   val render = new ConfigRender
@@ -190,13 +195,26 @@ object Runner extends SwingApplication {
            * Generate the weapon panel
            */
           for (slot <- 1 to 3) {
+	    val imagePanel = new ImagePanel
             c.gridy = rowNum; c.gridx = 0
             layout(new Label("Weapon " + slot.toString + ":")) = c
 
             val weaponColors = render.options("weaponColors").asInstanceOf[List[(Int, Int, Int)]]
             val (red, green, blue) = (new TextField(weaponColors(slot - 1)._1.toString), 
-                                      new TextField(weaponColors(slot - 1)._2.toString) ,
+                                      new TextField(weaponColors(slot - 1)._2.toString),
                                       new TextField(weaponColors(slot - 1)._3.toString))
+	    for(field <- List(red, green, blue)) {
+	      field.reactions += {
+		case ValueChanged(_) => {
+		  try {
+		    imagePanel.color = new Color(red.text.toFloat / 255, green.text.toFloat / 255, blue.text.toFloat / 255)
+		    imagePanel.repaint
+		  } catch {
+		    case e: NumberFormatException => {} //throws events a bit much, sometimes halfway changes
+		  }
+		}
+	      }
+	    }
             fields("weaponColorsRed" + slot) = red
             fields("weaponColorsGreen" + slot) = green
             fields("weaponColorsBlue" + slot) = blue
@@ -213,26 +231,57 @@ object Runner extends SwingApplication {
             c.gridx = 1
             layout(blue) = c
 
+	    c.gridy = rowNum + 4; c.gridx = 1
+	    layout(new Button("Pick color") {
+	      reactions += {
+		case ButtonClicked(_) => {
+		  val newColor = pickColor(grid, red.text.toInt, green.text.toInt, blue.text.toInt)
+		  red.text = newColor.getRed.toString
+		  green.text = newColor.getGreen.toString
+		  blue.text = newColor.getBlue.toString
+		}
+	      }
+	    }) = c
+
             val weaponScale = new TextField(render.options("weaponScales").asInstanceOf[List[Int]](slot - 1).toString) 
             fields("weaponScales" + slot) = weaponScale
-            c.gridy = rowNum + 4; c.gridx = 0
+            c.gridy = rowNum + 5; c.gridx = 0
             layout(new Label("Crosshair scale:")) = c
             c.gridx = 1
             layout(weaponScale) = c
 
-            val weaponCrosshair = new ComboBox(render.crosshairTypes) { selection.item = render.options("weaponCrosshairs").asInstanceOf[List[String]](slot - 1) }
+            val weaponCrosshair = new ComboBox(render.crosshairTypes) {
+	      selection.reactions += {
+		case SelectionChanged(_) => {
+		  val newCrosshair = selection.item
+		  imagePanel.imagePath = "resources/" + newCrosshair + ".png"
+		  imagePanel.color = new Color(red.text.toFloat / 255, green.text.toFloat / 255, blue.text.toFloat / 255)
+		  imagePanel.repaint
+		}
+	      }
+              selection.item = render.options("weaponCrosshairs").asInstanceOf[List[String]](slot - 1)
+            }
             fields("weaponCrosshairs" + slot) = weaponCrosshair
-            c.gridy = rowNum + 5; c.gridx = 0
+            c.gridy = rowNum + 6; c.gridx = 0
             layout(new Label("Crosshair:")) = c
             c.gridx = 1
             layout(weaponCrosshair) = c
 
             val weaponShow = new CheckBox("Show weapon") { selected = render.options("weaponShow").asInstanceOf[List[Boolean]](slot - 1) }
             fields("weaponShow" + slot) = weaponShow
-            c.gridy = rowNum + 6; c.gridx = 1
+            c.gridy = rowNum + 7; c.gridx = 1
             layout(weaponShow) = c
 
-            rowNum += 7
+	    c.gridy = rowNum + 8; c.gridx = 0
+	    c.ipady = 64
+	    c.ipadx = 64
+	    c.fill = GridBagPanel.Fill.Vertical
+	    layout(imagePanel) = c
+	    c.fill = GridBagPanel.Fill.Both
+	    c.ipady = 0
+	    c.ipadx = 0
+
+            rowNum += 9
           }
 
           c.gridy = rowNum; c.gridx = 0
@@ -267,6 +316,7 @@ object Runner extends SwingApplication {
                 var rowNum = 1
 
                 for (slot <- 1 to 3) {
+	          val imagePanel = new ImagePanel
                   c.gridy = rowNum; c.gridx = 0
                   layout(new Label("Weapon " + slot.toString + ":")) = c
 
@@ -275,6 +325,18 @@ object Runner extends SwingApplication {
                   val (red, green, blue) = (new TextField(classWeaponColors.get(tfClass).map(_(slot - 1)._1).getOrElse { weaponColors(slot - 1)._1 }.toString), 
                                             new TextField(classWeaponColors.get(tfClass).map(_(slot - 1)._2).getOrElse { weaponColors(slot - 1)._2 }.toString), 
                                             new TextField(classWeaponColors.get(tfClass).map(_(slot - 1)._3).getOrElse { weaponColors(slot - 1)._3 }.toString))
+	          for(field <- List(red, green, blue)) {
+	            field.reactions += {
+		      case ValueChanged(_) => {
+		        try {
+		          imagePanel.color = new Color(red.text.toFloat / 255, green.text.toFloat / 255, blue.text.toFloat / 255)
+		          imagePanel.repaint
+		        } catch {
+		          case e: NumberFormatException => {} //throws events a bit much, sometimes halfway changes
+		        }
+		      }
+	            }
+	          }
                   fields("classWeaponColorsRed" + tfClass + slot) = red
                   fields("classWeaponColorsGreen" + tfClass + slot) = green
                   fields("classWeaponColorsBlue" + tfClass + slot) = blue
@@ -291,23 +353,46 @@ object Runner extends SwingApplication {
                   c.gridx = 1
                   layout(blue) = c
 
+	          fields("pickColor" + tfClass + slot) = new Button("Pick color") {
+	            reactions += {
+		      case ButtonClicked(_) => {
+		        val newColor = pickColor(grid, red.text.toInt, green.text.toInt, blue.text.toInt)
+		        red.text = newColor.getRed.toString
+		        green.text = newColor.getGreen.toString
+		        blue.text = newColor.getBlue.toString
+		      }
+	            }
+	          }
+		  c.gridy = rowNum + 4; c.gridx = 1
+		  layout(fields("pickColor" + tfClass + slot)) = c
+
                   val weaponScale = new TextField(render.options("classWeaponScales").asInstanceOf[Map[String, List[Int]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("weaponScales").asInstanceOf[List[Int]](slot - 1) }.toString)
                   fields("classWeaponScales" + tfClass + slot) = weaponScale
-                  c.gridy = rowNum + 4; c.gridx = 0
+                  c.gridy = rowNum + 5; c.gridx = 0
                   layout(new Label("Crosshair scale:")) = c
                   c.gridx = 1
                   layout(weaponScale) = c
 
-                  val weaponCrosshair = new ComboBox(render.crosshairTypes) { selection.item = render.options("classWeaponCrosshairs").asInstanceOf[Map[String, List[String]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("weaponCrosshairs").asInstanceOf[List[String]](slot - 1) }.toString }
+                  val weaponCrosshair = new ComboBox(render.crosshairTypes) { 
+	            selection.reactions += {
+		      case SelectionChanged(_) => {
+		        val newCrosshair = selection.item
+		        imagePanel.imagePath = "resources/" + newCrosshair + ".png"
+		        imagePanel.color = new Color(red.text.toFloat / 255, green.text.toFloat / 255, blue.text.toFloat / 255)
+		        imagePanel.repaint
+		      }
+	            }
+                    selection.item = render.options("classWeaponCrosshairs").asInstanceOf[Map[String, List[String]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("weaponCrosshairs").asInstanceOf[List[String]](slot - 1) }.toString
+                  }
                   fields("classWeaponCrosshairs" + tfClass + slot) = weaponCrosshair
-                  c.gridy = rowNum + 5; c.gridx = 0
+                  c.gridy = rowNum + 6; c.gridx = 0
                   layout(new Label("Crosshair:")) = c
                   c.gridx = 1
                   layout(weaponCrosshair) = c
 
                   val weaponSensitivity = new TextField(render.options("classSensitivity").asInstanceOf[Map[String, List[Double]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("sensitivity").asInstanceOf[Double] }.toString)
                   fields("classSensitivity" + tfClass + slot) = weaponSensitivity
-                  c.gridy = rowNum + 6; c.gridx = 0
+                  c.gridy = rowNum + 7; c.gridx = 0
                   layout(new Label("Sensitivity:")) = c
                   c.gridx = 1
                   layout(weaponSensitivity) = c
@@ -318,25 +403,34 @@ object Runner extends SwingApplication {
                   fields("classDingPitchMax" + tfClass + slot) = weaponDingMax
                   fields("classDingPitchMin" + tfClass + slot) = weaponDingMin
                   fields("classDingVolume" + tfClass + slot) = weaponDingVolume
-                  c.gridy = rowNum + 7; c.gridx = 0
+                  c.gridy = rowNum + 8; c.gridx = 0
                   layout(new Label("Ding max pitch:")) = c
                   c.gridx = 1
                   layout(weaponDingMax) = c
-                  c.gridy = rowNum + 8; c.gridx = 0
+                  c.gridy = rowNum + 9; c.gridx = 0
                   layout(new Label("Ding min pitch:")) = c
                   c.gridx = 1
                   layout(weaponDingMin) = c
-                  c.gridy = rowNum + 9; c.gridx = 0
+                  c.gridy = rowNum + 10; c.gridx = 0
                   layout(new Label("Ding volume:")) = c
                   c.gridx = 1
                   layout(weaponDingVolume) = c
 
                   val weaponShow = new CheckBox("Show Weapon") { selected = render.options("classWeaponShow").asInstanceOf[Map[String, List[Boolean]]].get(tfClass).map(_(slot - 1)).getOrElse { render.options("weaponShow").asInstanceOf[List[Boolean]](slot - 1) } }
                   fields("classWeaponShow" + tfClass + slot) = weaponShow
-                  c.gridy = rowNum + 10; c.gridx = 1
+                  c.gridy = rowNum + 11; c.gridx = 1
                   layout(weaponShow) = c
 
-                  rowNum += 11
+	          c.gridy = rowNum + 12; c.gridx = 0
+	          c.ipady = 64
+	          c.ipadx = 64
+	          c.fill = GridBagPanel.Fill.Vertical
+	          layout(imagePanel) = c
+	          c.fill = GridBagPanel.Fill.Both
+	          c.ipady = 0
+	          c.ipadx = 0
+
+                  rowNum += 13
                 }
 
                 val interpRatio = new TextField(render.options("classInterpRatio").asInstanceOf[Map[String, Double]].get(tfClass).getOrElse(1.0).toString)
@@ -603,6 +697,11 @@ object Runner extends SwingApplication {
     }
   }
 
+  def pickColor(parent : Component, red : Int, green : Int, blue : Int) = {
+    val color = new Color(red.toFloat / 255, green.toFloat / 255, blue.toFloat / 255)
+    JColorChooser.showDialog(parent.peer, "Pick a crosshair color", color)
+  }
+
   def toggleClassSpecificProfile(enabled: Boolean, tfClass: String) {
     for (slot <- 1 to 3) {
       for (color <- List("Red", "Green", "Blue")) {
@@ -615,6 +714,7 @@ object Runner extends SwingApplication {
       fields("classDingPitchMin" + tfClass + slot).asInstanceOf[TextField].enabled = enabled
       fields("classWeaponShow" + tfClass + slot).asInstanceOf[CheckBox].enabled = enabled
       fields("classDingVolume" + tfClass + slot).asInstanceOf[TextField].enabled = enabled
+      fields("pickColor" + tfClass + slot).asInstanceOf[Button].enabled = enabled
     }
     fields("classInterpRatio" + tfClass).asInstanceOf[TextField].enabled = enabled
   }
@@ -797,4 +897,21 @@ object Runner extends SwingApplication {
       case _ => {}
     }
   }
+
+  private class ImagePanel extends Panel {                                                                             
+    var imagePath = ""                                                 
+    var bufferedImage:BufferedImage = null                              
+    var color:Color = null
+
+    override def paintComponent(g:Graphics2D) = {                                                                           
+      bufferedImage = ImageIO.read(new File(imagePath))                        
+      if(color != null) {
+	g.setPaint(color)
+	g.setBackground(color)
+	g.clearRect(0, 0, 64, 64)
+	g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f))
+      }
+      if (null != bufferedImage) g.drawImage(bufferedImage, 0, 0, null)   
+    }                                                                           
+  }                                                                             
 }

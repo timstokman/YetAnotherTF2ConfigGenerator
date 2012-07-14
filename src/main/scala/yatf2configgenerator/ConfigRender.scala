@@ -134,7 +134,7 @@ class ConfigRender {
   val networkConfigs = List("none", "bad", "good", "lan")
 
   //list of crosshair types
-  val crosshairTypes = List("none", "default", "crosshair1", "crosshair2", "crosshair3", "crosshair4", "crosshair5", "crosshair6", "crosshair7", "crosshair8", "crosshair9", "crosshair10", "crosshair11")
+  val crosshairTypes = List("\"\"", "crosshair1", "crosshair2", "crosshair3", "crosshair4", "crosshair5", "crosshair6", "crosshair7")
 
   /*
    * Option metadata necessary for UI generation

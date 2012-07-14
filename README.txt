@@ -33,11 +33,9 @@ Features:
 Todo:
 
 * Conflicting binds detection
-* Crosshair images
 * Backup config system
-* Make the GUI a bit prettier
-* Shrink/Clean up the templates a bit
-* Option to have an affect similar to stabby's crosshair script (changing crosshair colors when strafing), or a switching the crosshair color when firing your weapon
+* Make the GUI a bit prettier (javafx2 maybe)
+* Rewrite gui code to be a bit (a lot) prettier
 * Other requests?
 
 Known Bugs:
