@@ -24,7 +24,7 @@ object Runner extends SwingApplication {
     top.visible = true
   }
 
-  /*
+  /*  
    * Generate the UI
    * 
    * Really really messy code, but UI code is always messy unless you use mvc or related
@@ -254,8 +254,11 @@ object Runner extends SwingApplication {
 	      selection.reactions += {
 		case SelectionChanged(_) => {
 		  val newCrosshair = selection.item
-		  imagePanel.imagePath = "resources/" + newCrosshair + ".png"
 		  imagePanel.color = new Color(red.text.toFloat / 255, green.text.toFloat / 255, blue.text.toFloat / 255)
+		  if(newCrosshair == "\"\"")
+		    imagePanel.imagePath = null
+		  else
+		    imagePanel.imagePath = "resources/" + newCrosshair + ".png"
 		  imagePanel.repaint
 		}
 	      }
@@ -377,7 +380,10 @@ object Runner extends SwingApplication {
 	            selection.reactions += {
 		      case SelectionChanged(_) => {
 		        val newCrosshair = selection.item
-		        imagePanel.imagePath = "resources/" + newCrosshair + ".png"
+		        if(newCrosshair == "\"\"")
+		          imagePanel.imagePath = null
+		        else
+		          imagePanel.imagePath = "resources/" + newCrosshair + ".png"
 		        imagePanel.color = new Color(red.text.toFloat / 255, green.text.toFloat / 255, blue.text.toFloat / 255)
 		        imagePanel.repaint
 		      }
@@ -899,19 +905,21 @@ object Runner extends SwingApplication {
   }
 
   private class ImagePanel extends Panel {                                                                             
-    var imagePath = ""                                                 
-    var bufferedImage:BufferedImage = null                              
+    var imagePath:String = null                                                 
     var color:Color = null
 
     override def paintComponent(g:Graphics2D) = {                                                                           
-      bufferedImage = ImageIO.read(new File(imagePath))                        
+      g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f))
+      val bufferedImage:BufferedImage = if(imagePath != null)
+        ImageIO.read(new File(imagePath))                        
+      else
+	null
       if(color != null) {
 	g.setPaint(color)
 	g.setBackground(color)
 	g.clearRect(0, 0, 64, 64)
-	g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f))
       }
-      if (null != bufferedImage) g.drawImage(bufferedImage, 0, 0, null)   
+      if (bufferedImage != null) g.drawImage(bufferedImage, 0, 0, null)   
     }                                                                           
   }                                                                             
 }
