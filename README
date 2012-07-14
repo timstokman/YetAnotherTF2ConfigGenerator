@@ -1,53 +1,75 @@
 Yet Another TF2 Config Generator
 
-This program generates configuration files for team fortress 2
+This program generates configuration files for team fortress 2, it provides additional configuration options
 
 Features:
 
-* Ability to specify for each weapon slot (or even each class if you want) the:
+* Ability to specify for each class/weapon-slot the:
   * Crosshair (color, type, scale)
   * Sensitivity
   * Showing/Hiding the weapon model
   * Dingeling (volume, max/min pitch)
-  * When you switch weapons (or go invisible), it will show the viewmodel for a short time, before turning it off if you've set it that way for the weapon. (It uses the changing of strafe directions for this, not the wait command)
+  * Interp-ratio
+  * Tweakable viewmodel hiding behaviour. After switching weapons, hide the viewmodel after strafing/shooting or immediately
 * Null-movement canceling: if you press two opposite strafe keys, you will no longer stand still
-* Most of the useful advanced options you can already find in the tf2 menu (autoreload, fastswitch, damagenumbers, etc)
 * Can include chris' network/graphics config
-* Option to hide the tracers, flames or medic healbeam (can be distracting)
+* Option to hide the tracers, flames or medic healbeam
 * Turn gibs/ragdolls/sprays on/off
+* Most of the useful advanced options you can already find in the tf2 menu (autoreload, fastswitch, damagenumbers, etc)
 * Crouchjump bind, with the option to exclude it for certain classes (default excluded for demoman/soldier
 * Team-only voice bind
 * Bind for quick-switching weapon loadouts
 * Bind for toggling to a forward spawn (if you want to retain uber or types of charge, switch weapons with the quickswitch bind instead)
 * Binds for primary/secondary, current/melee, previous weapon, next inventory and previous inventory
 * Bind for suicide and reloading the hud
+* Binds for all the voice commands
 * option to show a netgraph with the scoreboard to identify network issues
 * Medic: Medic radar bind, fake uber bind, option to communicate ubers automatically through chat
 * Spy: A disguise cycle bind (separate friendly and enemy disguise cycle) which cycles through a list of predefined disguises. Quickdisguise binds (enemy and friendly)
-* Engineer: Quickbuild binds (default on the f-keys)
+* Engineer: Quickbuild binds
 * Sniper: option to disable the crosshair when zooming in, option to change the zoomed in sensitivity, option to sound a bell when the sniper rifle is charged
-* Ability to change the templates
-* Zoom in bind (changes fov+sensitivity to zoom in on an area)
+* Zoom in bind (changes fov+sensitivity to zoom in)
 * P-Rec settings
 
 Todo:
 
-* Conflicting binds detection
-* Backup config system
-* Make the GUI a bit prettier (javafx2 maybe)
-* Rewrite gui code to be a bit (a lot) prettier
+* Check bind conflicts
+* Make the GUI a bit prettier (javafx instead of swing maybe)
+* Rewrite code to be a bit (a lot) prettier
 * Other requests?
 
 Known Bugs:
 
-* Weird localized steam directory with translated folder names can give some trouble when writing the config files to the tf2 directory 
-* When building as an engineer, if you start building, then switch weapons before putting the building down, the crosshairs will get out of sync 
+* When building as an engineer, if you start building, then switch weapons before putting the building down, the crosshairs will get out of sync, switch weapons once to fix
 
 Installation:
 
-* Make sure you have the java runtime installed, this is a version without toolbar crap: http://www.oracle.com/technetwork/java/javase/downloads/jre-7u4-download-1591157.html
+* Make sure you have the java runtime installed, this is a version without toolbar crap: http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1637588.html
 * Unzip the program and double click on the jar file to start
 * Generating the scripts can take a bit long, especially on older pcs, be patient and wait for the popup
+
+FAQ:
+
+* I am having issues, it crashes
+
+Answer:
+
+Try the following things:
+* Make sure you unzip your program before running it, otherwise it won't be able to find any of the files it needs
+* Upgrade java to its latest version (from the link provided in the installation instructions), earlier java version don't work very well with this program
+* Try to generate the scripts locally, and copying them manually the the tf/cfg directory in the team fortress installation directory1
+
+* It still doesn't work
+
+Answer:
+
+Post a screenshot with the crash in the thread or make an issue on my github page: github.com/logophobia/YetAnotherTF2ConfigGenerator
+
+* I have a feature request
+
+Answer:
+
+Post any suggestions in the thread or on the github page
 
 Changes:
 
@@ -90,3 +112,9 @@ Version 0.7:
 
 * No more "nothing" error messages on the tf2 console
 * Spawn toggling
+
+Version 0.8
+
+* Crosshair previews
+* Config backup button
+* Tweakable viewmodel behaviour

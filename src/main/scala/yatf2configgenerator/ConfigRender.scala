@@ -21,7 +21,6 @@ class ConfigRender {
   engine.escapeMarkup = false
   engine.workingDirectory = new File(cacheDir)
   engine.sourceDirectories = List(new File(templateDir))
-  engine.allowReload = false
   
   val xstream = new XStream(new Xpp3Driver)
   xstream.setMode(XStream.NO_REFERENCES);

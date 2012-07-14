@@ -11,6 +11,7 @@ import java.awt.Color
 import javax.imageio.ImageIO
 import java.awt.AlphaComposite
 import java.awt.image.BufferedImage
+import org.apache.commons.io.FileUtils
 
 object Runner extends SwingApplication {
   val render = new ConfigRender
@@ -258,7 +259,7 @@ object Runner extends SwingApplication {
 		  if(newCrosshair == "\"\"")
 		    imagePanel.imagePath = null
 		  else
-		    imagePanel.imagePath = "resources/" + newCrosshair + ".png"
+		    imagePanel.imagePath = "resources" + File.separator + newCrosshair + ".png"
 		  imagePanel.repaint
 		}
 	      }
@@ -383,7 +384,7 @@ object Runner extends SwingApplication {
 		        if(newCrosshair == "\"\"")
 		          imagePanel.imagePath = null
 		        else
-		          imagePanel.imagePath = "resources/" + newCrosshair + ".png"
+		          imagePanel.imagePath = "resources" + File.separator + newCrosshair + ".png"
 		        imagePanel.color = new Color(red.text.toFloat / 255, green.text.toFloat / 255, blue.text.toFloat / 255)
 		        imagePanel.repaint
 		      }
@@ -561,17 +562,7 @@ object Runner extends SwingApplication {
             }
           }) = c
 
-          c.gridy = 2; c.gridx = 1
-          layout(new CheckBox("Custom Templates") {
-            selected = false
-            reactions += {
-              case ButtonClicked(_) => {
-                render.engine.allowReload = selected
-              }
-            }
-          }) = c
-
-          c.gridy = 3; c.gridx = 0
+          c.gridy = 2; c.gridx = 0
           layout(new Button("Save configuration locally for inspection") {
             reactions += {
               case ButtonClicked(_) => {
@@ -661,17 +652,19 @@ object Runner extends SwingApplication {
             }
           }) = c
 
-          c.gridy = 4; c.gridx = 0
-          layout(new Button("Reset tf2 configuration") {
+          c.gridy = 3; c.gridx = 0
+          layout(new Button("Backup tf2 configuration") {
             reactions += {
               case ButtonClicked(_) => {
                 if (steamField.text != "" && usernameCombo.selection.item != "") {
-                  val directory = List(steamField.text, "steamapps", usernameCombo.selection.item, "team fortress 2", "tf", "cfg").mkString(File.separator)
-                  for (configFile <- render.configNames) {
-                    new File(directory + File.separator + configFile + ".cfg").delete
+                  val chooser = new FileChooser {
+                    fileSelectionMode = FileChooser.SelectionMode.DirectoriesOnly
                   }
-                  new File(directory + File.separator + "user.scr").delete
-                  Dialog.showMessage(grid, "Deleted configuration files, put -autoconfig in your team fortress 2 launch options (see team fortress 2 properties in steam) to reset the configuration changes, delete the launch option after you've launched the game once", "Information", Dialog.Message.Info)
+                  chooser.showOpenDialog(grid)
+                  val backupDir = chooser.selectedFile
+                  val sourceDir = List(steamField.text, "steamapps", usernameCombo.selection.item, "team fortress 2", "tf", "cfg").mkString(File.separator)
+		  FileUtils.copyDirectory(new File(sourceDir), backupDir)
+		  Dialog.showMessage(grid, "Backup complete", "Info", Dialog.Message.Info)
                 } else {
                   Dialog.showMessage(grid, "No steam directory or username specified", "Error", Dialog.Message.Error)
                 }
@@ -696,7 +689,7 @@ object Runner extends SwingApplication {
             }
           }) = c
 
-          c.gridx = 0; c.gridy = 5; c.weighty = 1.0
+          c.gridx = 0; c.gridy = 4; c.weighty = 1.0
           layout(new FlowPanel) = c
         }
       })
