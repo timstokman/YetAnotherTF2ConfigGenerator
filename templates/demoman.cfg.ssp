@@ -135,6 +135,31 @@
 <%@ val prevInvWeapon : String %>
 <%@ val startSpawnSwitch : String %>
 <%@ val finishSpawnSwitch : String %>
+<%@ val voice01 : String %>
+<%@ val voice02 : String %>
+<%@ val voice03 : String %>
+<%@ val voice04 : String %>
+<%@ val voice05 : String %>
+<%@ val voice06 : String %>
+<%@ val voice07 : String %>
+<%@ val voice10 : String %>
+<%@ val voice11 : String %>
+<%@ val voice12 : String %>
+<%@ val voice13 : String %>
+<%@ val voice14 : String %>
+<%@ val voice15 : String %>
+<%@ val voice16 : String %>
+<%@ val voice17 : String %>
+<%@ val voice20 : String %>
+<%@ val voice21 : String %>
+<%@ val voice22 : String %>
+<%@ val voice23 : String %>
+<%@ val voice24 : String %>
+<%@ val voice25 : String %>
+<%@ val voice26 : String %>
+<%@ val voice27 : String %>
+<%@ val viewmodelSwitchMode : String %>
+<%@ val classInterpRatio : Map[String, Double] %>
 
 #import(yatf2configgenerator.ConfigRender._)
 

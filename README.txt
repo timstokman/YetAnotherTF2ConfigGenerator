@@ -33,11 +33,11 @@ Features:
 Todo:
 
 * Conflicting binds detection
+* Crosshair images
 * Backup config system
 * Make the GUI a bit prettier
 * Shrink/Clean up the templates a bit
 * Option to have an affect similar to stabby's crosshair script (changing crosshair colors when strafing), or a switching the crosshair color when firing your weapon
-* variable cl_inter_ratio for different classes (or even weapons?)
 * Other requests?
 
 Known Bugs:

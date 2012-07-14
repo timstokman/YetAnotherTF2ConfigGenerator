@@ -136,6 +136,30 @@
 <%@ val prevInvWeapon : String %>
 <%@ val startSpawnSwitch : String %>
 <%@ val finishSpawnSwitch : String %>
+<%@ val voice01 : String %>
+<%@ val voice02 : String %>
+<%@ val voice03 : String %>
+<%@ val voice04 : String %>
+<%@ val voice05 : String %>
+<%@ val voice06 : String %>
+<%@ val voice07 : String %>
+<%@ val voice10 : String %>
+<%@ val voice11 : String %>
+<%@ val voice12 : String %>
+<%@ val voice13 : String %>
+<%@ val voice14 : String %>
+<%@ val voice15 : String %>
+<%@ val voice16 : String %>
+<%@ val voice17 : String %>
+<%@ val voice20 : String %>
+<%@ val voice21 : String %>
+<%@ val voice22 : String %>
+<%@ val voice23 : String %>
+<%@ val voice24 : String %>
+<%@ val voice25 : String %>
+<%@ val voice26 : String %>
+<%@ val voice27 : String %>
+<%@ val viewmodelSwitchMode : String %>
 
 #import(yatf2configgenerator.ConfigRender._)
 
@@ -157,10 +181,17 @@ exec <%= graphicsConfig %>
 #end
 
 //null-cancelling movement
+#if (viewmodelSwitchMode == "both" || viewmodelSwitchMode == "after-strafing")
 alias +move_forward "-back; +forward; alias if_forward +forward; current_weapon_vis"
 alias +move_back "-forward; +back; alias if_back +back; current_weapon_vis"
 alias +move_left "-moveright; +moveleft; alias if_left +moveleft; current_weapon_vis"
 alias +move_right "-moveleft; +moveright; alias if_right +moveright; current_weapon_vis"
+#else
+alias +move_forward "-back; +forward; alias if_forward +forward"
+alias +move_back "-forward; +back; alias if_back +back"
+alias +move_left "-moveright; +moveleft; alias if_left +moveleft"
+alias +move_right "-moveleft; +moveright; alias if_right +moveright"
+#end
 alias -move_forward "-forward; if_back; alias if_forward """
 alias -move_back "-back; if_forward; alias if_back """
 alias -move_left "-moveleft; if_right; alias if_left """
@@ -180,7 +211,11 @@ alias weapon_slot_spec_admin_<%= slot %> "alias primsecswap weapon1;         ali
 #else
 alias weapon_slot_spec_admin_<%= slot %> "alias primsecswap previous_weapon; alias othermeleeswap previous_weapon; set_previous_weapon_<%= slot %>; alias set_previous_weapon_1 "alias previous_weapon weapon3"; alias set_previous_weapon_2 "alias previous_weapon weapon3"; alias set_previous_weapon_3 ""                             "
 #end
+#if(viewmodelSwitchMode == "both")
+alias weapon<%= slot %> "slot<%= slot %>; weapon_admin_<%= slot %>; current_weapon_vis"
+#else
 alias weapon<%= slot %> "slot<%= slot %>; weapon_admin_<%= slot %>"
+#end
 #end
 
 //teamonly voicebind
@@ -292,6 +327,29 @@ ragdoll_sleepaftertime 0
 <%= bindif(spray, "\"impulse 201\"") %>
 <%= bindif(startSpawnSwitch, "start_spawn_switch") %>
 <%= bindif(finishSpawnSwitch, "finish_spawn_switch") %>
+<%= bindif(voice01, "\"voicemenu 0 1\"") %>
+<%= bindif(voice02, "\"voicemenu 0 2\"") %>
+<%= bindif(voice03, "\"voicemenu 0 3\"") %>
+<%= bindif(voice04, "\"voicemenu 0 4\"") %>
+<%= bindif(voice05, "\"voicemenu 0 5\"") %>
+<%= bindif(voice06, "\"voicemenu 0 6\"") %>
+<%= bindif(voice07, "\"voicemenu 0 7\"") %>
+<%= bindif(voice10, "\"voicemenu 1 0\"") %>
+<%= bindif(voice11, "\"voicemenu 1 1\"") %>
+<%= bindif(voice12, "\"voicemenu 1 2\"") %>
+<%= bindif(voice13, "\"voicemenu 1 3\"") %>
+<%= bindif(voice14, "\"voicemenu 1 4\"") %>
+<%= bindif(voice15, "\"voicemenu 1 5\"") %>
+<%= bindif(voice16, "\"voicemenu 1 6\"") %>
+<%= bindif(voice17, "\"voicemenu 1 7\"") %>
+<%= bindif(voice20, "\"voicemenu 2 0\"") %>
+<%= bindif(voice21, "\"voicemenu 2 1\"") %>
+<%= bindif(voice22, "\"voicemenu 2 2\"") %>
+<%= bindif(voice23, "\"voicemenu 2 3\"") %>
+<%= bindif(voice24, "\"voicemenu 2 4\"") %>
+<%= bindif(voice25, "\"voicemenu 2 5\"") %>
+<%= bindif(voice26, "\"voicemenu 2 6\"") %>
+<%= bindif(voice27, "\"voicemenu 2 7\"") %>
 
 #if(precEnabled)
 //P-Rec

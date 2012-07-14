@@ -55,6 +55,15 @@ object Runner extends SwingApplication {
               layout(field) = c
               rowNum += 1
             }
+            case (optionName, ('options, 'viewmodelSwitchMode, label)) => {
+	      c.gridy = rowNum; c.gridx = 0
+	      layout(new Label(label + ":")) = c
+	      c.gridx = 1
+              val field = new ComboBox(List("immediately", "after-shooting", "after-strafing", "both")) { selection.item = render.options(optionName).asInstanceOf[String] }
+	      fields(optionName) = field
+	      layout(field) = c
+	      rowNum += 1
+	    }
             case (optionName, ('options, 'intAsBoolean, label)) => {
               c.gridy = rowNum; c.gridx = 1
               val field = new CheckBox(label) { selected = render.options(optionName).asInstanceOf[Int] == 1 }
@@ -329,6 +338,14 @@ object Runner extends SwingApplication {
 
                   rowNum += 11
                 }
+
+                val interpRatio = new TextField(render.options("classInterpRatio").asInstanceOf[Map[String, Double]].get(tfClass).getOrElse(1.0).toString)
+                fields("classInterpRatio" + tfClass) = interpRatio
+                c.gridy = rowNum; c.gridx = 0
+                layout(new Label("Interp Ratio:")) = c
+                c.gridx = 1
+                layout(interpRatio) = c
+                
                 
                 toggleClassSpecificProfile(classEnabled.selected, tfClass)
               })
@@ -599,6 +616,7 @@ object Runner extends SwingApplication {
       fields("classWeaponShow" + tfClass + slot).asInstanceOf[CheckBox].enabled = enabled
       fields("classDingVolume" + tfClass + slot).asInstanceOf[TextField].enabled = enabled
     }
+    fields("classInterpRatio" + tfClass).asInstanceOf[TextField].enabled = enabled
   }
 
   /*
@@ -606,6 +624,9 @@ object Runner extends SwingApplication {
    */
   def saveUIToConfig {
     render.optionMetadata.foreach {
+      case (optionName, ('options, 'viewmodelSwitchMode, label)) => {
+	render.options(optionName) = fields(optionName).asInstanceOf[ComboBox[String]].selection.item
+      }
       case (optionName, ('options, 'int, label)) => {
         render.options(optionName) = fields(optionName).asInstanceOf[TextField].text.toInt
       }
@@ -644,6 +665,13 @@ object Runner extends SwingApplication {
             fields(optionName + "Blue" + slot).asInstanceOf[TextField].text.toInt))
         }
         render.options(optionName) = list
+      }
+      case (optionName, ('weapons, 'classInterpRatio, label)) => {
+        var ratios = collection.mutable.Map[String, Double]()
+        for (className <- render.disguiseClassNumberMap.keys) {
+          ratios(className) = fields(optionName + className).asInstanceOf[TextField].text.toDouble  
+        }
+        render.options(optionName) = Map(ratios.toList: _*)
       }
       case (optionName, ('weapons, 'crosshairList, label)) => {
         var list = List[String]()

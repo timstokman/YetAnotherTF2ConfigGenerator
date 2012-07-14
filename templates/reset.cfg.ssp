@@ -185,6 +185,30 @@ alias weap_vis_<%= slot %> hide_weapon
 <%= unbindif(disguiseCycle) %> 
 <%= unbindif(disguiseFriendlyCycle) %> 
 <%= unbindif(disguiseLast) %> 
+<%@ val voice01 : String %>
+<%@ val voice02 : String %>
+<%@ val voice03 : String %>
+<%@ val voice04 : String %>
+<%@ val voice05 : String %>
+<%@ val voice06 : String %>
+<%@ val voice07 : String %>
+<%@ val voice10 : String %>
+<%@ val voice11 : String %>
+<%@ val voice12 : String %>
+<%@ val voice13 : String %>
+<%@ val voice14 : String %>
+<%@ val voice15 : String %>
+<%@ val voice16 : String %>
+<%@ val voice17 : String %>
+<%@ val voice20 : String %>
+<%@ val voice21 : String %>
+<%@ val voice22 : String %>
+<%@ val voice23 : String %>
+<%@ val voice24 : String %>
+<%@ val voice25 : String %>
+<%@ val voice26 : String %>
+<%@ val voice27 : String %>
+<%@ val viewmodelSwitchMode : String %>
 
 //defaults for how hiding weapons is done
 #if (hideTracers)
@@ -205,8 +229,13 @@ alias hide_weapon "r_drawviewmodel 0"
 <%= bindif(previousWeapon, "previous_weapon") %>
 <%= bindif(nextInvWeapon, "next_inv_weapon") %>
 <%= bindif(prevInvWeapon, "prev_inv_weapon") %>
+#if (viewmodelSwitchMode == "after-shooting" || viewmodelSwitchMode == "both")
+<%= bindif(primAttack, "\"+attack; current_weapon_vis\"") %>
+<%= bindif(secAttack, "\"+attack2; current_weapon_vis\"") %>
+#else
 <%= bindif(primAttack, "+attack") %>
 <%= bindif(secAttack, "+attack2") %>
+#end
 <%= bindif(normalJump, "+jump") %>
 #if (enableCrouchJump)
 <%= bindif(jump, "+crouchjump") %>
