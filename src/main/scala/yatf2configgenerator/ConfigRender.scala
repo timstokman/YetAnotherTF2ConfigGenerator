@@ -442,7 +442,6 @@ class ConfigRender {
     "nextInvWeapon" -> "MWHEELDOWN",
     "prevInvWeapon" -> "MWHEELUP",
     "startSpawnSwitch" -> "UPARROW",
-    "finishSpawnSwitch" -> "DOWNARROW",
     "voice01" -> "nothing",
     "voice02" -> "nothing",
     "voice03" -> "nothing",
@@ -467,7 +466,7 @@ class ConfigRender {
     "voice26" -> "nothing",
     "voice27" -> "nothing",
     "viewmodelSwitchMode" -> "both",
-    "bindif" -> ((key : String, to : String) => (if(key == "none") "" else "bind " + key + " " + to)))
+    "finishSpawnSwitch" -> "DOWNARROW")
     
   /*
    * Render the templates
