@@ -13,17 +13,17 @@ Features:
   * Tweakable viewmodel hiding behaviour. After switching weapons, hide the viewmodel after strafing/shooting or immediately
 * Null-movement canceling: if you press two opposite strafe keys, you will no longer stand still
 * Can include chris' network/graphics config
-* Option to hide the tracers, flames or medic healbeam
+* Option to hide the tracers, flames or the medic healbeam
+* Option to show a netgraph with the scoreboard to identify network issues
 * Turn gibs/ragdolls/sprays on/off
 * Most of the useful advanced options you can already find in the tf2 menu (autoreload, fastswitch, damagenumbers, etc)
 * Crouchjump bind, with the option to exclude it for certain classes (default excluded for demoman/soldier
 * Team-only voice bind
 * Bind for quick-switching weapon loadouts
 * Bind for toggling to a forward spawn (if you want to retain uber or types of charge, switch weapons with the quickswitch bind instead)
-* Binds for primary/secondary, current/melee, previous weapon, next inventory and previous inventory
+* Binds for switching primary/secondary, switching current/melee, previous weapon, next inventory and previous inventory
 * Bind for suicide and reloading the hud
 * Binds for all the voice commands
-* option to show a netgraph with the scoreboard to identify network issues
 * Medic: Medic radar bind, fake uber bind, option to communicate ubers automatically through chat
 * Spy: A disguise cycle bind (separate friendly and enemy disguise cycle) which cycles through a list of predefined disguises. Quickdisguise binds (enemy and friendly)
 * Engineer: Quickbuild binds
@@ -31,22 +31,12 @@ Features:
 * Zoom in bind (changes fov+sensitivity to zoom in)
 * P-Rec settings
 
-Todo:
-
-* Check bind conflicts
-* Make the GUI a bit prettier (javafx instead of swing maybe)
-* Rewrite code to be a bit (a lot) prettier
-* Other requests?
-
-Known Bugs:
-
-* When building as an engineer, if you start building, then switch weapons before putting the building down, the crosshairs will get out of sync, switch weapons once to fix
-
 Installation:
 
-* Make sure you have the java runtime installed, this is a version without toolbar crap: http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1637588.html
+* Make sure you have a new version (1.6 or higher would probably work) of the java runtime (JRE) installed, this is a version without toolbar crap: http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1637588.html
 * Unzip the program and double click on the jar file to start
-* Generating the scripts can take a bit long, especially on older pcs, be patient and wait for the popup
+* Set everything up the way you want to, make sure you copy most of your essential settings in tf2, like your mouse sensitivity (very annoying when that gets changed)
+* Select your steam directory and username and save the configuration files to tf2
 
 FAQ:
 
@@ -63,7 +53,7 @@ Try the following things:
 
 Answer:
 
-Post a screenshot with the crash in the thread or make an issue on my github page: github.com/logophobia/YetAnotherTF2ConfigGenerator
+Post a screenshot with the crash in the thread, make an issue on my github page: github.com/logophobia/YetAnotherTF2ConfigGenerator or add me at steamcommunity.com/id/logophobia
 
 * I have a feature request
 
@@ -71,7 +61,24 @@ Answer:
 
 Post any suggestions in the thread or on the github page
 
-Changes:
+What other ways to customize tf2 are there:
+
+Answer:
+
+You can install custom huds, skins, hitsounds or customize/make your own scripts
+
+Todo:
+
+* Check bind conflicts
+* Make the GUI a bit prettier (javafx instead of swing maybe)
+* Rewrite code to be a bit (a lot) prettier
+* Other requests?
+
+Known Bugs:
+
+* When building as an engineer, if you start building, then switch weapons before putting the building down, the crosshairs will get out of sync, switch weapons once to fix
+
+Version history:
 
 Version 0.2:
 
@@ -118,3 +125,5 @@ Version 0.8
 * Crosshair previews
 * Config backup button
 * Tweakable viewmodel behaviour
+* Hud reload fixes visual glitches as well now
+* Steam dir/username are saved

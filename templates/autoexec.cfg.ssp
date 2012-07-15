@@ -303,7 +303,7 @@ ragdoll_sleepaftertime 0
 <%= bindif(movementRight, "+move_right") %>
 <%= bindif(quickSwitch, "+quickswitch") %>
 <%= bindif(suicide, "kill") %>
-<%= bindif(reloadhud, "hud_reloadscheme") %>
+<%= bindif(reloadhud, "\"hud_reloadscheme; record fix; stop\"") %>
 <%= bindif(screenshot, "screenshot") %>
 <%= bindif(saveReplay, "save_replay") %>
 <%= bindif(duck, "+duck") %>

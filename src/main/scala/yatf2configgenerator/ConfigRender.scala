@@ -225,7 +225,7 @@ class ConfigRender {
     "teamSay" -> ('binds, 'key, "Team chat"),
     "console" -> ('binds, 'key, "Console"),
     "duck" -> ('binds, 'key, "Duck"),
-    "reloadhud" -> ('binds, 'key, "Reload/Fix hud"),
+    "reloadhud" -> ('binds, 'key, "Fix hud/visual glitches"),
     "suicide" -> ('binds, 'key, "Suicide"),
     "screenshot" -> ('binds, 'key, "Screenshot"),
     "saveReplay" -> ('binds, 'key, "Save replay"),
