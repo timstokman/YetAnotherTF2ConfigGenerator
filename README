@@ -69,6 +69,18 @@ Answer:
 
 Post any suggestions in the thread or on the github page
 
+What does medic radar do precisely:
+
+Answer:
+
+It toggles medic autocall to 150%, so each of your teammates has a medic symbol above their heads, which you can see through walls. As soon as you let go of the button, it will go back to its original autocall level
+
+How can I customize this even more?
+
+Answer:
+
+You could try editing the original templates, in the template directory. First, delete the cache directory. Then edit the templates, the language used is ssp: http://scalate.fusesource.org/documentation/ssp-reference.html. After that, the program will use your editted version of the templates. 
+
 What other ways to customize tf2 are there?
 
 Answer:
