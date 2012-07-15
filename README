@@ -2,8 +2,6 @@ Yet Another TF2 Config Generator
 
 This program generates configuration files for team fortress 2, it provides additional configuration options
 
-I've been working on it for a while, and now I think it's stable enough to share with /r/tf2.
-
 Features:
 
 * Ability to specify for each class/weapon-slot to specify the:
