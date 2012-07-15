@@ -33,7 +33,6 @@ Features:
 
 Todo:
 
-* Also save steam dir/username
 * Check bind conflicts
 * Make the GUI a bit prettier (javafx instead of swing maybe)
 * Rewrite code to be a bit (a lot) prettier
