@@ -2,9 +2,11 @@ Yet Another TF2 Config Generator
 
 This program generates configuration files for team fortress 2, it provides additional configuration options
 
+I've been working on it for a while, and now I think it's stable enough to share with /r/tf2.
+
 Features:
 
-* Ability to specify for each class/weapon-slot the:
+* Ability to specify for each class/weapon-slot to specify the:
   * Crosshair (color, type, scale)
   * Sensitivity
   * Showing/Hiding the weapon model
@@ -22,7 +24,7 @@ Features:
 * Bind for quick-switching weapon loadouts
 * Bind for toggling to a forward spawn (if you want to retain uber or types of charge, switch weapons with the quickswitch bind instead)
 * Binds for switching primary/secondary, switching current/melee, previous weapon, next inventory and previous inventory
-* Bind for suicide and reloading the hud
+* Bind for suicide, reloading the hud and fixing graphical glitches
 * Binds for all the voice commands
 * Medic: Medic radar bind, fake uber bind, option to communicate ubers automatically through chat
 * Spy: A disguise cycle bind (separate friendly and enemy disguise cycle) which cycles through a list of predefined disguises. Quickdisguise binds (enemy and friendly)
@@ -33,35 +35,43 @@ Features:
 
 Installation:
 
-* Make sure you have a new version (1.6 or higher would probably work) of the java runtime (JRE) installed, this is a version without toolbar crap: http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1637588.html
+* Download the program here: https://github.com/downloads/logophobia/YetAnotherTF2ConfigGenerator/YATF2ConfigGenerator-0.8.zip
+* Make sure you have a new version of the java runtime (1.6 or higher would probably work) installed, this is a version without toolbar crap: http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1637588.html
 * Unzip the program and double click on the jar file to start
 * Set everything up the way you want to, make sure you copy most of your essential settings in tf2, like your mouse sensitivity (very annoying when that gets changed)
 * Select your steam directory and username and save the configuration files to tf2
 
 FAQ:
 
-* I am having issues, it crashes
+I am having issues, it crashes
 
 Answer:
 
 Try the following things:
+
 * Make sure you unzip your program before running it, otherwise it won't be able to find any of the files it needs
 * Upgrade java to its latest version (from the link provided in the installation instructions), earlier java version don't work very well with this program
 * Try to generate the scripts locally, and copying them manually the the tf/cfg directory in the team fortress installation directory1
 
-* It still doesn't work
+It still doesn't work
 
 Answer:
 
 Post a screenshot with the crash in the thread, make an issue on my github page: github.com/logophobia/YetAnotherTF2ConfigGenerator or add me at steamcommunity.com/id/logophobia
 
-* I have a feature request
+What is viewmodel switch mode?
+
+Answer:
+
+It indicates when the viewmodel is turned off, immediately after switching weapons, after firing, after strafing or after either firing or strafing
+
+I have a feature request
 
 Answer:
 
 Post any suggestions in the thread or on the github page
 
-What other ways to customize tf2 are there:
+What other ways to customize tf2 are there?
 
 Answer:
 
