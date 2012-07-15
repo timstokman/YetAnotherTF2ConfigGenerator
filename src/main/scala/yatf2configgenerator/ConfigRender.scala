@@ -21,6 +21,7 @@ class ConfigRender {
   engine.escapeMarkup = false
   engine.workingDirectory = new File(cacheDir)
   engine.sourceDirectories = List(new File(templateDir))
+  engine.allowReload = false
   
   val xstream = new XStream(new Xpp3Driver)
   xstream.setMode(XStream.NO_REFERENCES);
@@ -182,6 +183,8 @@ class ConfigRender {
     "precKillDelay" -> ('options, 'int, "P-Rec kill delay"),
     "precDir" -> ('options, 'string, "P-Rec demo directory"),
     "precMode" -> ('options, 'int, "P-Rec Mode"),
+    "steamUser" -> ('options, 'steamUser, "Username"),
+    "steamDir" -> ('options, 'steamDir, "Steam directory"),
     "weaponColors" -> ('weapons, 'colorList, "Weapon color"),
     "weaponCrosshairs" -> ('weapons, 'crosshairList, "Weapon crosshair"),
     "weaponScales" -> ('weapons, 'scaleList, "Weapon scale"),
@@ -465,7 +468,9 @@ class ConfigRender {
     "voice26" -> "nothing",
     "voice27" -> "nothing",
     "viewmodelSwitchMode" -> "both",
-    "finishSpawnSwitch" -> "DOWNARROW")
+    "finishSpawnSwitch" -> "DOWNARROW",
+    "steamDir" -> "",
+    "steamUser" -> "")
     
   /*
    * Render the templates

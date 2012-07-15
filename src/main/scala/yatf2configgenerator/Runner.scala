@@ -529,14 +529,28 @@ object Runner extends SwingApplication {
           c.gridy = 1; c.gridx = 0
           layout(new Label("Username:")) = c
           c.gridx = 1
+
+	  val steamDir = render.options("steamDir").asInstanceOf[String]
+          val steamUser = render.options("steamUser").asInstanceOf[String]
+          val commonDirs = List("common", "downloading", "sourcemods", "temp")
+	  val userNames : Seq[String] = if(steamDir != "") {
+            new File(steamDir).listFiles.filter(_.getName == "steamapps")(0).listFiles.filter(file => !commonDirs.exists(_ == file.getName) && file.isDirectory).map(_.getName).toList
+	  } else {
+	    List[String]()
+	  }
+          
           val usernameCombo = new ComboBox(List[String]()) {
             peer.setModel(new javax.swing.DefaultComboBoxModel)
+	    userNames.foreach(name => peer.addItem(name))
+	    selection.item = steamUser
           }
+	  fields("steamUser") = usernameCombo
           layout(usernameCombo) = c
 
           c.gridy = 0; c.gridx = 0
           layout(new Label("Steam directory:")) = c
-          val steamField = new TextField("")
+          val steamField = new TextField(steamDir)
+	  fields("steamDir") = steamField
           c.gridx = 1
           layout(steamField) = c
           c.gridx = 2
@@ -551,7 +565,6 @@ object Runner extends SwingApplication {
                 val necessaryDirectories = List("steamapps", "steam", "steam.exe")
                 if (selected.listFiles().toList.map(_.getName.toLowerCase).intersect(necessaryDirectories).size == necessaryDirectories.size) {
                   steamField.text = selected.toString
-                  val commonDirs = List("common", "downloading", "sourcemods", "temp")
                   val userNames = selected.listFiles.filter(_.getName == "steamapps")(0).listFiles.filter(file => !commonDirs.exists(_ == file.getName) && file.isDirectory).map(_.getName)
                   usernameCombo.peer.removeAllItems
                   userNames.foreach(username => usernameCombo.peer.addItem(username))
@@ -563,7 +576,7 @@ object Runner extends SwingApplication {
           }) = c
 
           c.gridy = 2; c.gridx = 0
-          layout(new Button("Save configuration locally for inspection") {
+          layout(new Button("Save tf2 configuration files locally") {
             reactions += {
               case ButtonClicked(_) => {
                 val progressWindow = new Dialog() {
@@ -604,7 +617,7 @@ object Runner extends SwingApplication {
           }) = c
 
           c.gridx = 1
-          layout(new Button("Save configuration to tf2") {
+          layout(new Button("Save tf2 configuration files to tf2") {
             reactions += {
               case ButtonClicked(_) => {
                 if (steamField.text != "" && usernameCombo.selection.item != "") {
@@ -653,7 +666,7 @@ object Runner extends SwingApplication {
           }) = c
 
           c.gridy = 3; c.gridx = 0
-          layout(new Button("Backup tf2 configuration") {
+          layout(new Button("Backup tf2 configuration files") {
             reactions += {
               case ButtonClicked(_) => {
                 if (steamField.text != "" && usernameCombo.selection.item != "") {
@@ -723,6 +736,12 @@ object Runner extends SwingApplication {
    */
   def saveUIToConfig {
     render.optionMetadata.foreach {
+      case (optionName, ('options, 'steamUser, label)) => {
+	render.options(optionName) = fields(optionName).asInstanceOf[ComboBox[String]].selection.item
+      }
+      case (optionName, ('options, 'steamDir, label)) => {
+	render.options(optionName) = fields(optionName).asInstanceOf[TextField].text
+      }
       case (optionName, ('options, 'viewmodelSwitchMode, label)) => {
 	render.options(optionName) = fields(optionName).asInstanceOf[ComboBox[String]].selection.item
       }
