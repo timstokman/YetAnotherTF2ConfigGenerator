@@ -57,9 +57,7 @@
 <%@ val showHealBeam : Boolean %>
 <%@ val autocallThreshold : Int %>
 <%@ val medicRadar : String %>
-<%@ val fakeUber : String %>
 <%@ val secAttack : String %>
-<%@ val uberPopChat : Boolean %>
 <%@ val crouchJumpNotFor : List[String] %>
 <%@ val currentConfig : String %>
 <%@ val disguiseCycle : String %>
@@ -134,7 +132,6 @@
 <%@ val nextInvWeapon : String %>
 <%@ val prevInvWeapon : String %>
 <%@ val startSpawnSwitch : String %>
-<%@ val finishSpawnSwitch : String %>
 <%@ val voice01 : String %>
 <%@ val voice02 : String %>
 <%@ val voice03 : String %>
@@ -160,12 +157,16 @@
 <%@ val voice27 : String %>
 <%@ val viewmodelSwitchMode : String %>
 <%@ val classInterpRatio : Map[String, Double] %>
+<%@ val switchSpec : String %>
+<%@ val showViewmodelCloak : Boolean %>
+<%@ val medicSayUber : String %>
+<%@ val medicSayFake : String %>
 
 #import(yatf2configgenerator.ConfigRender._)
 
 exec reset
 
-alias start_spawn_switch "alias finish_spawn_switch "join_class <%= currentConfig %>"; join_class random"
+alias spawn_switch "alias switch "alias switch spawn_switch; join_class <%= currentConfig %>"; join_class random"
 
 #if (crouchJumpNotFor.contains(currentConfig))
 <%= bindif(jump, "+jump") %>
@@ -218,12 +219,14 @@ alias +radar autocall_all
 alias -radar autocall_default
 
 //autoinforming people of uber
-alias +charge "+attack2; say_team "*** CHARGE USED ***"; voicemenu 0 0; autocall_initial"
+#if (viewmodelSwitchMode == "after-shooting" || viewmodelSwitchMode == "both")
+alias +charge "+attack2; say_team "<%=  medicSayUber %>"; voicemenu 0 0; current_weapon_vis"
+#else
+alias +charge "+attack2; say_team "<%=  medicSayUber %>"; voicemenu 0 0"
+#end
 alias -charge "-attack2"
 
 //binds
-#if (uberPopChat)
 <%= bindif(secAttack, "+charge") %>
-#end
 <%= bindif(medicRadar, "+radar") %>
-<%= bindif(fakeUber, "") %>"voicemenu 1 7"
+<%= bindif(voice17, "\"voicemenu 1 7; say_team \"" + medicSayFake + "\"\"") %>

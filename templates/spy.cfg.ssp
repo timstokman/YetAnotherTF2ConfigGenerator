@@ -57,9 +57,7 @@
 <%@ val showHealBeam : Boolean %>
 <%@ val autocallThreshold : Int %>
 <%@ val medicRadar : String %>
-<%@ val fakeUber : String %>
 <%@ val secAttack : String %>
-<%@ val uberPopChat : Boolean %>
 <%@ val crouchJumpNotFor : List[String] %>
 <%@ val currentConfig : String %>
 <%@ val disguiseCycle : String %>
@@ -134,7 +132,6 @@
 <%@ val nextInvWeapon : String %>
 <%@ val prevInvWeapon : String %>
 <%@ val startSpawnSwitch : String %>
-<%@ val finishSpawnSwitch : String %>
 <%@ val voice01 : String %>
 <%@ val voice02 : String %>
 <%@ val voice03 : String %>
@@ -160,12 +157,14 @@
 <%@ val voice27 : String %>
 <%@ val viewmodelSwitchMode : String %>
 <%@ val classInterpRatio : Map[String, Double] %>
+<%@ val switchSpec : String %>
+<%@ val showViewmodelCloak : Boolean %>
 
 #import(yatf2configgenerator.ConfigRender._)
 
 exec reset
 
-alias start_spawn_switch "alias finish_spawn_switch "join_class <%= currentConfig %>"; join_class random"
+alias spawn_switch "alias switch "alias switch spawn_switch; join_class <%= currentConfig %>"; join_class random"
 
 #if (crouchJumpNotFor.contains(currentConfig))
 <%= bindif(jump, "+jump") %>
@@ -243,5 +242,12 @@ alias disguise<%= disguise %>_f "disguise <%= disguiseFriendlyCycleClasses(disgu
 <%= bindif(disguiseCycle, "disguise_cycle") %>
 <%= bindif(disguiseFriendlyCycle, "disguise_cycle_f") %>
 <%= bindif(disguiseLast, "lastdisguise") %>
-<%= bindif(secAttack, "\"+attack2; show_weapon\"") %> //when going invisible, show the weapon to show the invisibility status
 <%= bindif(directWeapon4, "slot4") %>
+#if (showViewmodelCloak) %>
+//when going invisible, show the weapon to show the invisibility status
+<%= bindif(secAttack, "\"+attack2; show_weapon\"") %> 
+#elseif (viewmodelSwitchMode == "after-shooting" || viewmodelSwitchMode == "both")
+<%= bindif(secAttack, "\"+attack2; current_weapon_vis\"") %>
+#else
+<%= bindif(secAttack, "+attack2") %>
+#end

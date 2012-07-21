@@ -57,9 +57,7 @@
 <%@ val showHealBeam : Boolean %>
 <%@ val autocallThreshold : Int %>
 <%@ val medicRadar : String %>
-<%@ val fakeUber : String %>
 <%@ val secAttack : String %>
-<%@ val uberPopChat : Boolean %>
 <%@ val crouchJumpNotFor : List[String] %>
 <%@ val currentConfig : String %>
 <%@ val disguiseCycle : String %>
@@ -134,7 +132,6 @@
 <%@ val nextInvWeapon : String %>
 <%@ val prevInvWeapon : String %>
 <%@ val startSpawnSwitch : String %>
-<%@ val finishSpawnSwitch : String %>
 <%@ val voice01 : String %>
 <%@ val voice02 : String %>
 <%@ val voice03 : String %>
@@ -160,12 +157,14 @@
 <%@ val voice27 : String %>
 <%@ val viewmodelSwitchMode : String %>
 <%@ val classInterpRatio : Map[String, Double] %>
+<%@ val switchSpec : String %>
+<%@ val showViewmodelCloak : Boolean %>
 
 #import(yatf2configgenerator.ConfigRender._)
 
 exec reset
 
-alias start_spawn_switch "alias finish_spawn_switch "join_class <%= currentConfig %>"; join_class random"
+alias spawn_switch "alias switch "alias switch spawn_switch; join_class <%= currentConfig %>"; join_class random"
 
 #if (crouchJumpNotFor.contains(currentConfig))
 <%= bindif(jump, "+jump") %>
@@ -203,7 +202,11 @@ alias weap_zoom_sens_<%= slot %> "sensitivity <%= (classSensitivity(currentConfi
 
 //ensures that when building the weapon switching doesn't get out of sync due to autoswitching to the wrench
 alias +buildandwrench "+attack; weapon_admin_3"
+#if (viewmodelSwitchMode == "after-shooting" || viewmodelSwitchMode == "both")
+alias -buildandwrench "-attack; <%= bindif(primAttack, "\"+attack; current_weapon_vis\"") %>"
+#else
 alias -buildandwrench "-attack; <%= bindif(primAttack, "+attack") %>"
+#end
 
 //ensures that hauling a building will not cause things to get out of sync due to autoswitching to the wrench
 alias +haulandwrench "+attack2; <%= bindif(primAttack, "+buildandwrench") %>"

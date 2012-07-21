@@ -93,6 +93,15 @@ object Runner extends SwingApplication {
               layout(field) = c
               rowNum += 1
             }
+            case (optionName, ('options, 'string, label)) => {
+              c.gridy = rowNum; c.gridx = 0
+              layout(new Label(label + ":")) = c
+              c.gridx = 1
+              val field = new TextField(render.options(optionName).asInstanceOf[String])
+              fields(optionName) = field
+              layout(field) = c
+              rowNum += 1
+            }
             case (optionName, ('options, 'network, label)) => {
               c.gridy = rowNum; c.gridx = 0
               layout(new Label(label + ":")) = c
@@ -738,6 +747,9 @@ object Runner extends SwingApplication {
     render.optionMetadata.foreach {
       case (optionName, ('options, 'steamUser, label)) => {
 	render.options(optionName) = fields(optionName).asInstanceOf[ComboBox[String]].selection.item
+      }
+      case (optionName, ('options, 'string, label)) => {
+	render.options(optionName) = fields(optionName).asInstanceOf[TextField].text
       }
       case (optionName, ('options, 'steamDir, label)) => {
 	render.options(optionName) = fields(optionName).asInstanceOf[TextField].text

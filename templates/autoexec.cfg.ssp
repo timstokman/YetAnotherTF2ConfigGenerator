@@ -57,9 +57,7 @@
 <%@ val showHealBeam : Boolean %>
 <%@ val autocallThreshold : Int %>
 <%@ val medicRadar : String %>
-<%@ val fakeUber : String %>
 <%@ val secAttack : String %>
-<%@ val uberPopChat : Boolean %>
 <%@ val crouchJumpNotFor : List[String] %>
 <%@ val currentConfig : String %>
 <%@ val disguiseCycle : String %>
@@ -135,7 +133,6 @@
 <%@ val nextInvWeapon : String %>
 <%@ val prevInvWeapon : String %>
 <%@ val startSpawnSwitch : String %>
-<%@ val finishSpawnSwitch : String %>
 <%@ val voice01 : String %>
 <%@ val voice02 : String %>
 <%@ val voice03 : String %>
@@ -160,6 +157,9 @@
 <%@ val voice26 : String %>
 <%@ val voice27 : String %>
 <%@ val viewmodelSwitchMode : String %>
+<%@ val switchSpec : String %>
+<%@ val classInterpRatio : Map[String, Double] %>
+<%@ val showViewmodelCloak : Boolean %>
 
 #import(yatf2configgenerator.ConfigRender._)
 
@@ -325,8 +325,7 @@ ragdoll_sleepaftertime 0
 <%= bindif(voiceMenu2, "voice_menu_2") %>
 <%= bindif(voiceMenu3, "voice_menu_3") %>
 <%= bindif(spray, "\"impulse 201\"") %>
-<%= bindif(startSpawnSwitch, "start_spawn_switch") %>
-<%= bindif(finishSpawnSwitch, "finish_spawn_switch") %>
+<%= bindif(startSpawnSwitch, "switch") %>
 <%= bindif(voice01, "\"voicemenu 0 1\"") %>
 <%= bindif(voice02, "\"voicemenu 0 2\"") %>
 <%= bindif(voice03, "\"voicemenu 0 3\"") %>
@@ -341,7 +340,6 @@ ragdoll_sleepaftertime 0
 <%= bindif(voice14, "\"voicemenu 1 4\"") %>
 <%= bindif(voice15, "\"voicemenu 1 5\"") %>
 <%= bindif(voice16, "\"voicemenu 1 6\"") %>
-<%= bindif(voice17, "\"voicemenu 1 7\"") %>
 <%= bindif(voice20, "\"voicemenu 2 0\"") %>
 <%= bindif(voice21, "\"voicemenu 2 1\"") %>
 <%= bindif(voice22, "\"voicemenu 2 2\"") %>
@@ -350,6 +348,7 @@ ragdoll_sleepaftertime 0
 <%= bindif(voice25, "\"voicemenu 2 5\"") %>
 <%= bindif(voice26, "\"voicemenu 2 6\"") %>
 <%= bindif(voice27, "\"voicemenu 2 7\"") %>
+<%= bindif(switchSpec, "+attack") %>
 
 #if(precEnabled)
 //P-Rec

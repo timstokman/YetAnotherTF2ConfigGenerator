@@ -57,9 +57,7 @@
 <%@ val showHealBeam : Boolean %>
 <%@ val autocallThreshold : Int %>
 <%@ val medicRadar : String %>
-<%@ val fakeUber : String %>
 <%@ val secAttack : String %>
-<%@ val uberPopChat : Boolean %>
 <%@ val crouchJumpNotFor : List[String] %>
 <%@ val currentConfig : String %>
 <%@ val disguiseCycle : String %>
@@ -94,6 +92,7 @@
 <%@ val fullChargeBell : Int %>
 <%@ val noCrossHairZoom : Int %>
 <%@ val enableCrouchJump : Boolean %>
+<%@ val classSpecificEnabled : Map[String, Boolean] %>
 <%@ val classWeaponColors : Map[String, List[(Int, Int, Int)]] %>
 <%@ val classWeaponCrosshairs : Map[String, List[String]] %>
 <%@ val classWeaponScales : Map[String, List[Int]] %>
@@ -134,7 +133,30 @@
 <%@ val nextInvWeapon : String %>
 <%@ val prevInvWeapon : String %>
 <%@ val startSpawnSwitch : String %>
-<%@ val finishSpawnSwitch : String %>
+<%@ val voice01 : String %>
+<%@ val voice02 : String %>
+<%@ val voice03 : String %>
+<%@ val voice04 : String %>
+<%@ val voice05 : String %>
+<%@ val voice06 : String %>
+<%@ val voice07 : String %>
+<%@ val voice10 : String %>
+<%@ val voice11 : String %>
+<%@ val voice12 : String %>
+<%@ val voice13 : String %>
+<%@ val voice14 : String %>
+<%@ val voice15 : String %>
+<%@ val voice16 : String %>
+<%@ val voice17 : String %>
+<%@ val voice20 : String %>
+<%@ val voice21 : String %>
+<%@ val voice22 : String %>
+<%@ val voice23 : String %>
+<%@ val voice24 : String %>
+<%@ val voice25 : String %>
+<%@ val voice26 : String %>
+<%@ val voice27 : String %>
+<%@ val viewmodelSwitchMode : String %>
 
 #import(yatf2configgenerator.ConfigRender._)
 
@@ -162,7 +184,7 @@ alias weap_vis_<%= slot %> hide_weapon
 <%= unbindif(destroyExit) %>
 <%= unbindif(directWeapon4) %>
 <%= unbindif(medicRadar) %>
-<%= unbindif(fakeUber) %>
+<%= unbindif(voice17) %>
 <%= unbindif(disguiseMenuToggle) %> 
 <%= unbindif(disguiseScout) %> 
 <%= unbindif(disguiseSoldier) %> 
@@ -209,6 +231,7 @@ alias weap_vis_<%= slot %> hide_weapon
 <%@ val voice26 : String %>
 <%@ val voice27 : String %>
 <%@ val viewmodelSwitchMode : String %>
+<%@ val showViewmodelCloak : Boolean %>
 
 //defaults for how hiding weapons is done
 #if (hideTracers)
@@ -242,6 +265,9 @@ alias hide_weapon "r_drawviewmodel 0"
 #else
 <%= bindif(jump, "+jump") %>
 #end
+
+//reset spawn switch
+alias switch spawn_switch
 
 //start with weapon1
 weapon1
