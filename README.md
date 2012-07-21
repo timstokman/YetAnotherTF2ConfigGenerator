@@ -10,7 +10,7 @@ Features:
   - Crosshair (color, type, scale)
   - Sensitivity
   - Showing/Hiding the weapon model
-  - Dingeling (volume, max/min pitch)
+  - Dingaling (volume, max/min pitch)
   - Interp-ratio
   - Tweakable viewmodel hiding behaviour. After switching weapons, hide the viewmodel after strafing/shooting or immediately
 * Null-movement canceling: if you press two opposite strafe keys, you will no longer stand still
@@ -157,3 +157,11 @@ Version history:
 
 ### Version 0.9
 * Fix the class-specific interp-ratio
+
+### Version 0.10
+* Bind for spectator switching
+* Simplifyed spawn switching
+* Ability to set text automatically chatted when popping/faking uber
+* Integrated viewmodel switch mode a bit more into some medic/spy/engineer stuff that rebound attack
+* Added option to show viewmodel when cloaking/dring or not
+* Removed "Show text when ubering" option, just remove the text from the new options

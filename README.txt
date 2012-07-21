@@ -10,7 +10,7 @@ Features:
   - Crosshair (color, type, scale)
   - Sensitivity
   - Showing/Hiding the weapon model
-  - Dingeling (volume, max/min pitch)
+  - Dingaling (volume, max/min pitch)
   - Interp-ratio
   - Tweakable viewmodel hiding behaviour. After switching weapons, hide the viewmodel after strafing/shooting or immediately
 * Null-movement canceling: if you press two opposite strafe keys, you will no longer stand still

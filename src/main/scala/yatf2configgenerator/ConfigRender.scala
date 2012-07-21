@@ -144,10 +144,10 @@ class ConfigRender {
    * * Label for the option
    */
   val optionMetadata = ListMap(
-    "dingEnable" -> ('options, 'intAsBoolean, "Enable weapon dingelings"),
-    "dingVolume" -> ('options, 'double, "Dingeling volume"),
-    "dingPitchMax" -> ('options, 'int, "Dingeling max pitch"),
-    "dingPitchMin" -> ('options, 'int, "Dingeling min pitch"),
+    "dingEnable" -> ('options, 'intAsBoolean, "Enable weapon dingalings"),
+    "dingVolume" -> ('options, 'double, "Dingaling volume"),
+    "dingPitchMax" -> ('options, 'int, "Dingaling max pitch"),
+    "dingPitchMin" -> ('options, 'int, "Dingaling min pitch"),
     "graphicsConfig" -> ('options, 'graphics, "Graphics config"),
     "networkConfig" -> ('options, 'network, "Network config"),
     "fov" -> ('options, 'int, "Fov"),

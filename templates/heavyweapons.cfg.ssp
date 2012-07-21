@@ -159,6 +159,8 @@
 <%@ val classInterpRatio : Map[String, Double] %>
 <%@ val switchSpec : String %>
 <%@ val showViewmodelCloak : Boolean %>
+<%@ val medicSayUber : String %>
+<%@ val medicSayFake : String %>
 
 #import(yatf2configgenerator.ConfigRender._)
 

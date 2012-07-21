@@ -232,6 +232,8 @@ alias weap_vis_<%= slot %> hide_weapon
 <%@ val voice27 : String %>
 <%@ val viewmodelSwitchMode : String %>
 <%@ val showViewmodelCloak : Boolean %>
+<%@ val medicSayUber : String %>
+<%@ val medicSayFake : String %>
 
 //defaults for how hiding weapons is done
 #if (hideTracers)
