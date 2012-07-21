@@ -211,7 +211,11 @@ alias -buildandwrench "-attack; <%= bindif(primAttack, "+attack") %>"
 #end
 
 //ensures that hauling a building will not cause things to get out of sync due to autoswitching to the wrench
+#if (viewmodelSwitchMode == "after-shooting" || viewmodelSwitchMode == "both")
+alias +haulandwrench "+attack2; current_weapon_vis; <%= bindif(primAttack, "+buildandwrench") %>"
+#else
 alias +haulandwrench "+attack2; <%= bindif(primAttack, "+buildandwrench") %>"
+#end
 alias -haulandwrench -attack2
 
 //quickbuild

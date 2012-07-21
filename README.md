@@ -98,7 +98,6 @@ Todo:
 -----
 
 * Check bind conflicts
-* Spectator switching issue
 * Live update class specific stuff in the weapons tab
 * Make the GUI a bit prettier (javafx instead of swing maybe)
 * Rewrite code to be a bit (a lot) prettier
@@ -108,7 +107,6 @@ Known Bugs:
 -----------
 
 * When building as an engineer, if you start building, then switch weapons before putting the building down, the crosshairs will get out of sync, switch weapons once to fix
-* Spectator switching doesn't seem to be working
 
 Version history:
 ----------------

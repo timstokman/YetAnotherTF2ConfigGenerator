@@ -98,7 +98,6 @@ Todo:
 -----
 
 * Check bind conflicts
-* Spectator switching issue
 * Live update class specific stuff in the weapons tab
 * Make the GUI a bit prettier (javafx instead of swing maybe)
 * Rewrite code to be a bit (a lot) prettier
@@ -108,7 +107,6 @@ Known Bugs:
 -----------
 
 * When building as an engineer, if you start building, then switch weapons before putting the building down, the crosshairs will get out of sync, switch weapons once to fix
-* Spectator switching doesn't seem to be working
 
 Version history:
 ----------------
@@ -157,3 +155,11 @@ Version 0.8
 
 Version 0.9
 * Fix the class-specific interp-ratio
+
+Version 0.10
+* Bind for spectator switching
+* Simplifyed spawn switching
+* Ability to set text automatically chatted when popping/faking uber
+* Integrated viewmodel switch mode a bit more into some medic/spy/engineer stuff that rebound attack
+* Added option to show viewmodel when cloaking/dring or not
+* Removed "Show text when ubering" option, just remove the text from the new options
