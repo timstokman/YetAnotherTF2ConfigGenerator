@@ -165,8 +165,6 @@
 
 exec reset
 
-interp_ratio <%= classInterpRatio(currentConfig).toString %>
-
 alias start_spawn_switch "alias finish_spawn_switch "join_class <%= currentConfig %>"; join_class random"
 
 #if (crouchJumpNotFor.contains(currentConfig))
@@ -177,6 +175,7 @@ alias start_spawn_switch "alias finish_spawn_switch "join_class <%= currentConfi
 
 //class specific crosshairs and weapon visibility and sensitivity
 #if(classSpecificEnabled(currentConfig))
+cl_interp_ratio <%= classInterpRatio(currentConfig).toString %>
 #for (slot <- 1 to 3)
 alias cross_<%= slot %> "cl_crosshair_red <%= classWeaponColors(currentConfig)(slot - 1)._1 %>; cl_crosshair_green <%= classWeaponColors(currentConfig)(slot - 1)._2 %>; cl_crosshair_blue <%= classWeaponColors(currentConfig)(slot - 1)._3 %>; cl_crosshair_scale <%= classWeaponScales(currentConfig)(slot - 1) %>; cl_crosshair_file <%= classWeaponCrosshairs(currentConfig)(slot - 1) %>"
 alias weap_sens_<%= slot %> "sensitivity <%= classSensitivity(currentConfig)(slot - 1).toString %>"
