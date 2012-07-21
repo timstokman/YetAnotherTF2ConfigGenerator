@@ -54,45 +54,45 @@ Uninstallation:
 FAQ:
 ----
 
-I am having issues, it crashes. How can I fix this?
+### I am having issues, it crashes. How can I fix this?
 
-Try the following things:
-* Make sure you unzip your program before running it, otherwise it won't be able to find any of the files it needs
-* Upgrade java to its latest version (from the link provided in the installation instructions), earlier java version don't work very well with this program
-* Try to generate the scripts locally, and copying them manually the the tf/cfg directory in the team fortress installation directory1
-* Post an explanation + screenshot (if applicable) with the crash/issue on my github page: github.com/logophobia/YetAnotherTF2ConfigGenerator or add me at steamcommunity.com/id/logophobia
+> Try the following things:
+> * Make sure you unzip your program before running it, otherwise it won't be able to find any of the files it needs
+> * Upgrade java to its latest version (from the link provided in the installation instructions), earlier java version don't work very well with this program
+> * Try to generate the scripts locally, and copying them manually the the tf/cfg directory in the team fortress installation directory1
+> * Post an explanation + screenshot (if applicable) with the crash/issue on my github page: github.com/logophobia/YetAnotherTF2ConfigGenerator or add me at steamcommunity.com/id/logophobia
 
-What is viewmodel switch mode?
+### What is viewmodel switch mode?
 
-It indicates when the viewmodel is turned off if that is set for the weapon slot:
-* Immediately after switching weapons
-* After firing a weapon
-* After switching strafe directions
-* After either firing or strafing
+> It indicates when the viewmodel is turned off if that is set for the weapon slot:
+> * Immediately after switching weapons
+> * After firing a weapon
+> * After switching strafe directions
+> * After either firing or strafing
 
-I have a feature request, where can I post it?
+### I have a feature request, where can I post it?
 
-Post any suggestions on the github page
+> Post any suggestions on the github page
 
-What does medic radar do precisely?
+### What does medic radar do precisely?
 
-It toggles medic autocall to 150%, so each of your teammates has a medic symbol above their heads, which you can see through walls. As soon as you let go of the button, it will go back to its original autocall level
+> It toggles medic autocall to 150%, so each of your teammates has a medic symbol above their heads, which you can see through walls. As soon as you let go of the button, it will go back to its original autocall level
 
-How can I customize this even more?
+### How can I customize this even more?
 
-You could try editing the original templates, in the template directory. First, delete the cache directory. Then edit the templates, the language used is ssp: http://scalate.fusesource.org/documentation/ssp-reference.html. After that, the program will use your editted version of the templates. 
+> You could try editing the original templates, in the template directory. First, delete the cache directory. Then edit the templates, the language used is ssp: http://scalate.fusesource.org/documentation/ssp-reference.html. After that, the program will use your editted version of the templates. 
 
-What other ways to customize tf2 are there?
+### What other ways to customize tf2 are there?
 
-You can install custom huds, skins, hitsounds or customize/make your own scripts
+> You can install custom huds, skins, hitsounds or customize/make your own scripts
 
-My ambassador crosshair disappeared, how can I fix this?
+### My ambassador crosshair disappeared, how can I fix this?
 
-For some reason, the crosshair after shooting is about half the default size. Increasing the size of the spy primary crosshair should fix this.
+> For some reason, the crosshair after shooting is about half the default size. Increasing the size of the spy primary crosshair should fix this.
 
-Changing settings inside tf2 doesn't work, it just gets changed back. How can I change my settings?
+### Changing settings inside tf2 doesn't work, it just gets changed back. How can I change my settings?
 
-The scripts that were installed now regulate most of your settings inside tf2. Change stuff through the program, and then reinstall the scripts, or uninstall the scripts and be free to change things inside tf2 again.
+> The scripts that were installed now regulate most of your settings inside tf2. Change stuff through the program, and then reinstall the scripts, or uninstall the scripts and be free to change things inside tf2 again.
 
 Todo:
 -----
@@ -113,7 +113,7 @@ Known Bugs:
 Version history:
 ----------------
 
-Version 0.2:
+### Version 0.2:
 * Zoom bind
 * Ability to "not" bind certain things
 * P-Rec settings
@@ -121,39 +121,39 @@ Version 0.2:
 * Ability to turn of dingalings on weapon/class basis
 * Reset button that resets almost all of the stuff the config does, the rest can be done by resetting the keys from ingame
 
-Version 0.3:
+### Version 0.3:
 * Scripts should generate quite a bit faster now
 * Added binds for friendly spy disguises
 
-Version 0.4:
+### Version 0.4:
 * Create cfg directory if it doesn't exist
 * Added a couple of missing keys
 * Ability to unbind stuff
 * Fixed couple bugs
 
-Version 0.5:
+### Version 0.5:
 * Fixed bugs
 * Save progress button
 * Better error reporting
 * Account for some upper case file names in the steam directory
 
-Version 0.6:
+### Version 0.6:
 * Added nextinv/previnv/prevweapon as possible binds, cleanup of weapon switching code while I was at it
 * Some additional graphical options
 * Some binds that shouldve been there (accept reject popup, toggle friendly disguise)
 * Fixed some engineer stuff, hauling buildings doesn't desync stuff anymore
 
-Version 0.7:
+### Version 0.7:
 
 * No more "nothing" error messages on the tf2 console
 * Spawn toggling
 
-Version 0.8
+### Version 0.8
 * Crosshair previews
 * Config backup button
 * Tweakable viewmodel behaviour
 * Hud reload fixes visual glitches as well now
 * Steam dir/username are saved
 
-Version 0.9
+### Version 0.9
 * Fix the class-specific interp-ratio
