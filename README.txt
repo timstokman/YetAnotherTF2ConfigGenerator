@@ -36,7 +36,7 @@ Features:
 Installation:
 -------------
 
-* Download the program [here](https://github.com/downloads/logophobia/YetAnotherTF2ConfigGenerator/YATF2ConfigGenerator-0.9.zip)
+* Download the program [here](https://github.com/downloads/logophobia/YetAnotherTF2ConfigGenerator/YATF2ConfigGenerator-0.10.zip)
 * Make sure you have a new version of the java runtime (1.6 or higher would probably work) installed, [this is a version without toolbar crap](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1637588.html)
 * Unzip the program and double click on the jar file to start
 * Set everything up the way you want to, make sure you copy most of your essential settings in tf2, like your mouse sensitivity (very annoying when that gets changed)
