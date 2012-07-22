@@ -268,8 +268,5 @@ alias hide_weapon "r_drawviewmodel 0"
 <%= bindif(jump, "+jump") %>
 #end
 
-//reset spawn switch
-alias switch spawn_switch
-
 //start with weapon1
 weapon1

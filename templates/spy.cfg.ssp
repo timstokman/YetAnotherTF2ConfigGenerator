@@ -166,7 +166,7 @@
 
 exec reset
 
-alias spawn_switch "alias switch "alias switch spawn_switch; join_class <%= currentConfig %>"; join_class random"
+alias spawn_switch "join_class random; alias switch "alias switch spawn_switch; join_class <%= currentConfig %>""
 
 #if (crouchJumpNotFor.contains(currentConfig))
 <%= bindif(jump, "+jump") %>

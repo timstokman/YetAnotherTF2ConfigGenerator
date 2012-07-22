@@ -236,6 +236,10 @@ alias -sb "-score; net_graph 0"
 alias +zoom_in "fov_desired <%= Math.round(fov / zoomFactor) %>; current_zoom_sens"
 alias -zoom_in "fov_desired <%= fov %>; current_weapon_sens"
 
+//reset spawn switch
+alias spawn_switch ""
+alias switch spawn_switch
+
 //options
 tf_dingalingaling <%= dingEnable %>
 tf_remember_activeweapon 1 //this is needed for the weapon switching script
