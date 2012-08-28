@@ -246,7 +246,7 @@ alias disguise<%= disguise %>_f "disguise <%= disguiseFriendlyCycleClasses(disgu
 <%= bindif(disguiseFriendlyCycle, "disguise_cycle_f") %>
 <%= bindif(disguiseLast, "lastdisguise") %>
 <%= bindif(directWeapon4, "slot4") %>
-#if (showViewmodelCloak) %>
+#if (showViewmodelCloak)
 //when going invisible, show the weapon to show the invisibility status
 <%= bindif(secAttack, "\"+attack2; show_weapon\"") %> 
 #elseif (viewmodelSwitchMode == "after-shooting" || viewmodelSwitchMode == "both")
