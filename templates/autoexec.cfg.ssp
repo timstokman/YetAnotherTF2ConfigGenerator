@@ -133,6 +133,7 @@
 <%@ val nextInvWeapon : String %>
 <%@ val prevInvWeapon : String %>
 <%@ val startSpawnSwitch : String %>
+<%@ val finishSpawnSwitch : String %>
 <%@ val voice01 : String %>
 <%@ val voice02 : String %>
 <%@ val voice03 : String %>
@@ -237,8 +238,7 @@ alias +zoom_in "fov_desired <%= Math.round(fov / zoomFactor) %>; current_zoom_se
 alias -zoom_in "fov_desired <%= fov %>; current_weapon_sens"
 
 //reset spawn switch
-alias spawn_switch ""
-alias switch spawn_switch
+alias finish_spawn_switch ""
 
 //options
 tf_dingalingaling <%= dingEnable %>
@@ -331,7 +331,8 @@ ragdoll_sleepaftertime 0
 <%= bindif(voiceMenu2, "voice_menu_2") %>
 <%= bindif(voiceMenu3, "voice_menu_3") %>
 <%= bindif(spray, "\"impulse 201\"") %>
-<%= bindif(startSpawnSwitch, "switch") %>
+<%= bindif(startSpawnSwitch, "start_spawn_switch") %>
+<%= bindif(finishSpawnSwitch, "finish_spawn_switch") %>
 <%= bindif(voice01, "\"voicemenu 0 1\"") %>
 <%= bindif(voice02, "\"voicemenu 0 2\"") %>
 <%= bindif(voice03, "\"voicemenu 0 3\"") %>

@@ -132,6 +132,7 @@
 <%@ val nextInvWeapon : String %>
 <%@ val prevInvWeapon : String %>
 <%@ val startSpawnSwitch : String %>
+<%@ val finishSpawnSwitch : String %>
 <%@ val voice01 : String %>
 <%@ val voice02 : String %>
 <%@ val voice03 : String %>
@@ -166,7 +167,7 @@
 
 exec reset
 
-alias spawn_switch "join_class random; alias switch "alias switch spawn_switch; join_class <%= currentConfig %>""
+alias start_spawn_switch "alias finish_spawn_switch "join_class <%= currentConfig %>"; join_class random"
 
 #if (crouchJumpNotFor.contains(currentConfig))
 <%= bindif(jump, "+jump") %>
