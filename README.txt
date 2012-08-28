@@ -158,7 +158,6 @@ Version 0.9
 
 Version 0.10
 * Bind for spectator switching
-* Simplifyed spawn switching
 * Ability to set text automatically chatted when popping/faking uber
 * Integrated viewmodel switch mode a bit more into some medic/spy/engineer stuff that rebound attack
 * Added option to show viewmodel when cloaking/dring or not
