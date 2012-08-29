@@ -162,6 +162,7 @@
 <%@ val showViewmodelCloak : Boolean %>
 <%@ val medicSayUber : String %>
 <%@ val medicSayFake : String %>
+<%@ val toggleReady : String %>
 
 #import(yatf2configgenerator.ConfigRender._)
 

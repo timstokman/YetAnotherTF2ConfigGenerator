@@ -158,6 +158,7 @@
 <%@ val voice26 : String %>
 <%@ val voice27 : String %>
 <%@ val viewmodelSwitchMode : String %>
+<%@ val toggleReady : String %>
 
 #import(yatf2configgenerator.ConfigRender._)
 

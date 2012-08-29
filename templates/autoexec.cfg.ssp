@@ -163,6 +163,7 @@
 <%@ val showViewmodelCloak : Boolean %>
 <%@ val medicSayUber : String %>
 <%@ val medicSayFake : String %>
+<%@ val toggleReady : String %>
 
 #import(yatf2configgenerator.ConfigRender._)
 
@@ -356,6 +357,7 @@ ragdoll_sleepaftertime 0
 <%= bindif(voice26, "\"voicemenu 2 6\"") %>
 <%= bindif(voice27, "\"voicemenu 2 7\"") %>
 <%= bindif(switchSpec, "+attack") %>
+<%= bindif(toggleReady, "player_ready_toggle") %>
 
 #if(precEnabled)
 //P-Rec

@@ -3,7 +3,7 @@ Yet Another TF2 Config Generator
 
 This program generates configuration files for Team Fortress 2
 
-Features:
+Features
 --------
 
 * Ability to specify for each class/weapon-slot to specify the:
@@ -33,7 +33,7 @@ Features:
 * Zoom in bind (changes fov+sensitivity to zoom in)
 * P-Rec settings
 
-Installation:
+Installation
 -------------
 
 * Download the program [here](https://github.com/downloads/logophobia/YetAnotherTF2ConfigGenerator/YATF2ConfigGenerator-0.10.zip)
@@ -44,14 +44,14 @@ Installation:
 * Save the settings for further editing if you might want to change some small things later
 * Use the backup button to make a backup if you have any scripts you might like to preserve
 
-Uninstallation:
+Uninstallation
 ---------------
 
 * Delete all the .cfg files inside the tf/cfg directory
 * Run tf2 once with the -autoconfig flag (inside the launch options) to reset tf2 to default
 * Place any backed-up cfg files back
 
-FAQ:
+FAQ
 ----
 
 ### I am having issues, it crashes. How can I fix this?
@@ -94,7 +94,7 @@ FAQ:
 
 > The scripts that were installed now regulate most of your settings inside tf2. Change stuff through the program, and then reinstall the scripts, or uninstall the scripts and be free to change things inside tf2 again.
 
-Todo:
+Todo
 -----
 
 * Check bind conflicts
@@ -103,15 +103,15 @@ Todo:
 * Rewrite code to be a bit (a lot) prettier
 * Other requests?
 
-Known Bugs:
+Known Bugs
 -----------
 
 * When building as an engineer, if you start building, then switch weapons before putting the building down, the crosshairs will get out of sync, switch weapons once to fix
 
-Version history:
+Version history
 ----------------
 
-### Version 0.2:
+### Version 0.2
 * Zoom bind
 * Ability to "not" bind certain things
 * P-Rec settings
@@ -119,29 +119,29 @@ Version history:
 * Ability to turn of dingalings on weapon/class basis
 * Reset button that resets almost all of the stuff the config does, the rest can be done by resetting the keys from ingame
 
-### Version 0.3:
+### Version 0.3
 * Scripts should generate quite a bit faster now
 * Added binds for friendly spy disguises
 
-### Version 0.4:
+### Version 0.4
 * Create cfg directory if it doesn't exist
 * Added a couple of missing keys
 * Ability to unbind stuff
 * Fixed couple bugs
 
-### Version 0.5:
+### Version 0.5
 * Fixed bugs
 * Save progress button
 * Better error reporting
 * Account for some upper case file names in the steam directory
 
-### Version 0.6:
+### Version 0.6
 * Added nextinv/previnv/prevweapon as possible binds, cleanup of weapon switching code while I was at it
 * Some additional graphical options
 * Some binds that shouldve been there (accept reject popup, toggle friendly disguise)
 * Fixed some engineer stuff, hauling buildings doesn't desync stuff anymore
 
-### Version 0.7:
+### Version 0.7
 
 * No more "nothing" error messages on the tf2 console
 * Spawn toggling
@@ -162,3 +162,6 @@ Version history:
 * Integrated viewmodel switch mode a bit more into some medic/spy/engineer stuff that rebound attack
 * Added option to show viewmodel when cloaking/dring or not
 * Removed "Show text when ubering" option, just remove the text from the new options
+
+### Version 0.10.1
+* Bind for MvM ready toggle
