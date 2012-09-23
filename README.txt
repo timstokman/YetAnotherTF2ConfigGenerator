@@ -94,11 +94,13 @@ Changing settings inside tf2 doesn't work, it just gets changed back. How can I 
 
 The scripts that were installed now regulate most of your settings inside tf2. Change stuff through the program, and then reinstall the scripts, or uninstall the scripts and be free to change things inside tf2 again.
 
-Todo
+Todo (0.11)
 -----
 
 * Prehaps drop P-Rec support in the future (due to disappearance plugin online)
 * Make dialogs copyable
+* Initial user isn't selected if steam directory is pre-filled
+* visibility aliasses aren't outputted, which is why weapon visibility doesn't work atm
 * Other requests?
 
 Known Bugs
