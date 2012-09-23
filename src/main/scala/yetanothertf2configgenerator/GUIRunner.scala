@@ -42,7 +42,7 @@ object GUIRunner extends SwingApplication {
           val setting = settings(a)
           val page = new Page(tabName(a), null)
           iterate(setting, c => { page.content = c })
-	  pages += page
+          pages += page
         })
       })
     }
@@ -53,18 +53,18 @@ object GUIRunner extends SwingApplication {
     val profileFile = """^(.*)\.xml$""".r
     new File(profileDir).listFiles.foreach(file => {
       file.getName match {
-	case profileFile(profileName) => {
-	  menu.contents += new MenuItem(Action(profileName) {
-	    try {
-	      Setting.applyProfile(ProfileManager.readProfile(profileName))
-	    } catch {
-	      case e : Exception => {
-		handleException(e)
-	      }
-	    }
-	  })
-	}
-	case _ =>
+        case profileFile(profileName) => {
+          menu.contents += new MenuItem(Action(profileName) {
+            try {
+              Setting.applyProfile(ProfileManager.readProfile(profileName))
+            } catch {
+              case e : Exception => {
+                handleException(e)
+              }
+            }
+          })
+        }
+        case _ =>
       }
     })
   }
@@ -73,7 +73,7 @@ object GUIRunner extends SwingApplication {
     title = "Generating"
     contents = new FlowPanel {
       contents += new ProgressBar {
-	indeterminate = true
+        indeterminate = true
       }
     }
   }
@@ -81,17 +81,17 @@ object GUIRunner extends SwingApplication {
   def getTF2Directory = {
     Setting.getSettingByName("steamDir").flatMap(dir => {
       Setting.getSettingByName("steamUser").flatMap(user => {
-	println("has user and dir")
-	if(dir.validateAndError && user.validateAndError) {
-	  val cfgDir = new File(List(dir.value, "steamapps", user.value, "team fortress 2", "tf", "cfg").mkString(File.separator))
-	  println("cfgs: " + cfgDir.getPath + " " + cfgDir.exists)
-	  if(cfgDir.exists)
-	    Some(cfgDir)
-	  else
-	    None
-	} else {
-	  None
-	}
+        println("has user and dir")
+        if(dir.validateAndError && user.validateAndError) {
+          val cfgDir = new File(List(dir.value, "steamapps", user.value, "team fortress 2", "tf", "cfg").mkString(File.separator))
+          println("cfgs: " + cfgDir.getPath + " " + cfgDir.exists)
+          if(cfgDir.exists)
+            Some(cfgDir)
+          else
+            None
+        } else {
+          None
+        }
       })
     })
   }
@@ -114,7 +114,7 @@ object GUIRunner extends SwingApplication {
     } catch {
       case e : Exception => {
         progress.close
-	handleException(e)
+        handleException(e)
       }
     }
   }
@@ -131,9 +131,9 @@ object GUIRunner extends SwingApplication {
       try {
         ProfileManager.writeProfile(profileName, Setting.getTemplateData)
       } catch {
-	case e : Exception => {
-	  handleException(e)
-	}
+        case e : Exception => {
+          handleException(e)
+        }
       }
     })
   }
@@ -159,18 +159,18 @@ object GUIRunner extends SwingApplication {
     try {
       from.listFiles.foreach(fromFile => {
         if(fromFile.getName.matches(pattern)) {
-	  val fromStream = new FileInputStream(fromFile)
-	  val toStream = new FileOutputStream(new File(to.getPath + File.separator + fromFile.getName))
+          val fromStream = new FileInputStream(fromFile)
+          val toStream = new FileOutputStream(new File(to.getPath + File.separator + fromFile.getName))
           val fromChannel = fromStream.getChannel
           val toChannel = toStream.getChannel
-	  try {
-	    fromChannel.transferTo(0, Long.MaxValue, toChannel)
-	  } finally {
-	    fromStream.close
-	    toStream.close
-	    fromChannel.close
-	    toChannel.close
-	  }
+          try {
+            fromChannel.transferTo(0, Long.MaxValue, toChannel)
+          } finally {
+            fromStream.close
+            toStream.close
+            fromChannel.close
+            toChannel.close
+          }
         }
       })
     } catch {
@@ -181,17 +181,17 @@ object GUIRunner extends SwingApplication {
   def createMenuBar : MenuBar = new MenuBar {
     contents += new Menu("File") {
       contents += new MenuItem(Action("Save configs to steam directory") {
-	tf2DirOrError(dir => saveConfigsTo(dir))
+        tf2DirOrError(dir => saveConfigsTo(dir))
       })
       contents += new MenuItem(Action("Save configs to") {
-	pickDir.foreach(dir => saveConfigsTo(dir))
+        pickDir.foreach(dir => saveConfigsTo(dir))
       })
       contents += new MenuItem(Action("Save settings") {
-	saveProfile
-	topFrame.menuBar = createMenuBar
+        saveProfile
+        topFrame.menuBar = createMenuBar
       })
       contents += new MenuItem(Action("Quit") {
-	quit
+        quit
       })
     }
     contents += new Menu("Profiles") {
@@ -199,18 +199,18 @@ object GUIRunner extends SwingApplication {
     }
     contents += new Menu("Backup") {
       contents += new MenuItem(Action("Backup config files") {
-	tf2DirOrError(steamDir => {
-	  pickDir.foreach(backupDir => {
+        tf2DirOrError(steamDir => {
+          pickDir.foreach(backupDir => {
             copyDirFiles(steamDir, backupDir, configfileRegex)
-	  })
-	})
+          })
+        })
       })
       contents += new MenuItem(Action("Restore config files") {
-	tf2DirOrError(steamDir => {
-	  pickDir.foreach(backupDir => {
-	    copyDirFiles(backupDir, steamDir, configfileRegex)
-	  })
-	})
+        tf2DirOrError(steamDir => {
+          pickDir.foreach(backupDir => {
+            copyDirFiles(backupDir, steamDir, configfileRegex)
+          })
+        })
       })
     }
     contents += new Menu("Help") {
@@ -218,7 +218,7 @@ object GUIRunner extends SwingApplication {
         Desktop.getDesktop.browse(helpURI)
       })
       contents += new MenuItem(Action("About") {
-	Desktop.getDesktop.browse(aboutURI)
+        Desktop.getDesktop.browse(aboutURI)
       })
     }
   }
@@ -235,20 +235,20 @@ object GUIRunner extends SwingApplication {
       generateTabsGroupedSettings[String, ListMap[Int, List[Setting[_, _]]]](classMap, "any", weaponMap => weaponMap.values.flatten.nonEmpty, classAttach, className => className.capitalize, (weaponMap, weaponAttach) => {
         generateTabsGroupedSettings[Int, List[Setting[_, _]]](weaponMap, 0, settings => settings.nonEmpty, weaponAttach, weaponNum => if(weaponNum == 0) "Any" else "Weapon slot " + weaponNum.toString, (settings, innerAttach) => {
           innerAttach(new ScrollPane(new GridBagPanel {
-	    val c = new Constraints
-      	    c.insets = new Insets(2, 2, 2, 2)
-      	    c.fill = Fill.Horizontal
-	    c.anchor = Anchor.LineStart
-	    c.gridy = 0
+            val c = new Constraints
+            c.insets = new Insets(2, 2, 2, 2)
+            c.fill = Fill.Horizontal
+            c.anchor = Anchor.LineStart
+            c.gridy = 0
 
             settings.foreach {
               case setting : Setting[_, Component] => {
                 layout(setting.GUI) = c
-		c.gridy = c.gridy + 1
+                c.gridy = c.gridy + 1
               }
             }
-	    c.weighty = 1.0
-	    layout(Swing.VGlue) = c
+            c.weighty = 1.0
+            layout(Swing.VGlue) = c
           }))
         })
       })

@@ -22,21 +22,21 @@ cl_interp_ratio <%= classInterpRatio(currentConfig).toString %>
   <% } %>
 
   <% if(classWeaponViewmodelSwitchMode(currentConfig)(slot - 1) == "both" || classWeaponViewmodelSwitchMode(currentConfig)(slot - 1) == "after-shooting") { %>
-    alias current_weapon_vis_if_shootswitch_<%= slot %> weapon_vis_<%= slot %>
+    alias current_vis_shootswitch_<%= slot %> weapon_vis_<%= slot %>
   <% } else { %>
-    alias current_weapon_vis_if_shootswitch_<%= slot %> ""
+    alias current_vis_shootswitch_<%= slot %> ""
   <% } %>
 
   <% if(classWeaponViewmodelSwitchMode(currentConfig)(slot - 1) == "both" || classWeaponViewmodelSwitchMode(currentConfig)(slot - 1) == "after-strafing") { %>
-     alias current_weapon_vis_if_strafeswitch_<%= slot %> weapon_vis_<%= slot %>
+     alias current_vis_strafeswitch_<%= slot %> weapon_vis_<%= slot %>
   <% } else { %>
-     alias current_weapon_vis_if_strafeswitch_<%= slot %> ""
+     alias current_vis_strafeswitch_<%= slot %> ""
   <% } %>
 
   <% if(classWeaponViewmodelSwitchMode(currentConfig)(slot - 1) == "immediately") { %>
-     alias current_weapon_vis_if_immediatelyswitch_<%= slot %> weapon_vis_<%= slot %>
+     alias current_vis_immediatelyswitch_<%= slot %> weapon_vis_<%= slot %>
   <% } else { %>
-     alias current_weapon_vis_if_immediatelyswitch_<%= slot %> ""
+     alias current_vis_immediatelyswitch_<%= slot %> ""
   <% } %>
 #end
 
@@ -89,5 +89,5 @@ alias disguise<%= disguise %>_f "disguise <%= disguiseFriendlyCycleClasses(disgu
 //when going invisible, show the weapon to show the invisibility status
 <%= bindif(secAttack, "\"+attack2; show_weapon\"") %> 
 #else
-<%= bindif(secAttack, "\"+attack2; current_weapon_vis_if_shootswitch\"") %>
+<%= bindif(secAttack, "\"+attack2; current_vis_shootswitch\"") %>
 #end

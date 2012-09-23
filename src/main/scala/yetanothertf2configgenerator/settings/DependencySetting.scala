@@ -25,10 +25,10 @@ abstract class DependencySetting[ValueType, GUIType <: Component, GatheredType <
   private def setValues(settings : Seq[Setting[ValueType, GUIType]], value : ValueType) {
     settings.foreach {
       case d : DependencySetting[ValueType, GUIType, _, _] => {
-	d.setInnerValue(value)
+        d.setInnerValue(value)
       }
       case s : Setting[ValueType, GUIType] => {
-	s.value = value
+        s.value = value
       }
     }
   }
@@ -74,18 +74,18 @@ abstract class DependencySetting[ValueType, GUIType <: Component, GatheredType <
   def notify(pub : Setting[_, _], ev : SettingEvent[_, _]) {
     ev match {
       case SettingChanged(oldVal : ValueType, newVal : ValueType) => {
-	if(main == pub) {
-	  setInnerValueNoMain(newVal)
-	  publish(ev)
-	} else {
-	  //not generic enough to handle more then two nestings, but that'd be too confusing anyway in a gui
-	  dependingSettings.foreach(s => {
-	    s match {
-	      case d : DependencySetting[ValueType, GUIType, _, _] => {
+        if(main == pub) {
+          setInnerValueNoMain(newVal)
+          publish(ev)
+        } else {
+          //not generic enough to handle more then two nestings, but that'd be too confusing anyway in a gui
+          dependingSettings.foreach(s => {
+            s match {
+              case d : DependencySetting[ValueType, GUIType, _, _] => {
                 d.setInnerValueFiltered(newVal, setting => d.getKey(pub) == d.getKey(setting))
-	      }
-	    }
-	  })
+              }
+            }
+          })
         }
       }
       case _ => {}

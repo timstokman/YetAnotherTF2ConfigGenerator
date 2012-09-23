@@ -46,19 +46,22 @@ object ConfigGenerator {
       val varDeclBuff = ByteBuffer.wrap(Setting.templateVariableDeclarations.getBytes)
       val from = new File(templateDir + File.separator + configName + configExtension)
       val to = new File(cacheDir + File.separator + configName + tmpExtension + configExtension)
+
+      if(to.exists)
+        to.delete
+        
       val fromStream = new FileInputStream(from)
       val toStream = new FileOutputStream(to, true)
       val fromChannel = fromStream.getChannel
       val toChannel = toStream.getChannel
       try {
-        to.delete
         toChannel.write(varDeclBuff)
         fromChannel.transferTo(0, Long.MaxValue, toChannel)
       } finally {
-	fromStream.close
-	toStream.close
-	fromChannel.close
-	toChannel.close
+        fromChannel.close
+        toChannel.close
+        fromStream.close
+        toStream.close        
       }
     })
   }

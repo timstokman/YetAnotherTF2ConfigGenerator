@@ -75,8 +75,8 @@ case class CrosshairSetting(val name : String, val labelText : String, val tf2Cl
   override def notify(publisher : Setting[_, _], event : SettingEvent[_, _]) { 
     event match {
       case SettingChanged(_, newValue : (Int, Int, Int)) => {
-	imagePanel.color = Some(new Color(newValue._1 / 255.0f, newValue._2 / 255.0f, newValue._3 / 255.0f))
-	imagePanel.repaint
+        imagePanel.color = Some(new Color(newValue._1 / 255.0f, newValue._2 / 255.0f, newValue._3 / 255.0f))
+        imagePanel.repaint
       }
       case _ => { }
     }

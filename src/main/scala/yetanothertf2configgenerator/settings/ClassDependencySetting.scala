@@ -9,7 +9,7 @@ case class ClassDependencySetting[ValueType, GUIType <: Component](createSetting
   def value_=(newValue : Map[String, ValueType]) {
     newValue.foreach(pair => {
       dependingSettings.filter(_.tf2Class == pair._1).foreach(setting => {
-	setting.value = pair._2
+        setting.value = pair._2
       })
     })
     setMainToCommon

@@ -11,10 +11,10 @@ exec <%= graphicsConfig %>
 #end
 
 //null-cancelling movement
-alias +move_forward "-back; +forward; alias if_forward +forward; current_weapon_vis_if_strafeswitch"
-alias +move_back "-forward; +back; alias if_back +back; current_weapon_vis_if_strafeswitch"
-alias +move_left "-moveright; +moveleft; alias if_left +moveleft; current_weapon_vis_if_strafeswitch"
-alias +move_right "-moveleft; +moveright; alias if_right +moveright; current_weapon_vis_if_strafeswitch"
+alias +move_forward "-back; +forward; alias if_forward +forward; current_vis_strafeswitch"
+alias +move_back "-forward; +back; alias if_back +back; current_vis_strafeswitch"
+alias +move_left "-moveright; +moveleft; alias if_left +moveleft; current_vis_strafeswitch"
+alias +move_right "-moveleft; +moveright; alias if_right +moveright; current_vis_strafeswitch"
 alias -move_forward "-forward; if_back; alias if_forward """
 alias -move_back "-back; if_forward; alias if_back """
 alias -move_left "-moveleft; if_right; alias if_left """
@@ -26,7 +26,7 @@ alias if_right ""
 
 //weapon switch
 #for (slot <- 1 to 3)
-alias weapon_admin_<%= slot %> "weap_ding_<%= slot %>; weap_sens_<%= slot %>; cross_<%= slot %>; alias current_weapon_sens weap_sens_<%= slot %>; alias current_zoom_sens weap_zoom_sens_<%= slot %>; weapon_slot_spec_admin_<%= slot %>; alias prev_inv_weapon weapon<%= if(slot == 1) 3 else slot - 1 %>; alias next_inv_weapon weapon<%= if(slot == 3) 1 else slot + 1 %>; alias current_weapon_vis_if_strafeswitch current_weapon_vis_if_strafeswitch_<%= slot %>; alias current_weapon_vis_if_shootswitch current_weapon_vs_if_shootswitch_<%= slot %>; current_weapon_vis_if_immediatelyswitch_<% slot %>; show_weapon"
+alias weapon_admin_<%= slot %> "weap_ding_<%= slot %>; weap_sens_<%= slot %>; cross_<%= slot %>; alias current_weapon_sens weap_sens_<%= slot %>; alias current_zoom_sens weap_zoom_sens_<%= slot %>; weapon_slot_spec_admin_<%= slot %>; alias prev_inv_weapon weapon<%= if(slot == 1) 3 else slot - 1 %>; alias next_inv_weapon weapon<%= if(slot == 3) 1 else slot + 1 %>; alias current_vis_strafeswitch current_vis_strafeswitch_<%= slot %>; alias current_vis_shootswitch current_vis_shootswitch_<%= slot %>; current_vis_immediatelyswitch_<%= slot %>; show_weapon"
 #if(slot == 1)
 alias weapon_slot_spec_admin_<%= slot %> "alias primsecswap weapon2;         alias othermeleeswap weapon3;         set_previous_weapon_<%= slot %>; alias set_previous_weapon_1 "";                              alias set_previous_weapon_2 "alias previous_weapon weapon1"; alias set_previous_weapon_3 "alias previous_weapon weapon1""
 #elseif(slot == 2)

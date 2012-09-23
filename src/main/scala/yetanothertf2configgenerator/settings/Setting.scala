@@ -24,10 +24,10 @@ object Setting {
   def wireSubscribers {
     expandedSettings.foreach(setting => {
       if(setting.canSubscribe) {
-	expandedSettings.foreach(to => {
-	  if(setting.canSubscribeTo(to))
-	    to.subscribe(setting.asInstanceOf[to.Sub])
-	})
+        expandedSettings.foreach(to => {
+          if(setting.canSubscribeTo(to))
+            to.subscribe(setting.asInstanceOf[to.Sub])
+        })
       }
     })
   }
@@ -86,8 +86,8 @@ object Setting {
     profile.foreach(pair => {
       val (name, value) = backwardsCompatibilityFilter(pair._1, pair._2, profile)
       settings.find(_.name == name) match {
-	case Some(setting) => setting.asInstanceOf[Setting[Any, _]].value = value
-	case None => settings.find(_.innerName == name).foreach(_.asInstanceOf[DependencySetting[Any, _, _, _]].setInnerValue(value))
+        case Some(setting) => setting.asInstanceOf[Setting[Any, _]].value = value
+        case None => settings.find(_.innerName == name).foreach(_.asInstanceOf[DependencySetting[Any, _, _, _]].setInnerValue(value))
       }
     })
   }

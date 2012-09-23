@@ -25,7 +25,7 @@ case class SteamUsernameSetting(val name : String, val settingType : Symbol) ext
   override def canSubscribeTo(setting : Setting[_, _]) = {
     setting match {
       case s : SteamDirectorySetting => {
-	true
+        true
       }
 
       case _ => { false }
@@ -35,12 +35,12 @@ case class SteamUsernameSetting(val name : String, val settingType : Symbol) ext
   override def notify(publisher : Setting[_, _], event : SettingEvent[_, _]) {
     event match {
       case SettingChanged(oldValue : String, newValue : String) => {
-	val steamDir = new File(newValue)
-	val usernames = SteamUsernameSetting.getUsernames(steamDir)
-	choices = usernames
-	GUIStorage.peer.removeAllItems
-	usernames.foreach(name => GUIStorage.peer.addItem(name))
-	value = usernames.head
+        val steamDir = new File(newValue)
+        val usernames = SteamUsernameSetting.getUsernames(steamDir)
+        choices = usernames
+        GUIStorage.peer.removeAllItems
+        usernames.foreach(name => GUIStorage.peer.addItem(name))
+        value = usernames.head
       }
       case _ => { }
     }

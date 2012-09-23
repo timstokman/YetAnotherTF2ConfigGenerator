@@ -22,21 +22,21 @@ cl_interp_ratio <%= classInterpRatio(currentConfig).toString %>
   <% } %>
 
   <% if(classWeaponViewmodelSwitchMode(currentConfig)(slot - 1) == "both" || classWeaponViewmodelSwitchMode(currentConfig)(slot - 1) == "after-shooting") { %>
-    alias current_weapon_vis_if_shootswitch_<%= slot %> weapon_vis_<%= slot %>
+    alias current_vis_shootswitch_<%= slot %> weapon_vis_<%= slot %>
   <% } else { %>
-    alias current_weapon_vis_if_shootswitch_<%= slot %> ""
+    alias current_vis_shootswitch_<%= slot %> ""
   <% } %>
 
   <% if(classWeaponViewmodelSwitchMode(currentConfig)(slot - 1) == "both" || classWeaponViewmodelSwitchMode(currentConfig)(slot - 1) == "after-strafing") { %>
-     alias current_weapon_vis_if_strafeswitch_<%= slot %> weapon_vis_<%= slot %>
+     alias current_vis_strafeswitch_<%= slot %> weapon_vis_<%= slot %>
   <% } else { %>
-     alias current_weapon_vis_if_strafeswitch_<%= slot %> ""
+     alias current_vis_strafeswitch_<%= slot %> ""
   <% } %>
 
   <% if(classWeaponViewmodelSwitchMode(currentConfig)(slot - 1) == "immediately") { %>
-     alias current_weapon_vis_if_immediatelyswitch_<%= slot %> weapon_vis_<%= slot %>
+     alias current_vis_immediatelyswitch_<%= slot %> weapon_vis_<%= slot %>
   <% } else { %>
-     alias current_weapon_vis_if_immediatelyswitch_<%= slot %> ""
+     alias current_vis_immediatelyswitch_<%= slot %> ""
   <% } %>
 #end
 
@@ -44,10 +44,10 @@ cl_interp_ratio <%= classInterpRatio(currentConfig).toString %>
 
 //ensures that when building the weapon switching doesn't get out of sync due to autoswitching to the wrench
 alias +buildandwrench "+attack; weapon_admin_3"
-alias -buildandwrench "-attack; <%= bindif(primAttack, "\"+attack; current_weapon_vis_if_shootswitch\"") %>"
+alias -buildandwrench "-attack; <%= bindif(primAttack, "\"+attack; current_vis_shootswitch\"") %>"
 
 //ensures that hauling a building will not cause things to get out of sync due to autoswitching to the wrench
-alias +haulandwrench "+attack2; current_weapon_vis_if_shootswitch; <%= bindif(primAttack, "+buildandwrench") %>"
+alias +haulandwrench "+attack2; current_vis_shootswitch; <%= bindif(primAttack, "+buildandwrench") %>"
 alias -haulandwrench -attack2
 
 //quickbuild

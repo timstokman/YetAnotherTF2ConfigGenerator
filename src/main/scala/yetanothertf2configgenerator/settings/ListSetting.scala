@@ -38,24 +38,24 @@ abstract class ListSetting[ContainedType](val displayMap : Map[ContainedType, St
       c.gridheight = 1
       c.gridx = 1
       val selectItems = new ComboBox(itemValues) {
-	renderer = listRenderer
+        renderer = listRenderer
       }
       layout(selectItems) = c
       c.gridy = 3
       layout(new Button("Add item") {
-	reactions += {
-	  case ButtonClicked(_) => guiStorage.listData = guiStorage.listData :+ selectItems.selection.item
-	}
+        reactions += {
+          case ButtonClicked(_) => guiStorage.listData = guiStorage.listData :+ selectItems.selection.item
+        }
       }) = c
       c.gridy = 4
       layout(new Button("Remove items") {
-	reactions += {
-	  case ButtonClicked(_) => {
-	    val newList = guiStorage.listData.toBuffer
-	    guiStorage.selection.indices.toSeq.sortBy(-1 * _).foreach(i => newList.remove(i))
-	    guiStorage.listData = newList
-	  }
-	}
+        reactions += {
+          case ButtonClicked(_) => {
+            val newList = guiStorage.listData.toBuffer
+            guiStorage.selection.indices.toSeq.sortBy(-1 * _).foreach(i => newList.remove(i))
+            guiStorage.listData = newList
+          }
+        }
       }) = c
       c.gridy = 5
       layout(Swing.VGlue) = c

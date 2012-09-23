@@ -30,7 +30,7 @@ abstract class BaseSetting[ValueType, GUIType <: Component, GUIStorage]()(implic
       true
     } else {
       errorLabel.foreach(label => {
-	label.text = errorMessage
+        label.text = errorMessage
         label.visible = true
       })
       false

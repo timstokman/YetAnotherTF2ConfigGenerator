@@ -52,8 +52,8 @@ alias hide_weapon "r_drawviewmodel 0"
 <%= bindif(previousWeapon, "previous_weapon") %>
 <%= bindif(nextInvWeapon, "next_inv_weapon") %>
 <%= bindif(prevInvWeapon, "prev_inv_weapon") %>
-<%= bindif(primAttack, "\"+attack; current_weapon_vis_if_shootswitch\"") %>
-<%= bindif(secAttack, "\"+attack2; current_weapon_vis_if_shootswitch\"") %>
+<%= bindif(primAttack, "\"+attack; current_vis_shootswitch\"") %>
+<%= bindif(secAttack, "\"+attack2; current_vis_shootswitch\"") %>
 <%= bindif(normalJump, "+jump") %>
 <%= bindif(requestAccept, "cl_trigger_first_notification") %>
 <%= bindif(requestDecline, "cl_decline_first_notification") %>

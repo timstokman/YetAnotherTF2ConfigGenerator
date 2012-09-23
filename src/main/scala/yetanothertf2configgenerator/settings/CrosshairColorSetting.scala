@@ -55,13 +55,13 @@ case class CrosshairColorSetting(val name : String, val tf2Class : String, val w
   
       labels.zip(guiStorage).foreach(pair => {
         c.anchor = Anchor.LineStart
-	layout(pair._1) = c
-	c.gridx = 1
-	pair._2.preferredSize = new Dimension(math.max(BaseSetting.minSize, pair._2.preferredSize.width), pair._2.preferredSize.height)
+        layout(pair._1) = c
+        c.gridx = 1
+        pair._2.preferredSize = new Dimension(math.max(BaseSetting.minSize, pair._2.preferredSize.width), pair._2.preferredSize.height)
         c.anchor = Anchor.LineEnd
-	layout(pair._2) = c
-	c.gridy = c.gridy + 1
-	c.gridx = 0
+        layout(pair._2) = c
+        c.gridy = c.gridy + 1
+        c.gridx = 0
       })
 
       c.anchor = Anchor.LineStart
