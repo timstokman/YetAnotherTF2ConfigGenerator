@@ -97,10 +97,8 @@ The scripts that were installed now regulate most of your settings inside tf2. C
 Todo
 -----
 
-* Check bind conflicts
-* Live update class specific stuff in the weapons tab
-* Make the GUI a bit prettier (javafx instead of swing maybe)
-* Rewrite code to be a bit (a lot) prettier
+* Prehaps drop P-Rec support in the future (due to disappearance plugin online)
+* Make dialogs copyable
 * Other requests?
 
 Known Bugs
@@ -165,3 +163,11 @@ Version 0.10
 
 Version 0.10.1
 * Bind for the MvM ready toggle
+
+Version 0.11 (not released yet)
+* cleanup backend + GUI
+* Field validation, bind conflict checking
+* Loadable profiles with settings
+* Some options are now settable for each class/weapon
+* Extended backup system
+* Option to enter custom scripts for autoexec or each class seperate

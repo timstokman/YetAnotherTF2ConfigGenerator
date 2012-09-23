@@ -1,177 +1,3 @@
-<%@ val dingEnable : Int %>
-<%@ val dingVolume : Double %>
-<%@ val graphicsConfig : String %>
-<%@ val networkConfig : String %>
-<%@ val movementLeft : String %>
-<%@ val movementRight : String %>
-<%@ val movementFwd : String %>
-<%@ val movementBack : String %>
-<%@ val fov : Int %>
-<%@ val autoreload : Int %>
-<%@ val fastswitch : Int %>
-<%@ val damagenumbers : Int %>
-<%@ val duck : String %>
-<%@ val reloadhud : String %>
-<%@ val suicide : String %>
-<%@ val screenshot : String %>
-<%@ val saveReplay : String %>
-<%@ val quickSwitch : String %>
-<%@ val teamOnlyTalk : String %>
-<%@ val normalTalk : String %>
-<%@ val scoreboardNetgraph : Int %>
-<%@ val medic : String %>
-<%@ val actionSlot : String %>
-<%@ val taunt : String %>
-<%@ val dropItem : String %>
-<%@ val inspect : String %>
-<%@ val say : String %>
-<%@ val teamSay : String %>
-<%@ val scoreboard : String %>
-<%@ val primAttack : String %>
-<%@ val secAttack : String %>
-<%@ val backpack : String %>
-<%@ val switchClass : String %>
-<%@ val switchTeam : String %>
-<%@ val console : String %>
-<%@ val voiceMenu1 : String %>
-<%@ val voiceMenu2 : String %>
-<%@ val voiceMenu3 : String %>
-<%@ val directWeapon1 : String %>
-<%@ val directWeapon2 : String %>
-<%@ val directWeapon3 : String %>
-<%@ val directWeapon4 : String %>
-<%@ val weaponShow : List[Boolean] %>
-<%@ val hideTracers : Boolean %>
-<%@ val weaponColors : List[(Int,Int,Int)] %>
-<%@ val weaponCrosshairs : List[String] %>
-<%@ val weaponScales : List[Int] %>
-<%@ val weaponShow : List[Boolean] %>
-<%@ val primSecSwap : String %>
-<%@ val meleeSwap : String %>
-<%@ val jump : String %>
-<%@ val normalJump : String %>
-<%@ val viewmodelFov : Int %>
-<%@ val sensitivity : Double %>
-<%@ val dingPitchMax : Int %>
-<%@ val dingPitchMin : Int %>
-<%@ val showHealBeam : Boolean %>
-<%@ val autocallThreshold : Int %>
-<%@ val medicRadar : String %>
-<%@ val secAttack : String %>
-<%@ val crouchJumpNotFor : List[String] %>
-<%@ val currentConfig : String %>
-<%@ val disguiseCycle : String %>
-<%@ val disguiseCycleClasses : List[Int] %>
-<%@ val disguiseFriendlyCycle : String %>
-<%@ val disguiseFriendlyCycleClasses : List[Int] %>
-<%@ val disguiseLast : String %>                       
-<%@ val disguiseScout : String %>
-<%@ val disguiseSoldier : String %>
-<%@ val disguisePyro : String %>
-<%@ val disguiseDemo : String %>
-<%@ val disguiseHeavy : String %>
-<%@ val disguiseEngineer : String %>
-<%@ val disguiseMedic : String %>
-<%@ val disguiseSniper : String %>
-<%@ val disguiseSpy : String %>
-<%@ val disguiseFriendlyScout : String %>
-<%@ val disguiseFriendlySoldier : String %>
-<%@ val disguiseFriendlyPyro : String %>
-<%@ val disguiseFriendlyDemo : String %>
-<%@ val disguiseFriendlyHeavy : String %>
-<%@ val disguiseFriendlyEngineer : String %>
-<%@ val disguiseFriendlyMedic : String %>
-<%@ val disguiseFriendlySniper : String %>
-<%@ val disguiseFriendlySpy : String %>
-<%@ val showFlames : Boolean %>
-<%@ val buildSentry : String %>
-<%@ val buildDispenser : String %>
-<%@ val buildEntrance : String %>
-<%@ val buildExit : String %>
-<%@ val zoomSensitivity : Double %>
-<%@ val fullChargeBell : Int %>
-<%@ val noCrossHairZoom : Int %>
-<%@ val enableCrouchJump : Boolean %>
-<%@ val classSpecificEnabled : Map[String, Boolean] %>
-<%@ val classWeaponColors : Map[String, List[(Int, Int, Int)]] %>
-<%@ val classWeaponCrosshairs : Map[String, List[String]] %>
-<%@ val classWeaponScales : Map[String, List[Int]] %>
-<%@ val classWeaponShow : Map[String, List[Boolean]] %>
-<%@ val classSpecificEnabled : Map[String, Boolean] %>
-<%@ val classSensitivity : Map[String, List[Double]] %>
-<%@ val classDingPitchMax : Map[String, List[Int]] %>
-<%@ val classDingPitchMin : Map[String, List[Int]] %>
-<%@ val classDingVolume : Map[String, List[Double]] %>
-<%@ val precEnabled : Boolean %>
-<%@ val precLog : Int %>
-<%@ val precScreens : Int %>
-<%@ val precDeleteUseless : Int %>
-<%@ val precMinStreak : Int %>
-<%@ val precKillDelay : Int %>
-<%@ val precDir : String %>
-<%@ val precMode : Int %>
-<%@ val precMark : String %>
-<%@ val zoom : String %>
-<%@ val zoomFactor : Double %>
-<%@ val unbindList : List[String] %>
-<%@ val destroySentry : String %>
-<%@ val destroyDispenser : String %>
-<%@ val destroyEntrance : String %>
-<%@ val destroyExit : String %>
-<%@ val spray : String %>
-<%@ val requestAccept : String %>
-<%@ val requestDecline : String %>
-<%@ val switchBadnet : String %>
-<%@ val switchGoodnet : String %>
-<%@ val switchLannet : String %>
-<%@ val disguiseMenuToggle : String %>
-<%@ val enableSpecTournamentMode : Int %>
-<%@ val enableRagdolls : Boolean %>
-<%@ val enableSprays : Boolean %>
-<%@ val enableGibs : Boolean %>
-<%@ val previousWeapon : String %>
-<%@ val nextInvWeapon : String %>
-<%@ val prevInvWeapon : String %>
-<%@ val startSpawnSwitch : String %>
-<%@ val finishSpawnSwitch : String %>
-<%@ val voice01 : String %>
-<%@ val voice02 : String %>
-<%@ val voice03 : String %>
-<%@ val voice04 : String %>
-<%@ val voice05 : String %>
-<%@ val voice06 : String %>
-<%@ val voice07 : String %>
-<%@ val voice10 : String %>
-<%@ val voice11 : String %>
-<%@ val voice12 : String %>
-<%@ val voice13 : String %>
-<%@ val voice14 : String %>
-<%@ val voice15 : String %>
-<%@ val voice16 : String %>
-<%@ val voice17 : String %>
-<%@ val voice20 : String %>
-<%@ val voice21 : String %>
-<%@ val voice22 : String %>
-<%@ val voice23 : String %>
-<%@ val voice24 : String %>
-<%@ val voice25 : String %>
-<%@ val voice26 : String %>
-<%@ val voice27 : String %>
-<%@ val viewmodelSwitchMode : String %>
-<%@ val switchSpec : String %>
-<%@ val classInterpRatio : Map[String, Double] %>
-<%@ val showViewmodelCloak : Boolean %>
-<%@ val medicSayUber : String %>
-<%@ val medicSayFake : String %>
-<%@ val toggleReady : String %>
-
-#import(yatf2configgenerator.ConfigRender._)
-
-//unbind keys
-#for(i <- 1 to unbindList.size)
-<%= unbindif(unbindList(i - 1)) %>
-#end
-
 //exec other configs needed
 exec reset
 exec net
@@ -185,17 +11,10 @@ exec <%= graphicsConfig %>
 #end
 
 //null-cancelling movement
-#if (viewmodelSwitchMode == "both" || viewmodelSwitchMode == "after-strafing")
-alias +move_forward "-back; +forward; alias if_forward +forward; current_weapon_vis"
-alias +move_back "-forward; +back; alias if_back +back; current_weapon_vis"
-alias +move_left "-moveright; +moveleft; alias if_left +moveleft; current_weapon_vis"
-alias +move_right "-moveleft; +moveright; alias if_right +moveright; current_weapon_vis"
-#else
-alias +move_forward "-back; +forward; alias if_forward +forward"
-alias +move_back "-forward; +back; alias if_back +back"
-alias +move_left "-moveright; +moveleft; alias if_left +moveleft"
-alias +move_right "-moveleft; +moveright; alias if_right +moveright"
-#end
+alias +move_forward "-back; +forward; alias if_forward +forward; current_weapon_vis_if_strafeswitch"
+alias +move_back "-forward; +back; alias if_back +back; current_weapon_vis_if_strafeswitch"
+alias +move_left "-moveright; +moveleft; alias if_left +moveleft; current_weapon_vis_if_strafeswitch"
+alias +move_right "-moveleft; +moveright; alias if_right +moveright; current_weapon_vis_if_strafeswitch"
 alias -move_forward "-forward; if_back; alias if_forward """
 alias -move_back "-back; if_forward; alias if_back """
 alias -move_left "-moveleft; if_right; alias if_left """
@@ -207,7 +26,7 @@ alias if_right ""
 
 //weapon switch
 #for (slot <- 1 to 3)
-alias weapon_admin_<%= slot %> "weap_ding_<%= slot %>; weap_sens_<%= slot %>; cross_<%= slot %>; alias current_weapon_vis weap_vis_<%= slot %>; alias current_weapon_sens weap_sens_<%= slot %>; alias current_zoom_sens weap_zoom_sens_<%= slot %>; weapon_slot_spec_admin_<%= slot %>; alias prev_inv_weapon weapon<%= if(slot == 1) 3 else slot - 1 %>; alias next_inv_weapon weapon<%= if(slot == 3) 1 else slot + 1 %>; show_weapon"
+alias weapon_admin_<%= slot %> "weap_ding_<%= slot %>; weap_sens_<%= slot %>; cross_<%= slot %>; alias current_weapon_sens weap_sens_<%= slot %>; alias current_zoom_sens weap_zoom_sens_<%= slot %>; weapon_slot_spec_admin_<%= slot %>; alias prev_inv_weapon weapon<%= if(slot == 1) 3 else slot - 1 %>; alias next_inv_weapon weapon<%= if(slot == 3) 1 else slot + 1 %>; alias current_weapon_vis_if_strafeswitch current_weapon_vis_if_strafeswitch_<%= slot %>; alias current_weapon_vis_if_shootswitch current_weapon_vs_if_shootswitch_<%= slot %>; current_weapon_vis_if_immediatelyswitch_<% slot %>; show_weapon"
 #if(slot == 1)
 alias weapon_slot_spec_admin_<%= slot %> "alias primsecswap weapon2;         alias othermeleeswap weapon3;         set_previous_weapon_<%= slot %>; alias set_previous_weapon_1 "";                              alias set_previous_weapon_2 "alias previous_weapon weapon1"; alias set_previous_weapon_3 "alias previous_weapon weapon1""
 #elseif(slot == 2)
@@ -215,11 +34,7 @@ alias weapon_slot_spec_admin_<%= slot %> "alias primsecswap weapon1;         ali
 #else
 alias weapon_slot_spec_admin_<%= slot %> "alias primsecswap previous_weapon; alias othermeleeswap previous_weapon; set_previous_weapon_<%= slot %>; alias set_previous_weapon_1 "alias previous_weapon weapon3"; alias set_previous_weapon_2 "alias previous_weapon weapon3"; alias set_previous_weapon_3 ""                             "
 #end
-#if(viewmodelSwitchMode == "immediately")
-alias weapon<%= slot %> "slot<%= slot %>; weapon_admin_<%= slot %>; current_weapon_vis"
-#else
 alias weapon<%= slot %> "slot<%= slot %>; weapon_admin_<%= slot %>"
-#end
 #end
 
 //teamonly voicebind
@@ -243,14 +58,14 @@ alias finish_spawn_switch ""
 
 //options
 tf_dingalingaling <%= dingEnable %>
-tf_remember_activeweapon 1 //this is needed for the weapon switching script
+tf_remember_activeweapon 1 //this is needed for the weapon switching script, otherwise it gets out of sync on death/respawn
 fov_desired <%= fov %>
 cl_autoreload <%= autoreload %>
 hud_fastswitch <%= fastswitch %>
 hud_combattext <%= damagenumbers %>
 cl_use_tournament_specgui <%= enableSpecTournamentMode %>
 
-//graphics options, I define them here so people won't have to edit stuff in the graphicsconfigs, they're outcommented in chris' graphics configs themselves
+//graphics options, I define them here so people will not have to edit stuff in the graphicsconfigs, they're outcommented in chris' graphics configs themselves
 #if(enableSprays)
 // Enable sprays
 cl_playerspraydisable 0
@@ -297,68 +112,6 @@ g_ragdoll_lvfadespeed 0
 ragdoll_sleepaftertime 0
 #end
 
-//binds
-<%= bindif(requestAccept, "cl_trigger_first_notification") %>
-<%= bindif(requestDecline, "cl_decline_first_notification") %>
-<%= bindif(switchBadnet, "bad_net") %>
-<%= bindif(switchGoodnet, "good_net") %>
-<%= bindif(switchLannet, "lan_net") %>
-<%= bindif(zoom, "+zoom_in") %>
-<%= bindif(movementFwd, "+move_forward") %>
-<%= bindif(movementBack, "+move_back") %>
-<%= bindif(movementLeft, "+move_left") %>
-<%= bindif(movementRight, "+move_right") %>
-<%= bindif(quickSwitch, "+quickswitch") %>
-<%= bindif(suicide, "kill") %>
-<%= bindif(reloadhud, "\"hud_reloadscheme; record fix; stop\"") %>
-<%= bindif(screenshot, "screenshot") %>
-<%= bindif(saveReplay, "save_replay") %>
-<%= bindif(duck, "+duck") %>
-<%= bindif(taunt, "taunt") %>
-<%= bindif(say, "say") %>
-<%= bindif(teamSay, "say_team") %>
-<%= bindif(teamOnlyTalk, "+teamonly") %>
-<%= bindif(normalTalk, "+voicerecord") %>
-<%= bindif(scoreboard, "+sb") %>
-<%= bindif(inspect, "inspect") %>
-<%= bindif(medic, "") %>"voicemenu 0 0"
-<%= bindif(backpack, "open_charinfo_direct") %>
-<%= bindif(dropItem, "dropitem") %>
-<%= bindif(switchTeam, "changeteam") %>
-<%= bindif(switchClass, "changeclass") %>
-<%= bindif(console, "toggleconsole") %>
-<%= bindif(actionSlot, "use_action_slot_item") %>
-<%= bindif(voiceMenu1, "voice_menu_1") %>
-<%= bindif(voiceMenu2, "voice_menu_2") %>
-<%= bindif(voiceMenu3, "voice_menu_3") %>
-<%= bindif(spray, "\"impulse 201\"") %>
-<%= bindif(startSpawnSwitch, "start_spawn_switch") %>
-<%= bindif(finishSpawnSwitch, "finish_spawn_switch") %>
-<%= bindif(voice01, "\"voicemenu 0 1\"") %>
-<%= bindif(voice02, "\"voicemenu 0 2\"") %>
-<%= bindif(voice03, "\"voicemenu 0 3\"") %>
-<%= bindif(voice04, "\"voicemenu 0 4\"") %>
-<%= bindif(voice05, "\"voicemenu 0 5\"") %>
-<%= bindif(voice06, "\"voicemenu 0 6\"") %>
-<%= bindif(voice07, "\"voicemenu 0 7\"") %>
-<%= bindif(voice10, "\"voicemenu 1 0\"") %>
-<%= bindif(voice11, "\"voicemenu 1 1\"") %>
-<%= bindif(voice12, "\"voicemenu 1 2\"") %>
-<%= bindif(voice13, "\"voicemenu 1 3\"") %>
-<%= bindif(voice14, "\"voicemenu 1 4\"") %>
-<%= bindif(voice15, "\"voicemenu 1 5\"") %>
-<%= bindif(voice16, "\"voicemenu 1 6\"") %>
-<%= bindif(voice20, "\"voicemenu 2 0\"") %>
-<%= bindif(voice21, "\"voicemenu 2 1\"") %>
-<%= bindif(voice22, "\"voicemenu 2 2\"") %>
-<%= bindif(voice23, "\"voicemenu 2 3\"") %>
-<%= bindif(voice24, "\"voicemenu 2 4\"") %>
-<%= bindif(voice25, "\"voicemenu 2 5\"") %>
-<%= bindif(voice26, "\"voicemenu 2 6\"") %>
-<%= bindif(voice27, "\"voicemenu 2 7\"") %>
-<%= bindif(switchSpec, "+attack") %>
-<%= bindif(toggleReady, "player_ready_toggle") %>
-
 #if(precEnabled)
 //P-Rec
 prec_log <%= precLog %>
@@ -370,3 +123,5 @@ prec_dir <%= precDir %>
 prec_mode <%= precMode %>
 <%= bindif(precMark, "prec_mark") %>
 #end
+
+<%= autoexecExtraScript %>

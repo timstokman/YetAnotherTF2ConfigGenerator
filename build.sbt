@@ -6,15 +6,15 @@ version := "0.10.1"
 
 scalaVersion := "2.9.2"
 
-scalacOptions ++= Seq("-deprecation", "-optimise", "-explaintypes", "-verbose")
+logLevel := Level.Warn
+
+scalacOptions ++= Seq("-deprecation", "-optimise", "-explaintypes", "-verbose", "-unchecked")
 
 libraryDependencies += "org.scala-lang" % "scala-swing" % "2.9.2"
 
 libraryDependencies += "org.fusesource.scalate" % "scalate-page" % "1.5.3"
 
 libraryDependencies += "com.thoughtworks.xstream" % "xstream" % "1.4.2"
-
-libraryDependencies += "commons-io" % "commons-io" % "2.4"
 
 ivyXML :=
   <dependencies>
@@ -23,6 +23,6 @@ ivyXML :=
     </dependency>
   </dependencies>
 
-mainClass := Some("yatf2configgenerator.Runner")
+mainClass := Some("yetanothertf2configgenerator.GUIRunner")
 
 assemblySettings
