@@ -7,14 +7,14 @@ import GridBagPanel._
 import Swing._
 
 abstract class ListSetting[ContainedType](val displayMap : Map[ContainedType, String])(implicit valueManifest : Manifest[List[ContainedType]]) extends BaseSetting[List[ContainedType], GridBagPanel, ListView[ContainedType]]()(valueManifest) {
-  val defaultValue = List[ContainedType]()
+  val defaultValue = Some(List[ContainedType]())
   val itemValues = displayMap.keys.toSeq
   val listRenderer = ListView.Renderer[ContainedType, String](v => displayMap(v))
   val listMinimumSize = new Dimension(120, 140)
 
   def errorMessage = "Items must be one of " + displayMap.values.mkString(", ")
 
-  def createGuiStorage = new ListView[ContainedType](defaultValue) {
+  def createGuiStorage = new ListView[ContainedType](defaultValue.getOrElse(List())) {
     renderer = listRenderer
     border = EtchedBorder(Raised)
     preferredSize = listMinimumSize

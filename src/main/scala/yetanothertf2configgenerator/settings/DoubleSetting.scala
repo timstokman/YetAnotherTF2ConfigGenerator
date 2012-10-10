@@ -3,7 +3,7 @@ package yetanothertf2configgenerator.settings
 import scala.swing._
 import event._
 
-case class DoubleSetting(val name : String, val labelText : String, val tf2Class : String, val weapon : Int, val defaultValue : Double, val settingType : Symbol, val minValue : Option[Double], val maxValue : Option[Double]) extends SimpleGridBaseSetting[Double, TextField] {
+case class DoubleSetting(val name : String, val labelText : String, val tf2Class : String, val weapon : Int, val defaultValue : Option[Double], val settingType : Symbol, val minValue : Option[Double], val maxValue : Option[Double]) extends SimpleGridBaseSetting[Double, TextField] {
   def validate = {
     try {
       val storedValue = parseValue(GUIStorage)

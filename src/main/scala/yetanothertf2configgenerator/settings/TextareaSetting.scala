@@ -4,7 +4,7 @@ import scala.swing._
 import event._
 import GridBagPanel._
 
-case class TextareaSetting(val name : String, val labelText : String, val tf2Class : String, val weapon : Int, val defaultValue : String, val settingType : Symbol) extends SimpleGridBaseSetting[String, TextArea] {
+case class TextareaSetting(val name : String, val labelText : String, val tf2Class : String, val weapon : Int, val defaultValue : Option[String], val settingType : Symbol) extends SimpleGridBaseSetting[String, TextArea] {
   def validate = true
 
   def errorMessage = ""

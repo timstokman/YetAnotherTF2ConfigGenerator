@@ -3,7 +3,7 @@ package yetanothertf2configgenerator.settings
 import scala.swing._
 import event._
 
-case class StringSetting(val name : String, val labelText : String, val tf2Class : String, val weapon : Int, val defaultValue : String, val settingType : Symbol) extends SimpleGridBaseSetting[String, TextField] {
+case class StringSetting(val name : String, val labelText : String, val tf2Class : String, val weapon : Int, val defaultValue : Option[String], val settingType : Symbol) extends SimpleGridBaseSetting[String, TextField] {
   def validate = true
 
   def errorMessage = ""

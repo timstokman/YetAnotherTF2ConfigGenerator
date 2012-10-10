@@ -37,9 +37,9 @@ object ConfigGenerator {
     "maxquality",
     "net")
   
-  def bindif(key : String, to : String) = if(key == "none") "" else "bind " + key + " " + to   
+  def bindif(key : String, to : String) = if(key == "nothing") "" else "bind " + key + " " + to   
   
-  def unbindif(key : String) = if(key == "all") "unbindall" else if(key == "none") "" else "unbind " + key
+  def unbindif(key : String) = if(key == "all") "unbindall" else if(key == "nothing") "" else "unbind " + key
 
   def generateTemplatesWithVariableDeclarations {
     configNames.foreach(configName => {

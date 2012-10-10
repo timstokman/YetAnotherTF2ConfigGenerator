@@ -12,7 +12,7 @@ object SteamUsernameSetting {
 }
 
 case class SteamUsernameSetting(val name : String, val settingType : Symbol) extends AbstractChoiceSetting(SteamDirectorySetting.steamDirectoryFirstGuess.map(dir => SteamUsernameSetting.getUsernames(new File(dir))).getOrElse(List[String]())) {
-  val defaultValue = ""
+  val defaultValue = None
   val labelText = "Username"
   val weapon = 0
   val tf2Class = "any"

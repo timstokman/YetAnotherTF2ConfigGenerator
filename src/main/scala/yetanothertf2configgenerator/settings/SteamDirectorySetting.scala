@@ -24,7 +24,7 @@ case class SteamDirectorySetting(val name : String, val settingType : Symbol) ex
   val weapon = 0
   val labelText = "Steam directory"
   val errorMessage = "Not a valid steam directory"
-  val defaultValue = SteamDirectorySetting.steamDirectoryFirstGuess.getOrElse("")
+  val defaultValue = Some(SteamDirectorySetting.steamDirectoryFirstGuess.getOrElse(""))
     
   def createGui(guiStorage : TextField) = {
     new GridBagPanel {

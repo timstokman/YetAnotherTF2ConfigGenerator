@@ -12,7 +12,8 @@ abstract class AbstractChoiceSetting(var choices : Seq[String]) extends SimpleGr
   def refreshChoices(storage: ComboBox[String]) {
     storage.peer.removeAllItems
     choices.foreach(choice => storage.peer.addItem(choice))
-    putValue(storage, choices.head)    
+    putValue(storage, choices.head)
+    currentValue = choices.head
   }
   
   def createGuiStorage = {

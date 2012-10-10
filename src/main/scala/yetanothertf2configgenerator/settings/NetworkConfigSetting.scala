@@ -10,7 +10,7 @@ object NetworkConfigSetting {
 
 case class NetworkConfigSetting(val name : String, val labelText : String) extends AbstractChoiceSetting(NetworkConfigSetting.networkConfigs) {
   val settingType = 'options
-  val defaultValue = "none"
+  val defaultValue = Some("none")
   val weapon = 0
   val tf2Class = "any"
 }

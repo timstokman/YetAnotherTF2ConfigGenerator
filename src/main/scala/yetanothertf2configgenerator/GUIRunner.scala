@@ -21,6 +21,9 @@ object GUIRunner extends SwingApplication {
   val aboutURI = new URI("https://github.com/logophobia/YetAnotherTF2ConfigGenerator#yet-another-tf2-config-generator")
   val configfileRegex = """.*\.cfg$"""
 
+  //for debugging
+  override def main(args: Array[String]) { startup(args) }
+    
   override def startup(args: Array[String]) {
     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName)
     topFrame.pack
@@ -81,10 +84,8 @@ object GUIRunner extends SwingApplication {
   def getTF2Directory = {
     Setting.getSettingByName("steamDir").flatMap(dir => {
       Setting.getSettingByName("steamUser").flatMap(user => {
-        println("has user and dir")
         if(dir.validateAndError && user.validateAndError) {
           val cfgDir = new File(List(dir.value, "steamapps", user.value, "team fortress 2", "tf", "cfg").mkString(File.separator))
-          println("cfgs: " + cfgDir.getPath + " " + cfgDir.exists)
           if(cfgDir.exists)
             Some(cfgDir)
           else

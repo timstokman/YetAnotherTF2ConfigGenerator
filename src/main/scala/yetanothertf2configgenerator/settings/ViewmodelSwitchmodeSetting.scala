@@ -9,5 +9,5 @@ object ViewmodelSwitchmodeSetting {
 
 case class ViewmodelSwitchmodeSetting(val name : String, val labelText : String, val tf2Class : String, val weapon : Int) extends AbstractChoiceSetting(ViewmodelSwitchmodeSetting.switchModes) {
   val settingType = 'options
-  val defaultValue = "both"
+  val defaultValue = Some("both")
 }

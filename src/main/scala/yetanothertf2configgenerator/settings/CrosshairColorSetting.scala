@@ -7,7 +7,7 @@ import javax.swing.JColorChooser
 import GridBagPanel._
 
 case class CrosshairColorSetting(val name : String, val tf2Class : String, val weapon : Int, val settingType : Symbol) extends BaseSetting[(Int, Int, Int), GridBagPanel, List[TextField]] {
-  val defaultValue = (255, 255, 255)
+  val defaultValue = Some((255, 255, 255))
   val labelText = ""
 
   def getReaction(fire : () => Unit) = {

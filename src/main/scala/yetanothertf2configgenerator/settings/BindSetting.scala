@@ -85,7 +85,7 @@ object BindSetting {
 case class BindSetting(val name : String, val labelText : String, val tf2Class : String) extends AbstractChoiceSetting(BindSetting.bindKeys) {
   val settingType = 'binds
   val weapon = 0
-  val defaultValue = "none"
+  val defaultValue = Some("nothing")
   var lastConflicts : Traversable[BindSetting] = List()
 
   BindSetting += this

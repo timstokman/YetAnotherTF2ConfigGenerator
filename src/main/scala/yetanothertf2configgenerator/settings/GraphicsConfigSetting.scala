@@ -19,7 +19,7 @@ case class GraphicsConfigSetting(val name : String, val labelText : String) exte
   val settingType = 'options
   val weapon = 0
   val tf2Class = "any"
-  val defaultValue = "none"
+  val defaultValue = Some("none")
 
   override def extraMessage = GraphicsConfigSetting.graphicsConfigsInfo.get(value)
 }

@@ -16,9 +16,9 @@ cl_interp_ratio <%= classInterpRatio(currentConfig).toString %>
   alias weap_ding_<%= slot %> "tf_dingaling_pitchmaxdmg <%= classWeaponDingPitchMax(currentConfig)(slot - 1) %>; tf_dingaling_pitchmindmg <%= classWeaponDingPitchMin(currentConfig)(slot - 1) %>; tf_dingaling_volume <%= classWeaponDingVolume(currentConfig)(slot - 1).toString %>"
   alias weap_zoom_sens_<%= slot %> "sensitivity <%= (classWeaponSensitivity(currentConfig)(slot - 1) / zoomFactor).toString %>"
   <% if(classWeaponShow(currentConfig)(slot - 1)) { %>
-    alias weap_vis_<%= slot %> show_weapon
+    alias weapon_vis_<%= slot %> show_weapon
   <% } else { %>
-    alias weap_vis_<%= slot %> hide_weapon
+    alias weapon_vis_<%= slot %> hide_weapon
   <% } %>
 
   <% if(classWeaponViewmodelSwitchMode(currentConfig)(slot - 1) == "both" || classWeaponViewmodelSwitchMode(currentConfig)(slot - 1) == "after-shooting") { %>

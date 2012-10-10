@@ -30,7 +30,7 @@ object CrosshairSetting {
 case class CrosshairSetting(val name : String, val labelText : String, val tf2Class : String, val weapon : Int) extends AbstractChoiceSetting(CrosshairSetting.crosshairTypes) {
   val crosshairImageSize = 64
   val settingType = 'options
-  val defaultValue = "\"\""
+  val defaultValue = Some("\"\"")
   override val canSubscribe = true
   private val imagePanel = new CrosshairSetting.ImagePanel(None, Some(new Color(1.0f, 1.0f, 1.0f))) { this.preferredSize = new Dimension(crosshairImageSize, crosshairImageSize) }
 

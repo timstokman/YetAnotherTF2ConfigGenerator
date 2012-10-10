@@ -3,7 +3,7 @@ package yetanothertf2configgenerator.settings
 import scala.swing._
 import event._
 
-case class IntAsBooleanSetting(val name : String, val labelText : String, val tf2Class : String, val weapon : Int, val defaultValue : Int, val settingType : Symbol) extends SimpleGridBaseSetting[Int, CheckBox] {
+case class IntAsBooleanSetting(val name : String, val labelText : String, val tf2Class : String, val weapon : Int, val defaultValue : Option[Int], val settingType : Symbol) extends SimpleGridBaseSetting[Int, CheckBox] {
   def validate = true
 
   def errorMessage = ""

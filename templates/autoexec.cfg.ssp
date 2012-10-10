@@ -1,3 +1,6 @@
+//reset everything
+unbindall
+
 //exec other configs needed
 exec reset
 exec net
@@ -42,7 +45,7 @@ alias +teamonly "+teamtalk; +voicerecord"
 alias -teamonly "-teamtalk; -voicerecord"
 
 //crouch jump
-alias +crouchjump "+jump; +duck"
+alias +crouchjump "+jump; +duck; current_vis_strafeswitch"
 alias -crouchjump "-duck; -jump"
 
 //scoreboard with netgraph

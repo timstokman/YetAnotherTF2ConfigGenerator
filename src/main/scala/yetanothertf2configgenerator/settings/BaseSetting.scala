@@ -12,7 +12,7 @@ abstract class BaseSetting[ValueType, GUIType <: Component, GUIStorage]()(implic
   protected var currentValue : ValueType = null.asInstanceOf[ValueType]
 
   val canSubscribe = false
-  def defaultValue : ValueType
+  def defaultValue : Option[ValueType]
   def innerName = name
   def canSubscribeTo(setting : Setting[_, _]) = false
   def errorMessage : String
@@ -57,9 +57,15 @@ abstract class BaseSetting[ValueType, GUIType <: Component, GUIStorage]()(implic
   val templateVariableDeclaration = "<%@ val " + name + ": " + valueManifest.toString + " %>"
 
   lazy val GUIStorage = {
-    currentValue = defaultValue
-    val el = createGuiStorage
-    putValue(el, currentValue)
+    val el = createGuiStorage    
+    defaultValue.foreach(value => {
+      currentValue = value
+      putValue(el, currentValue) 
+    })
+    if(defaultValue.isEmpty) {
+      currentValue = parseValue(el)
+    }
+    
     putReaction(getReaction(onChange), el)
     el
   }
