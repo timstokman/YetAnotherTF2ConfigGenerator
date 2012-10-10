@@ -9,7 +9,19 @@ abstract class AbstractChoiceSetting(var choices : Seq[String]) extends SimpleGr
 
   override def errorMessage = value + " has to be one of " + choices.mkString(", ")
 
-  def createGuiStorage = new ComboBox[String](choices)
+  def refreshChoices(storage: ComboBox[String]) {
+    storage.peer.removeAllItems
+    choices.foreach(choice => storage.peer.addItem(choice))
+    putValue(storage, choices.head)    
+  }
+  
+  def createGuiStorage = {
+    val storage = new ComboBox[String](List()) {
+      peer.setModel(new javax.swing.DefaultComboBoxModel)
+    }
+    refreshChoices(storage)
+    storage
+  }
 
   def parseValue(guiStorage : ComboBox[String]) = guiStorage.selection.item
 

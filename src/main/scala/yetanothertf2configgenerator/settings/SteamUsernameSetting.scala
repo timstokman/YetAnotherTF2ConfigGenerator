@@ -11,16 +11,12 @@ object SteamUsernameSetting {
   def getUsernames(steamDirectory : File) = steamDirectory.listFiles.filter(_.getName == "steamapps")(0).listFiles.filter(file => !commonDirs.exists(_ == file.getName) && file.isDirectory).map(_.getName).toList
 }
 
-case class SteamUsernameSetting(val name : String, val settingType : Symbol) extends AbstractChoiceSetting(List()) {
+case class SteamUsernameSetting(val name : String, val settingType : Symbol) extends AbstractChoiceSetting(SteamDirectorySetting.steamDirectoryFirstGuess.map(dir => SteamUsernameSetting.getUsernames(new File(dir))).getOrElse(List[String]())) {
   val defaultValue = ""
   val labelText = "Username"
   val weapon = 0
   val tf2Class = "any"
   override val canSubscribe = true
-
-  override def createGuiStorage = new ComboBox[String](SteamDirectorySetting.steamDirectoryFirstGuess.map(dir => SteamUsernameSetting.getUsernames(new File(dir))).getOrElse(List[String]())) {
-    peer.setModel(new javax.swing.DefaultComboBoxModel)
-  }
 
   override def canSubscribeTo(setting : Setting[_, _]) = {
     setting match {
@@ -38,9 +34,7 @@ case class SteamUsernameSetting(val name : String, val settingType : Symbol) ext
         val steamDir = new File(newValue)
         val usernames = SteamUsernameSetting.getUsernames(steamDir)
         choices = usernames
-        GUIStorage.peer.removeAllItems
-        usernames.foreach(name => GUIStorage.peer.addItem(name))
-        value = usernames.head
+        refreshChoices(GUIStorage)
       }
       case _ => { }
     }
