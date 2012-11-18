@@ -24,6 +24,7 @@ abstract class BaseSetting[ValueType, GUIType <: Component, GUIStorage]()(implic
   def getReaction(fire : () => Unit) : Reaction
   def putReaction(reaction : Reaction, guiStorage : GUIStorage)
   def createGui(guiStorage : GUIStorage) : GUIType
+  
   def validateAndError = {
     if(validate) {
       errorLabel.foreach(_.visible = false)
@@ -76,6 +77,7 @@ abstract class BaseSetting[ValueType, GUIType <: Component, GUIStorage]()(implic
 
   def value_=(newValue : ValueType) {
     putValue(GUIStorage, newValue)
+    onChange
   }
 
   def value = currentValue

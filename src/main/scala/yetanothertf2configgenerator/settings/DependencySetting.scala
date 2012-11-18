@@ -80,7 +80,7 @@ abstract class DependencySetting[ValueType, GUIType <: Component, GatheredType <
         } else {
           //not generic enough to handle more then two nestings, but that'd be too confusing anyway in a gui
           dependingSettings.foreach(s => {
-            s match {
+            (s: @unchecked) match {
               case d : DependencySetting[ValueType, GUIType, _, _] => {
                 d.setInnerValueFiltered(newVal, setting => d.getKey(pub) == d.getKey(setting))
               }
