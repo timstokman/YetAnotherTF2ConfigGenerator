@@ -51,25 +51,26 @@ object GUIRunner extends SwingApplication {
     }
   }
 
-  def fillProfileMenu(menu : Menu) {
-    menu.contents.clear
-    val profileFile = """^(.*)\.xml$""".r
-    new File(profileDir).listFiles.foreach(file => {
-      file.getName match {
-        case profileFile(profileName) => {
-          menu.contents += new MenuItem(Action(profileName) {
-            try {
-              Setting.applyProfile(ProfileManager.readProfile(profileName))
-            } catch {
-              case e : Exception => {
-                handleException(e)
+  def createProfileMenu = {
+    new Menu("Profiles") {
+      val profileFile = """^(.*)\.xml$""".r
+      new File(profileDir).listFiles.foreach(file => {
+        file.getName match {
+          case profileFile(profileName) => {
+            contents += new MenuItem(Action(profileName) {
+              try {
+                Setting.applyProfile(ProfileManager.readProfile(profileName))
+              } catch {
+                case e : Exception => {
+                  handleException(e)
+                }
               }
-            }
-          })
+            })
+          }
+          case _ =>
         }
-        case _ =>
-      }
-    })
+      })
+    }
   }
 
   def progressWindow = new Dialog {
@@ -180,6 +181,7 @@ object GUIRunner extends SwingApplication {
   }
 
   def createMenuBar : MenuBar = new MenuBar {
+    val topMenu = this
     contents += new Menu("File") {
       contents += new MenuItem(Action("Save configs to steam directory") {
         tf2DirOrError(dir => saveConfigsTo(dir))
@@ -189,15 +191,14 @@ object GUIRunner extends SwingApplication {
       })
       contents += new MenuItem(Action("Save settings") {
         saveProfile
-        topFrame.menuBar = createMenuBar
+        topMenu.contents.update(1, createProfileMenu)
+        topMenu.revalidate
       })
       contents += new MenuItem(Action("Quit") {
         quit
       })
     }
-    contents += new Menu("Profiles") {
-      fillProfileMenu(this)
-    }
+    contents += createProfileMenu
     contents += new Menu("Backup") {
       contents += new MenuItem(Action("Backup config files") {
         tf2DirOrError(steamDir => {

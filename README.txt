@@ -97,6 +97,8 @@ The scripts that were installed now regulate most of your settings inside tf2. C
 Todo (0.11)
 -----
 
+* Select bind by pressing appropiate key
+* Read existing setting from config
 * Prehaps drop P-Rec support in the future (due to disappearance plugin online)
 * Make dialogs copyable
 * Initial user isn't selected if steam directory is pre-filled

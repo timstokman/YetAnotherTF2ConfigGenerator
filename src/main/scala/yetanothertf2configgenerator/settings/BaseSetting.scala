@@ -58,12 +58,14 @@ abstract class BaseSetting[ValueType, GUIType <: Component, GUIStorage]()(implic
 
   lazy val GUIStorage = {
     val el = createGuiStorage    
-    defaultValue.foreach(value => {
-      currentValue = value
-      putValue(el, currentValue) 
-    })
-    if(defaultValue.isEmpty) {
-      currentValue = parseValue(el)
+    defaultValue match {
+      case Some(value) => {
+        currentValue = value
+        putValue(el, currentValue) 
+      }
+      case None => {
+        currentValue = parseValue(el)
+      }
     }
     
     putReaction(getReaction(onChange), el)
