@@ -191,6 +191,7 @@ case class BindSetting(val name : String, val labelText : String, val tf2Class :
       c.gridwidth = 1
       c.gridy = 1
       layout(label.getOrElse(Swing.HGlue)) = c
+      c.weightx = 0
       c.gridx = 1
       c.anchor = Anchor.LineEnd      
       guiStorage.preferredSize = new Dimension(math.max(BaseSetting.minSize, guiStorage.preferredSize.width), guiStorage.preferredSize.height)

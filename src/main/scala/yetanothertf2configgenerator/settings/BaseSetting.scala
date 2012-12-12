@@ -14,7 +14,7 @@ abstract class BaseSetting[ValueType, GUIType <: Component, GUIStorage]()(implic
   val canSubscribe = false
   def defaultValue : Option[ValueType]
   def innerName = name
-  def canSubscribeTo(setting : Setting[_, _]) = false
+  def canSubscribeTo(setting : Setting[_, _ <: Component]) = false
   def errorMessage : String
   def parseValue(guiStorage : GUIStorage) : ValueType
   def putValue(guiStorage : GUIStorage, value : ValueType)
@@ -49,7 +49,7 @@ abstract class BaseSetting[ValueType, GUIType <: Component, GUIStorage]()(implic
 
   def valueClass = valueManifest.getClass
 
-  def notify(publisher : Setting[_, _], event : SettingEvent[_, _]) { }
+  def notify(publisher : Setting[_, _ <: Component], event : SettingEvent[_, _ <: Component]) { }
 
   val labelText : String
 

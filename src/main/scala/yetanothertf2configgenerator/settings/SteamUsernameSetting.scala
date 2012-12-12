@@ -18,7 +18,7 @@ case class SteamUsernameSetting(val name : String, val settingType : Symbol) ext
   val tf2Class = "any"
   override val canSubscribe = true
 
-  override def canSubscribeTo(setting : Setting[_, _]) = {
+  override def canSubscribeTo(setting : Setting[_, _ <: Component]) = {
     setting match {
       case s : SteamDirectorySetting => {
         true
@@ -28,7 +28,7 @@ case class SteamUsernameSetting(val name : String, val settingType : Symbol) ext
     }
   }
 
-  override def notify(publisher : Setting[_, _], event : SettingEvent[_, _]) {
+  override def notify(publisher : Setting[_, _ <: Component], event : SettingEvent[_, _ <: Component]) {
     event match {
       case SettingChanged(oldValue : String, newValue : String) => {
         val steamDir = new File(newValue)

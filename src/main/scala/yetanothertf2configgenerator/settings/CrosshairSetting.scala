@@ -65,15 +65,15 @@ case class CrosshairSetting(val name : String, val labelText : String, val tf2Cl
     imagePanel.repaint
   }
 
-  override def canSubscribeTo(setting : Setting[_, _]) = {
+  override def canSubscribeTo(setting : Setting[_, _ <: Component]) = {
     setting match {
       case CrosshairColorSetting(_, colorTf2Class, colorWeapon, _) => colorTf2Class == tf2Class && colorWeapon == weapon
       case _ => false
     }
   }
 
-  override def notify(publisher : Setting[_, _], event : SettingEvent[_, _]) { 
-    event match {
+  override def notify(publisher : Setting[_, _ <: Component], event : SettingEvent[_, _ <: Component]) { 
+    (event: @unchecked) match {
       case SettingChanged(_, newValue : (Int, Int, Int)) => {
         imagePanel.color = Some(new Color(newValue._1 / 255.0f, newValue._2 / 255.0f, newValue._3 / 255.0f))
         imagePanel.repaint

@@ -19,7 +19,7 @@ abstract class DependencySetting[ValueType, GUIType <: Component, GatheredType <
   def weapon = main.weapon
   def valueClass = gatheredManifest.getClass
   def tf2Class = main.tf2Class
-  def canSubscribeTo(s : Setting[_, _]) = false
+  def canSubscribeTo(s : Setting[_, _ <: Component]) = false
   def validateAndError = main.validateAndError && dependingSettings.forall(_.validateAndError)
 
   private def setValues(settings : Seq[Setting[ValueType, GUIType]], value : ValueType) {
@@ -71,8 +71,8 @@ abstract class DependencySetting[ValueType, GUIType <: Component, GatheredType <
     wireMain
   }
 
-  def notify(pub : Setting[_, _], ev : SettingEvent[_, _]) {
-    ev match {
+  def notify(pub : Setting[_, _ <: Component], ev : SettingEvent[_, _ <: Component]) {
+    (ev: @unchecked) match {
       case SettingChanged(oldVal : ValueType, newVal : ValueType) => {
         if(main == pub) {
           setInnerValueNoMain(newVal)

@@ -83,7 +83,7 @@ object Setting {
   }
 
   def applyProfile(profile : Map[String, _]) {
-    profile.foreach(pair => {
+    profile.foreach((pair: (String, Any)) => {
       val (name, value) = backwardsCompatibilityFilter(pair._1, pair._2, profile)
       settings.find(_.name == name) match {
         case Some(setting) => setting.asInstanceOf[Setting[Any, _]].value = value
@@ -123,6 +123,7 @@ object Setting {
     ClassDependencySetting(tf2Class => WeaponDependencySetting(weapon => DoubleSetting("sensitivity", "Mouse sensitivity", tf2Class, weapon, Some(1.0), 'options, Some(0.0), None), true), true),
     ClassDependencySetting(tf2Class => WeaponDependencySetting(weapon => ViewmodelSwitchmodeSetting("viewmodelSwitchMode", "Viewmodel switch mode", tf2Class, weapon), true), true),
     ClassDependencySetting(tf2Class => WeaponDependencySetting(weapon => BooleanSetting("show", "Always show weapon", tf2Class, weapon, Some(false), 'options), false), true),
+    ClassDependencySetting(tf2Class => WeaponDependencySetting(weapon => BooleanSetting("dingBatch", "Batch dingaling", tf2Class, weapon, Some(false), 'options), true), true),
     ClassDependencySetting(tf2Class => WeaponDependencySetting(weapon => CrosshairSetting("crosshairs", "Crosshair type", tf2Class, weapon), false), true),
     ClassDependencySetting(tf2Class => WeaponDependencySetting(weapon => CrosshairColorSetting("colors", tf2Class, weapon, 'options), false), true),
     ClassDependencySetting(tf2Class => WeaponDependencySetting(weapon => IntSetting("scales", "Crosshair scale", tf2Class, weapon, Some(24), 'options, Some(0), None), false), true),
@@ -283,7 +284,7 @@ object Setting {
   lazy val templateVariableDeclarations = getTemplateVariableDeclarations
 }
 
-abstract class Setting[ValueType, GUIType <: Component] extends Publisher[SettingEvent[_, _]] with Subscriber[SettingEvent[_, _], Setting[_, _]]  {
+abstract class Setting[ValueType, GUIType <: Component] extends Publisher[SettingEvent[_, _]] with Subscriber[SettingEvent[_, _ <: Component], Setting[_, _ <: Component]]  {
   var value : ValueType
 
   def valueClass : Class[_]
@@ -300,5 +301,5 @@ abstract class Setting[ValueType, GUIType <: Component] extends Publisher[Settin
   def validate : Boolean
   def validateAndError : Boolean
   def canSubscribe : Boolean
-  def canSubscribeTo(setting : Setting[_, _]) : Boolean
+  def canSubscribeTo(setting : Setting[_, _ <: Component]) : Boolean
 }

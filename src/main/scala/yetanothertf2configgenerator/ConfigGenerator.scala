@@ -12,10 +12,9 @@ object ConfigGenerator {
   val configExtension = ".cfg.ssp"
   val tmpExtension = ".tmp"
 
-  val engine = new TemplateEngine
+  val engine = new TemplateEngine(List(new File(cacheDir)), java.lang.System.getProperty("scalate.mode", "production"))
   engine.escapeMarkup = false
   engine.workingDirectory = new File(cacheDir)
-  engine.sourceDirectories = List(new File(cacheDir))
   engine.allowReload = false
 
   val configNames = List(

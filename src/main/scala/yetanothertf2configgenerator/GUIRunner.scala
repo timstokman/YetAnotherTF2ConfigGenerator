@@ -233,9 +233,9 @@ object GUIRunner extends SwingApplication {
     override def closeOperation() {
       quit
     }
-    generateTabsGroupedSettings[Symbol, ListMap[String, ListMap[Int, List[Setting[_, _]]]]](Setting.groupedSettings, 'options, setting => true, c => this.contents = c,settingType => settingType.name.capitalize, (classMap, classAttach) => {
-      generateTabsGroupedSettings[String, ListMap[Int, List[Setting[_, _]]]](classMap, "any", weaponMap => weaponMap.values.flatten.nonEmpty, classAttach, className => className.capitalize, (weaponMap, weaponAttach) => {
-        generateTabsGroupedSettings[Int, List[Setting[_, _]]](weaponMap, 0, settings => settings.nonEmpty, weaponAttach, weaponNum => if(weaponNum == 0) "Any" else "Weapon slot " + weaponNum.toString, (settings, innerAttach) => {
+    generateTabsGroupedSettings[Symbol, ListMap[String, ListMap[Int, List[Setting[_, _ <: Component]]]]](Setting.groupedSettings, 'options, setting => true, c => this.contents = c,settingType => settingType.name.capitalize, (classMap, classAttach) => {
+      generateTabsGroupedSettings[String, ListMap[Int, List[Setting[_, _ <: Component]]]](classMap, "any", weaponMap => weaponMap.values.flatten.nonEmpty, classAttach, className => className.capitalize, (weaponMap, weaponAttach) => {
+        generateTabsGroupedSettings[Int, List[Setting[_, _ <: Component]]](weaponMap, 0, settings => settings.nonEmpty, weaponAttach, weaponNum => if(weaponNum == 0) "Any" else "Weapon slot " + weaponNum.toString, (settings, innerAttach) => {
           innerAttach(new ScrollPane(new GridBagPanel {
             val c = new Constraints
             c.insets = new Insets(2, 2, 2, 2)
