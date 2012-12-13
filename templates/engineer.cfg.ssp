@@ -15,6 +15,8 @@ cl_interp_ratio <%= classInterpRatio(currentConfig).toString %>
   alias weap_sens_<%= slot %> "sensitivity <%= classWeaponSensitivity(currentConfig)(slot - 1).toString %>"
   alias weap_ding_<%= slot %> "tf_dingaling_pitchmaxdmg <%= classWeaponDingPitchMax(currentConfig)(slot - 1) %>; tf_dingaling_pitchmindmg <%= classWeaponDingPitchMin(currentConfig)(slot - 1) %>; tf_dingaling_volume <%= classWeaponDingVolume(currentConfig)(slot - 1).toString %>"
   alias weap_zoom_sens_<%= slot %> "sensitivity <%= (classWeaponSensitivity(currentConfig)(slot - 1) / zoomFactor).toString %>"
+  alias text_batch_<%= slot %> "hud_combattext_batching <%= classWeaponTextBatch(currentConfig)(slot - 1).toString %>"
+    
   <% if(classWeaponShow(currentConfig)(slot - 1)) { %>
     alias weapon_vis_<%= slot %> show_weapon
   <% } else { %>
