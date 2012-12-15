@@ -27,7 +27,7 @@ object CrosshairSetting {
           Some(ImageIO.read(new File(path)))
         } catch {
           case e: Exception => {
-            GUIRunner.handleException(new FileNotFoundException("Couldn't find file " + path + ", have you extracted the program properly?"))
+            GUIRunner.handleException(e)
             None
           }
         }

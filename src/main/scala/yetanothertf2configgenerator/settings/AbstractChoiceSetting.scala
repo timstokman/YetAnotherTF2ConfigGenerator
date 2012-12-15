@@ -10,9 +10,13 @@ abstract class AbstractChoiceSetting(var choices : Seq[String]) extends SimpleGr
   override def errorMessage = value + " has to be one of " + choices.mkString(", ")
 
   def refreshChoices(storage: ComboBox[String]) {
+    val setValue = parseValue(storage)
     storage.peer.removeAllItems
-    choices.foreach(choice => storage.peer.addItem(choice))
-    putValue(storage, choices.head)
+    choices.foreach(choice => storage.peer.addItem(choice))    
+    if(choices.contains(setValue))
+      putValue(storage, setValue)
+    else
+      putValue(storage, choices.head)
     currentValue = choices.head
   }
   

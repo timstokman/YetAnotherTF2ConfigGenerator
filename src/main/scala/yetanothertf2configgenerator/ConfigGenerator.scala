@@ -66,7 +66,7 @@ object ConfigGenerator {
         }
       } catch {
         case e: Exception => {
-          GUIRunner.handleException(new FileNotFoundException("Couldn't find file " + from.getAbsoluteFile() + ", have you extracted the program properly?"))
+          GUIRunner.handleException(e)
         }
       }
     })
