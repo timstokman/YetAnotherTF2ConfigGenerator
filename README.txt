@@ -94,15 +94,26 @@ Changing settings inside tf2 doesn't work, it just gets changed back. How can I 
 
 The scripts that were installed now regulate most of your settings inside tf2. Change stuff through the program, and then reinstall the scripts, or uninstall the scripts and be free to change things inside tf2 again.
 
-Todo (0.11)
+Todo (1.0-RC)
 -----
 
+* create license
 * show all crosshairs, even default ones based on class
-* Read existing setting from config
 * Prehaps drop P-Rec support in the future (due to disappearance plugin online)
 * Make dialogs copyable
-* Update chris' configs
 * Other requests?
+
+Testing todo (1.0-RC)
+-----
+
+* Create a "base" set of profiles, options:
+  * "Exactly" the same as normal tf2
+  * Profile for nice default crosshair settings
+  * WASD/ESDF/RDFG layouts, competative oriented
+  * Spy/Medic/Engineer oriented binds
+* Tutorial video
+* Test a lot more
+  
 
 Known Bugs
 -----------
