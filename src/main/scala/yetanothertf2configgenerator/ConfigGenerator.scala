@@ -49,18 +49,25 @@ object ConfigGenerator {
       if(to.exists)
         to.delete
         
-      val fromStream = new FileInputStream(from)
-      val toStream = new FileOutputStream(to, true)
-      val fromChannel = fromStream.getChannel
-      val toChannel = toStream.getChannel
       try {
-        toChannel.write(varDeclBuff)
-        fromChannel.transferTo(0, Long.MaxValue, toChannel)
-      } finally {
-        fromChannel.close
-        toChannel.close
-        fromStream.close
-        toStream.close        
+        val fromStream = new FileInputStream(from)
+        val toStream = new FileOutputStream(to, true)
+        val fromChannel = fromStream.getChannel
+        val toChannel = toStream.getChannel
+        
+        try {        
+          toChannel.write(varDeclBuff)
+          fromChannel.transferTo(0, Long.MaxValue, toChannel)
+        } finally {
+          fromChannel.close
+          toChannel.close
+          fromStream.close
+          toStream.close        
+        }
+      } catch {
+        case e: Exception => {
+          GUIRunner.handleException(new FileNotFoundException("Couldn't find file " + from.getAbsoluteFile() + ", have you extracted the program properly?"))
+        }
       }
     })
   }

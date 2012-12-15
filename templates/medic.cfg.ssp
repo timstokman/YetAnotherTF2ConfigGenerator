@@ -61,7 +61,7 @@ alias +radar autocall_all
 alias -radar autocall_default
 
 //autoinforming people of uber
-alias +charge "+attack2; say_team "<%=  medicSayUber %>"; voicemenu 0 0; current_vis_shootswitch"
+alias +charge "+attack2; voicemenu 0 0; current_vis_shootswitch; say_team <%= medicSayUber %>"
 alias -charge "-attack2"
 
 hud_combattext_healing <%= healBatching.toString %>
@@ -69,4 +69,4 @@ hud_combattext_healing <%= healBatching.toString %>
 //binds
 <%= bindif(secAttack, "+charge") %>
 <%= bindif(medicRadar, "+radar") %>
-<%= bindif(voice17, "\"voicemenu 1 7; say_team \"" + medicSayFake + "\"\"") %>
+<%= bindif(voice17, "\"voicemenu 1 7; say_team " + medicSayFake + "\"") %>

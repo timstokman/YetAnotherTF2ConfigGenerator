@@ -1,11 +1,12 @@
 package yetanothertf2configgenerator.settings
 
 import scala.swing._
+import yetanothertf2configgenerator.GUIRunner
 import event._
 import java.awt.{AlphaComposite, image}
 import image.BufferedImage
 import javax.imageio.ImageIO
-import java.io.File
+import java.io.{File, FileNotFoundException}
 import GridBagPanel._
 
 object CrosshairSetting {
@@ -14,7 +15,27 @@ object CrosshairSetting {
   //list of crosshair types
   val crosshairTypes = List("\"\"", "crosshair1", "crosshair2", "crosshair3", "crosshair4", "crosshair5", "crosshair6", "crosshair7")
 
-  private class ImagePanel(var imagePath : Option[String], var color : Option[Color]) extends Panel {                                                                             
+  private class ImagePanel(private var _path : Option[String], var color : Option[Color]) extends Panel {  
+    private var image: Option[BufferedImage] = None
+    
+    def path_= (path: Option[String]): Unit = {
+      _path = path
+      image = _path.flatMap(path => 
+      {
+        try
+        {
+          Some(ImageIO.read(new File(path)))
+        } catch {
+          case e: Exception => {
+            GUIRunner.handleException(new FileNotFoundException("Couldn't find file " + path + ", have you extracted the program properly?"))
+            None
+          }
+        }
+      })
+    }
+    
+    def path = _path
+    
     override def paintComponent(g:Graphics2D) = {                                                                           
       color.foreach(col => {
         g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f))
@@ -22,7 +43,7 @@ object CrosshairSetting {
         g.setBackground(col)
         g.clearRect(0, 0, 64, 64)
       })
-      imagePath.map(path => ImageIO.read(new File(path))).foreach(image => g.drawImage(image, 0, 0, null))
+      image.foreach(image => g.drawImage(image, 0, 0, null))
     }                                                                           
   }
 }
@@ -59,9 +80,9 @@ case class CrosshairSetting(val name : String, val labelText : String, val tf2Cl
   override def onChange {
     super.onChange
     if(value == "\"\"")
-      imagePanel.imagePath = None
+      imagePanel.path = None
     else
-      imagePanel.imagePath = Some(CrosshairSetting.resourceDir + File.separator + value + ".png")
+      imagePanel.path = Some(CrosshairSetting.resourceDir + File.separator + value + ".png")
     imagePanel.repaint
   }
 

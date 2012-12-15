@@ -1,7 +1,7 @@
 // Unexplained crashes? Try changing mat_queue_mode to `-1'.
 // ----------------------------------------------------------------------------
 // Chris' highquality config, designed to get you excellent quality
-// v2.006 | 20 April 2012 | fakkelbrigade.eu/chris/configs/
+// v2.007 | 26 August 2012 | fakkelbrigade.eu/chris/configs/
 // ----------------------------------------------------------------------------
 // Problems or questions? Contact me at #christf2 on QuakeNet.
 // ----------------------------------------------------------------------------
@@ -55,6 +55,28 @@ fps_max 0
 //
 // Uncomment (remove the `//' from) one of the groups if you want to use them.
 // ----------------------------------------------------------------------------
+
+// Good connection
+//cl_cmdrate 66
+//cl_interp 0
+//cl_interp_ratio 1
+//cl_lagcompensation 1
+//cl_pred_optimize 2
+//cl_smooth 0
+//cl_smoothtime 0.01
+//cl_updaterate 66
+//rate 60000
+
+// Bad connection
+//cl_cmdrate 40
+//cl_interp 0
+//cl_interp_ratio 2
+//cl_lagcompensation 1
+//cl_pred_optimize 2
+//cl_smooth 0
+//cl_smoothtime 0.01
+//cl_updaterate 40
+//rate 35000
 
 // ----------------------------------------------------------------------------
 // Graphical
@@ -194,8 +216,8 @@ cl_forcepreload 1 // Force preloading
 // ----------------------------------------------------------------------------
 // Print to console
 // ----------------------------------------------------------------------------
-echo "-------------------------------------------------------"
-echo "           Chris' highquality config loaded.           "
-echo "-------------------------------------------------------"
-echo "Please direct all comments/queries/whatnot to"
-echo "#christf2 on QuakeNet."
+//echo "-------------------------------------------------------"
+//echo "           Chris' highquality config loaded.           "
+//echo "-------------------------------------------------------"
+//echo "Please direct all comments/queries/whatnot to"
+//echo "#christf2 on QuakeNet."

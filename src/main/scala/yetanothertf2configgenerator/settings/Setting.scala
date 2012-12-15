@@ -268,7 +268,7 @@ object Setting {
     BindSetting("voice14", "Voice Dispenser Here", "any"),
     BindSetting("voice15", "Voice Sentry Here", "any"),
     BindSetting("voice16", "Voice Activate Charge", "any"),
-    BindSetting("voice17", "Voice Charge Ready", "medic"),
+    BindSetting("voice17", "Voice Fake Charge", "medic"),
     BindSetting("voice20", "Voice Help", "any"),
     BindSetting("voice21", "Voice Battlecry", "any"),
     BindSetting("voice22", "Voice Cheers", "any"),
