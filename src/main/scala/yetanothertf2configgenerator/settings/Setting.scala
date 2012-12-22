@@ -207,6 +207,7 @@ object Setting {
     BindSetting("suicide", "Kill yourself", "any"),
     BindSetting("screenshot", "Take screenshot", "any"),
     BindSetting("saveReplay", "Save replay", "any"),
+    BindSetting("abuseReport", "Abuse report", "any"),
     BindSetting("quickSwitch", "Quickly switch item inventory", "any"),
     BindSetting("teamOnlyTalk", "Team-only voice", "any"),
     BindSetting("normalTalk", "Normal voice", "any"),

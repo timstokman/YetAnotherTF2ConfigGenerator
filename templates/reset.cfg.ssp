@@ -42,6 +42,8 @@ alias hide_weapon "r_drawviewmodel 0"
 <%= unbindif(disguiseCycle) %> 
 <%= unbindif(disguiseFriendlyCycle) %> 
 <%= unbindif(disguiseLast) %> 
+<%= unbindif(ternaryAttack) %>
+<%= unbindif(abuseReport) %>
 
 //binds
 <%= bindif(directWeapon1, "weapon1") %>
@@ -58,6 +60,7 @@ alias hide_weapon "r_drawviewmodel 0"
 <%= bindif(normalJump, "\"+jump; current_vis_strafeswitch\"") %>
 <%= bindif(requestAccept, "cl_trigger_first_notification") %>
 <%= bindif(requestDecline, "cl_decline_first_notification") %>
+<%= bindif(abuseReport, "abuse_report_queue") %>
 <%= bindif(switchBadnet, "bad_net") %>
 <%= bindif(switchGoodnet, "good_net") %>
 <%= bindif(switchLannet, "lan_net") %>
