@@ -92,7 +92,7 @@ alias hide_weapon "r_drawviewmodel 0"
 <%= bindif(switchTeam, "changeteam") %>
 <%= bindif(switchClass, "changeclass") %>
 <%= bindif(console, "toggleconsole") %>
-<%= bindif(actionSlot, "use_action_slot_item") %>
+<%= bindif(actionSlot, "+use_action_slot_item") %>
 <%= bindif(voiceMenu1, "voice_menu_1") %>
 <%= bindif(voiceMenu2, "voice_menu_2") %>
 <%= bindif(voiceMenu3, "voice_menu_3") %>
