@@ -55,7 +55,7 @@ abstract class BaseSetting[ValueType, GUIType <: Component, GUIStorage]()(implic
 
   lazy val label = createLabel
   lazy val errorLabel = createErrorLabel
-  val templateVariableDeclaration = "<%@ val " + name + ": " + valueManifest.toString + " %>"
+  val templateVariableDeclaration = if(necessary) "<%@ val " + name + ": " + valueManifest.toString + " %>" else ""
 
   lazy val GUIStorage = {
     val el = createGuiStorage    
@@ -81,4 +81,6 @@ abstract class BaseSetting[ValueType, GUIType <: Component, GUIStorage]()(implic
   }
 
   def value = currentValue
+  
+  def necessary = true
 }

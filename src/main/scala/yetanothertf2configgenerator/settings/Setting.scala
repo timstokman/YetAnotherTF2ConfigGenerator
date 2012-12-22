@@ -284,6 +284,7 @@ object Setting {
 abstract class Setting[ValueType, GUIType <: Component] extends Publisher[SettingEvent[_, _]] with Subscriber[SettingEvent[_, _ <: Component], Setting[_, _ <: Component]]  {
   var value : ValueType
 
+  def necessary: Boolean
   def valueClass : Class[_]
   def name : String
   def settingType : Symbol

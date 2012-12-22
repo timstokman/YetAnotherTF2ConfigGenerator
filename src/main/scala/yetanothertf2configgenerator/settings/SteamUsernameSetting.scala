@@ -17,6 +17,8 @@ case class SteamUsernameSetting(val name : String, val settingType : Symbol) ext
   val weapon = 0
   val tf2Class = "any"
   override val canSubscribe = true
+  
+  override def necessary = false
 
   override def canSubscribeTo(setting : Setting[_, _ <: Component]) = {
     setting match {

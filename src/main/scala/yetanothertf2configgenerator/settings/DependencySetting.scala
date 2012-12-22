@@ -21,6 +21,7 @@ abstract class DependencySetting[ValueType, GUIType <: Component, GatheredType <
   def tf2Class = main.tf2Class
   def canSubscribeTo(s : Setting[_, _ <: Component]) = false
   def validateAndError = main.validateAndError && dependingSettings.forall(_.validateAndError)
+  def necessary = true
 
   private def setValues(settings : Seq[Setting[ValueType, GUIType]], value : ValueType) {
     settings.foreach {
