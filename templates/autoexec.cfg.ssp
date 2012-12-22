@@ -67,6 +67,7 @@ cl_autoreload <%= autoreload %>
 hud_fastswitch <%= fastswitch %>
 hud_combattext <%= damagenumbers %>
 cl_use_tournament_specgui <%= enableSpecTournamentMode %>
+cl_hud_minmode <%= hudMin %>
 
 //graphics options, I define them here so people will not have to edit stuff in the graphicsconfigs, they're outcommented in chris' graphics configs themselves
 #if(enableSprays)

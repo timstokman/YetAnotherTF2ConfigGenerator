@@ -2,7 +2,7 @@
   <scala.collection.mutable.HashMap>
     <default/>
     <int>10</int>
-    <int>36</int>
+    <int>37</int>
     <boolean>false</boolean>
     <string>medic</string>
     <string>e</string>
@@ -46,6 +46,8 @@
     <string>s</string>
     <string>primAttack</string>
     <string>MOUSE1</string>
+    <string>ternaryAttack</string>
+    <string>MOUSE3</string>
     <string>backpack</string>
     <string>m</string>
     <string>duck</string>

@@ -1,0 +1,596 @@
+<scala.collection.mutable.HashMap serialization="custom">
+  <scala.collection.mutable.HashMap>
+    <default/>
+    <int>10</int>
+    <int>5</int>
+    <boolean>false</boolean>
+    <string>classWeaponColors</string>
+    <scala.collection.immutable.HashMap_-HashTrieMap resolves-to="scala.collection.immutable.HashMap$SerializationProxy" serialization="custom">
+      <scala.collection.immutable.HashMap_-SerializationProxy>
+        <int>9</int>
+        <string>medic</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>soldier</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>demoman</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>heavyweapons</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>pyro</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>spy</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>engineer</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>scout</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>sniper</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.Tuple3>
+              <__1 class="int">0</__1>
+              <__2 class="int">255</__2>
+              <__3 class="int">0</__3>
+            </scala.Tuple3>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+      </scala.collection.immutable.HashMap_-SerializationProxy>
+    </scala.collection.immutable.HashMap_-HashTrieMap>
+    <string>classWeaponScales</string>
+    <scala.collection.immutable.HashMap_-HashTrieMap resolves-to="scala.collection.immutable.HashMap$SerializationProxy" serialization="custom">
+      <scala.collection.immutable.HashMap_-SerializationProxy>
+        <int>9</int>
+        <string>medic</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <int>24</int>
+            <int>24</int>
+            <int>24</int>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>soldier</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <int>24</int>
+            <int>24</int>
+            <int>24</int>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>demoman</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <int>24</int>
+            <int>24</int>
+            <int>24</int>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>heavyweapons</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <int>24</int>
+            <int>24</int>
+            <int>24</int>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>pyro</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <int>24</int>
+            <int>24</int>
+            <int>24</int>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>spy</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <int>24</int>
+            <int>24</int>
+            <int>24</int>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>engineer</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <int>24</int>
+            <int>24</int>
+            <int>24</int>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>scout</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <int>24</int>
+            <int>24</int>
+            <int>24</int>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>sniper</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <int>24</int>
+            <int>24</int>
+            <int>24</int>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+      </scala.collection.immutable.HashMap_-SerializationProxy>
+    </scala.collection.immutable.HashMap_-HashTrieMap>
+    <string>classWeaponCrosshairs</string>
+    <scala.collection.immutable.HashMap_-HashTrieMap resolves-to="scala.collection.immutable.HashMap$SerializationProxy" serialization="custom">
+      <scala.collection.immutable.HashMap_-SerializationProxy>
+        <int>9</int>
+        <string>medic</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <string>crosshair5</string>
+            <string>crosshair1</string>
+            <string>crosshair3</string>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>soldier</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <string>crosshair5</string>
+            <string>crosshair1</string>
+            <string>crosshair3</string>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>demoman</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <string>crosshair5</string>
+            <string>crosshair1</string>
+            <string>crosshair3</string>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>heavyweapons</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <string>crosshair5</string>
+            <string>crosshair1</string>
+            <string>crosshair3</string>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>pyro</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <string>crosshair5</string>
+            <string>crosshair1</string>
+            <string>crosshair3</string>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>spy</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <string>crosshair5</string>
+            <string>crosshair1</string>
+            <string>crosshair3</string>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>engineer</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <string>crosshair5</string>
+            <string>crosshair1</string>
+            <string>crosshair3</string>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>scout</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <string>crosshair5</string>
+            <string>crosshair1</string>
+            <string>crosshair3</string>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>sniper</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <string>crosshair5</string>
+            <string>crosshair1</string>
+            <string>crosshair3</string>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+      </scala.collection.immutable.HashMap_-SerializationProxy>
+    </scala.collection.immutable.HashMap_-HashTrieMap>
+    <string>classWeaponShow</string>
+    <scala.collection.immutable.HashMap_-HashTrieMap resolves-to="scala.collection.immutable.HashMap$SerializationProxy" serialization="custom">
+      <scala.collection.immutable.HashMap_-SerializationProxy>
+        <int>9</int>
+        <string>medic</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>true</boolean>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>soldier</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>true</boolean>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>demoman</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>true</boolean>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>heavyweapons</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>true</boolean>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>pyro</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>true</boolean>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>spy</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>true</boolean>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>engineer</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>true</boolean>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>scout</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>true</boolean>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>sniper</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>true</boolean>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+      </scala.collection.immutable.HashMap_-SerializationProxy>
+    </scala.collection.immutable.HashMap_-HashTrieMap>
+    <string>classWeaponViewmodelSwitchMode</string>
+    <scala.collection.immutable.HashMap_-HashTrieMap resolves-to="scala.collection.immutable.HashMap$SerializationProxy" serialization="custom">
+      <scala.collection.immutable.HashMap_-SerializationProxy>
+        <int>9</int>
+        <string>medic</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <string>both</string>
+            <string>both</string>
+            <string>both</string>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>soldier</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <string>both</string>
+            <string>both</string>
+            <string>both</string>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>demoman</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <string>both</string>
+            <string>both</string>
+            <string>both</string>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>heavyweapons</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <string>both</string>
+            <string>both</string>
+            <string>both</string>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>pyro</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <string>both</string>
+            <string>both</string>
+            <string>both</string>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>spy</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <string>both</string>
+            <string>both</string>
+            <string>both</string>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>engineer</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <string>both</string>
+            <string>both</string>
+            <string>both</string>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>scout</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <string>both</string>
+            <string>both</string>
+            <string>both</string>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+        <string>sniper</string>
+        <innerlist serialization="custom">
+          <unserializable-parents/>
+          <innerlist>
+            <string>both</string>
+            <string>both</string>
+            <string>both</string>
+            <scala.collection.immutable.ListSerializeEnd_-/>
+          </innerlist>
+        </innerlist>
+      </scala.collection.immutable.HashMap_-SerializationProxy>
+    </scala.collection.immutable.HashMap_-HashTrieMap>
+  </scala.collection.mutable.HashMap>
+</scala.collection.mutable.HashMap>
