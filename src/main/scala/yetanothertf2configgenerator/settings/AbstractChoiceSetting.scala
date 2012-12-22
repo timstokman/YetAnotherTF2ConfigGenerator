@@ -13,11 +13,13 @@ abstract class AbstractChoiceSetting(var choices : Seq[String]) extends SimpleGr
     val setValue = parseValue(storage)
     storage.peer.removeAllItems
     choices.foreach(choice => storage.peer.addItem(choice))    
-    if(choices.contains(setValue))
+    if(choices.contains(setValue)) {
       putValue(storage, setValue)
-    else
+      currentValue = setValue
+    } else if(!choices.isEmpty) {
       putValue(storage, choices.head)
-    currentValue = choices.head
+      currentValue = choices.head
+    }
   }
   
   def createGuiStorage = {
