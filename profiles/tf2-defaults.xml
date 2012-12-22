@@ -2,7 +2,7 @@
   <scala.collection.mutable.HashMap>
     <default/>
     <int>10</int>
-    <int>38</int>
+    <int>40</int>
     <boolean>false</boolean>
     <string>abuseReport</string>
     <string>F7</string>
@@ -48,10 +48,14 @@
     <string>s</string>
     <string>primAttack</string>
     <string>MOUSE1</string>
+    <string>reloadWeapon</string>
+    <string>r</string>
     <string>ternaryAttack</string>
     <string>MOUSE3</string>
     <string>backpack</string>
     <string>m</string>
+    <string>backpackComplete</string>
+    <string>n</string>
     <string>duck</string>
     <string>CTRL</string>
     <string>actionSlot</string>

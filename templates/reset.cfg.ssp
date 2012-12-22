@@ -44,11 +44,14 @@ alias hide_weapon "r_drawviewmodel 0"
 <%= unbindif(disguiseLast) %> 
 <%= unbindif(ternaryAttack) %>
 <%= unbindif(abuseReport) %>
+<%= unbindif(backpackComplete) %>
+<%= unbindif(reloadWeapon) %>
 
 //binds
 <%= bindif(directWeapon1, "weapon1") %>
 <%= bindif(directWeapon2, "weapon2") %>
 <%= bindif(directWeapon3, "weapon3") %>
+<%= bindif(reloadWeapon, "\"+reload; current_vis_shootswitch\"") %>
 <%= bindif(primSecSwap, "primsecswap") %>
 <%= bindif(meleeSwap, "othermeleeswap") %>
 <%= bindif(previousWeapon, "previous_weapon") %>
@@ -84,6 +87,7 @@ alias hide_weapon "r_drawviewmodel 0"
 <%= bindif(inspect, "inspect") %>
 <%= bindif(medic, "") %>"voicemenu 0 0"
 <%= bindif(backpack, "open_charinfo_direct") %>
+<%= bindif(backpackComplete, "open_charinfo_backpack") %>
 <%= bindif(dropItem, "dropitem") %>
 <%= bindif(switchTeam, "changeteam") %>
 <%= bindif(switchClass, "changeclass") %>
