@@ -170,7 +170,7 @@ object Setting {
     BindSetting("movementBack", "Move back", "any"),
     BindSetting("primAttack", "Primary attack", "any"),
     BindSetting("secAttack", "Secondary attack", "any"),
-    BindSetting("ternaryAttack", "Ternary attack", "any"),
+    BindSetting("ternaryAttack", "Tertiary attack", "any"),
     BindSetting("primSecSwap", "Swap primary secondary weapon", "any"),
     BindSetting("meleeSwap", "Swap current and melee weapon (and back)", "any"),
     BindSetting("previousWeapon", "Swap to previous weapon", "any"),
