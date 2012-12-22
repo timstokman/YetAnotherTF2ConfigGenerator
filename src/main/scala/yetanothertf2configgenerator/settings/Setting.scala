@@ -163,16 +163,6 @@ object Setting {
     IntAsBooleanSetting("enableSpecTournamentMode", "Enable spectator tournament mode", "any", 0, Some(1), 'options),
     ClassDependencySetting(tf2Class => TextareaSetting("extraScripts", "Additional script", tf2Class, 0, None, 'options), false),
     TextareaSetting("autoexecExtraScript", "Additional script", "any", 0, None, 'options),
-    
-    //TODO, if prec stays death, this has to go
-    BooleanSetting("precEnabled", "I use P-Rec", "any", 0, Some(false), 'options),
-    IntSetting("precLog", "P-Rec log mode", "any", 0, Some(0), 'options, Some(0), Some(4)),
-    IntAsBooleanSetting("precScreens", "P-Rec take screenshots of scoreboard/status", "any", 0, Some(0), 'options),
-    IntAsBooleanSetting("precDeleteUseless", "P-Rec delete useless demos w/o bookmarks/killstreaks", "any", 0, Some(0), 'options),
-    IntSetting("precMinStreak", "P-Rec minimum killstreak", "any", 0, Some(4), 'options, Some(0), None),
-    IntSetting("precKillDelay", "P-Rec killstreak delay", "any", 0, Some(15), 'options, Some(0), None),
-    StringSetting("precDir", "P-Rec demo directory", "any", 0, None, 'options),
-    IntSetting("precMode", "P-Rec mode", "any", 0, Some(0), 'options, Some(0), None),    
 
     BindSetting("movementFwd", "Move forward", "any"),
     BindSetting("movementLeft", "Move left", "any"),
@@ -257,7 +247,6 @@ object Setting {
     BindSetting("destroyEntrance", "Destroy entrance", "engineer"),
     BindSetting("destroyExit", "Destroy exit", "engineer"),
     BindSetting("switchSpec", "Switch spectator target", "any"),
-    BindSetting("precMark", "P-Rec mark", "any"), //if prec stays death, this has to go
     BindSetting("toggleReady", "Toggle ready", "any"),
     BindSetting("voice01", "Voice Thanks", "any"),
     BindSetting("voice02", "Voice Go", "any"),

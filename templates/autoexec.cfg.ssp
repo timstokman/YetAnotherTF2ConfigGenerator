@@ -116,16 +116,4 @@ g_ragdoll_lvfadespeed 0
 ragdoll_sleepaftertime 0
 #end
 
-#if(precEnabled)
-//P-Rec
-prec_log <%= precLog %>
-prec_screens <%= precScreens %>
-prec_delete_useless_demo <%= precDeleteUseless %>
-prec_min_streak <%= precMinStreak %>
-prec_kill_delay <%= precKillDelay %>
-prec_dir <%= precDir %>
-prec_mode <%= precMode %>
-<%= bindif(precMark, "prec_mark") %>
-#end
-
 <%= autoexecExtraScript %>
