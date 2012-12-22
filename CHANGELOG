@@ -1,0 +1,64 @@
+Version 0.2
+* Zoom bind
+* Ability to "not" bind certain things
+* P-Rec settings
+* Pop-up with information about the graphics config (if any) you selected
+* Ability to turn of dingalings on weapon/class basis
+* Reset button that resets almost all of the stuff the config does, the rest can be done by resetting the keys from ingame
+
+Version 0.3
+* Scripts should generate quite a bit faster now
+* Added binds for friendly spy disguises
+
+Version 0.4
+* Create cfg directory if it doesn't exist
+* Added a couple of missing keys
+* Ability to unbind stuff
+* Fixed couple bugs
+
+Version 0.5
+* Fixed bugs
+* Save progress button
+* Better error reporting
+* Account for some upper case file names in the steam directory
+
+Version 0.6
+* Added nextinv/previnv/prevweapon as possible binds, cleanup of weapon switching code while I was at it
+* Some additional graphical options
+* Some binds that shouldve been there (accept reject popup, toggle friendly disguise)
+* Fixed some engineer stuff, hauling buildings doesn't desync stuff anymore
+
+Version 0.7
+
+* No more "nothing" error messages on the tf2 console
+* Spawn toggling
+
+Version 0.8
+* Crosshair previews
+* Config backup button
+* Tweakable viewmodel behaviour
+* Hud reload fixes visual glitches as well now
+* Steam dir/username are saved
+
+Version 0.9
+* Fix the class-specific interp-ratio
+
+Version 0.10
+* Bind for spectator switching
+* Ability to set text automatically chatted when popping/faking uber
+* Integrated viewmodel switch mode a bit more into some medic/spy/engineer stuff that rebound attack
+* Added option to show viewmodel when cloaking/dring or not
+* Removed "Show text when ubering" option, just remove the text from the new options
+
+Version 0.10.1
+* Bind for the MvM ready toggle
+
+Version 1.0-RC
+* cleanup backend + GUI
+* Field validation, bind conflict checking
+* Loadable profiles with settings
+* Some options are now settable for each class/weapon
+* Extended backup system
+* Option to enter custom scripts for autoexec or each class seperate
+* Added new stuff that was added in recent tf2 patches
+* Added some missing binds
