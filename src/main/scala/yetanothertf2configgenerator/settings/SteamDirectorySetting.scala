@@ -10,7 +10,7 @@ object SteamDirectorySetting {
   //just a "cheap" check to see if it's likely to be a steam directory
   val necessaryDirectories = List("steamapps", "steam")
 
-  val possibleSteamDirectories = List("C:\\Program Files\\Steam", "C:\\Program Files (x86)\\Steam", "~/Library/Application Support/Steam")
+  val possibleSteamDirectories = List("C:\\Program Files\\Steam", "C:\\Program Files (x86)\\Steam", "~/Library/Application Support/Steam", "~/.steam/root/")
 
   val steamDirectoryFirstGuess = possibleSteamDirectories.find(dir => validateDirectory(new File(dir)))
                   
