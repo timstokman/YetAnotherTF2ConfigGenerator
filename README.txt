@@ -101,8 +101,3 @@ The scripts that were installed now regulate most of your settings inside tf2. C
 Can I use my settings from a version of your program before 1.0
 
 Yes. Drag the settings.xml file from your old program into the profile folder of the new program. Now you should be able to load your settings from the profile menu.
-
-Known Bugs
------------
-
-* When building as an engineer, if you start building, then switch weapons before putting the building down, the crosshairs will get out of sync, switch weapons once to fix (this is not something that'd be easy)
