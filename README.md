@@ -32,11 +32,11 @@ Features
 
 ![Main options screen](http://i.imgur.com/v1RUU)
 
-[Spy binds](http://i.imgur.com/TF4LT)
+![Spy binds](http://i.imgur.com/TF4LT)
 
-[Medic options](http://i.imgur.com/z2UU5)
+![Medic options](http://i.imgur.com/z2UU5)
 
-[Weapon and crosshair configuration](http://i.imgur.com/jkeMp)
+![Weapon and crosshair configuration](http://i.imgur.com/jkeMp)
 
 Installation
 -------------
