@@ -30,6 +30,9 @@ Features
 * Option to hide hitscan tracers/flames from the flamethrower/healbeam
 * Also includes all the advanced options tf2 has 
 
+Screenshots
+-------------
+
 ![Main options screen](http://i.imgur.com/v1RUU)
 
 ![Spy binds](http://i.imgur.com/TF4LT)
