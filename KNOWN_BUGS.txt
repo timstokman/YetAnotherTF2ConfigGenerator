@@ -1,2 +1,3 @@
 * When building as an engineer, if you start building, then switch weapons before putting the building down, the crosshairs will get out of sync, switch weapons once to fix (this is not something that'd be easy)
+* viewmodel behaviour on shooting is disabled occasionally when building as engineer
 * There is yet no way to "turn off" a weapon, if you can't equip it (like gunboats, shields..)
