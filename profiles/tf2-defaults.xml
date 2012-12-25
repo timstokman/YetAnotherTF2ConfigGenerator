@@ -2,8 +2,10 @@
   <scala.collection.mutable.HashMap>
     <default/>
     <int>10</int>
-    <int>41</int>
+    <int>42</int>
     <boolean>false</boolean>
+    <string>directWeapon5</string>
+    <string>5</string>
     <string>requestAccept</string>
     <string>j</string>
     <string>abuseReport</string>

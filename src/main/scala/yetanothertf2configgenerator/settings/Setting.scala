@@ -180,6 +180,7 @@ object Setting {
     BindSetting("directWeapon2", "Swap to secondary weapon", "any"),
     BindSetting("directWeapon3", "Swap to melee weapon", "any"),
     BindSetting("directWeapon4", "Swap to PDA/Watch", "any"),
+    BindSetting("directWeapon5", "Swap to destroy PDA", "engineer"),
     BindSetting("jump", "Jump", "any"),
     BindSetting("reloadWeapon", "Reload weapon", "any"),
     BindSetting("normalJump", "Jump always without crouch", "any"),    

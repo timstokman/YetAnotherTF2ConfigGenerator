@@ -75,3 +75,4 @@ alias dexit "destroy 3"
 <%= bindif(destroyExit, "dexit") %> 
 <%= bindif(secAttack, "+haulandwrench") %>
 <%= bindif(directWeapon4, "\"slot4; bind " + primAttack + " +buildandwrench\"") %>
+<%= bindif(directWeapon5, "slot5") %>

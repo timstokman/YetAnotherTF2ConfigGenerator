@@ -46,6 +46,8 @@ alias hide_weapon "r_drawviewmodel 0"
 <%= unbindif(abuseReport) %>
 <%= unbindif(backpackComplete) %>
 <%= unbindif(reloadWeapon) %>
+<%= unbindif(directWeapon4) %>
+<%= unbindif(directWeapon5) %>
 
 //binds
 <%= bindif(directWeapon1, "weapon1") %>
