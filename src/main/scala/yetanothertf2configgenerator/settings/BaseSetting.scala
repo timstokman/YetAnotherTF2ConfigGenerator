@@ -43,7 +43,6 @@ abstract class BaseSetting[ValueType, GUIType <: Component, GUIStorage]()(implic
       val oldValue = currentValue
       currentValue = parseValue(GUIStorage)
       publish(SettingChanged(oldValue, currentValue))
-      errorLabel.foreach(_.visible = false)
     }
   }
 
