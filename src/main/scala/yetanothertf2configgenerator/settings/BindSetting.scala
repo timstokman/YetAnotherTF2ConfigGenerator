@@ -39,10 +39,6 @@ object BindSetting {
     "MOUSE3",
     "MOUSE4",
     "MOUSE5",
-    "`", ".", ",", "-", "]", "'", "\\", "/", "[", "=",
-    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
-    "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-    "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12",
     "SHIFT",
     "CTRL",
     "SPACE",
@@ -51,6 +47,14 @@ object BindSetting {
     "RCTRL",
     "ENTER",
     "TAB",
+    "UPARROW",
+    "DOWNARROW",
+    "LEFTARROW",
+    "RIGHTARROW",    
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
+    "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+    "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12",
+    "`", ".", ",", "-", "]", "'", "\\", "/", "[", "=",    
     "BACKSPACE",
     "SEMICOLOR",
     "INS",
@@ -61,10 +65,6 @@ object BindSetting {
     "DEL",
     "PGUP",
     "PGDN",
-    "UPARROW",
-    "DOWNARROW",
-    "LEFTARROW",
-    "RIGHTARROW",
     "ESCAPE", 
     "PAUSE",
     "KP_INS",
@@ -148,11 +148,11 @@ object BindSetting {
         close
       }
     }
-  } 
+  }
 }
 
 case class BindSetting(val name : String, val labelText : String, val tf2Class : String) extends AbstractChoiceSetting(BindSetting.bindKeys) {
-  val settingType = 'binds
+  val settingType = 'keybinds
   val weapon = 0
   val defaultValue = Some("nothing")
   var lastConflicts : Traversable[BindSetting] = List()
