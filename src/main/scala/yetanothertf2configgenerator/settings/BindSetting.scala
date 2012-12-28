@@ -54,9 +54,9 @@ object BindSetting {
     "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
     "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
     "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12",
-    "`", ".", ",", "-", "]", "'", "\\", "/", "[", "=",    
+    "`", ".", ",", "-", "[", "]", "'", "\\", "/", "=",    
     "BACKSPACE",
-    "SEMICOLOR",
+    "SEMICOLON",
     "INS",
     "HOME",
     "SCROLLLOCK",
@@ -110,6 +110,7 @@ object BindSetting {
     Key.Space -> "SPACE",
     Key.Multiply -> "KP_MULTIPLY",
     Key.Plus -> "KP_PLUS",
+    Key.Colon -> ".",
     Key.Numpad0 -> "KP_INS",
     Key.Numpad1 -> "KP_END",
     Key.Numpad2 -> "KP_DOWNARROW",
@@ -134,7 +135,7 @@ object BindSetting {
     Key.NumLock -> "NUMLOCK"
   )
   
-  class KeyDialog(callback: String => Unit) extends Frame {
+  class KeyDialog(callback: Option[String] => Unit) extends Frame {
     title = "Key selection"
       
     val keyField = new TextField("Type a key on your keyboard (Mouse keys, tab and right control are excluded)")
@@ -144,7 +145,7 @@ object BindSetting {
     
     reactions += {
       case KeyPressed(_, key, modifiers, _) => {
-        callback(keyToBindMap.getOrElse(key, ""))
+        callback(keyToBindMap.get(key))
         close
       }
     }
@@ -205,9 +206,10 @@ case class BindSetting(val name : String, val labelText : String, val tf2Class :
       layout(new Button("Type Key") {
         reactions += {
           case ButtonClicked(_) => {
-            val dialog = new BindSetting.KeyDialog(key => {
-              if(key != "")
+            val dialog = new BindSetting.KeyDialog({
+              case Some(key) =>
                 value = key
+              case None =>
             })
             dialog.pack
             dialog.centerOnScreen
