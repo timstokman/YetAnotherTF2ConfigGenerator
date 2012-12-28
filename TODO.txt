@@ -2,10 +2,11 @@
 * viewmodel visibility toggle button
 * make dialogs copyable
 * easy recording/screenshotting binds, replacement for prec
-* more default profiles
+* more default profiles (I am open for submissions)
 * tutorial video
 * easier installer updater
 * find a good solution for weapon switching to non-equipable weapons
 * ability to add custom crosshairs
 * one button for switching spawns (if anyway knowns of a way to do this that doesn't glitch if you press it rapidly..)
+* improve type key dialog
 * Other requests?  
