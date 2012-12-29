@@ -9,4 +9,5 @@
 * ability to add custom crosshairs
 * one button for switching spawns (if anyway knowns of a way to do this that doesn't glitch if you press it rapidly..)
 * improve type key dialog
+* jar minimization
 * Other requests?  
