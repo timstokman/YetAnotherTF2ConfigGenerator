@@ -87,7 +87,7 @@ alias hide_weapon "r_drawviewmodel 0"
 <%= bindif(normalTalk, "+voicerecord") %>
 <%= bindif(scoreboard, "+sb") %>
 <%= bindif(inspect, "inspect") %>
-<%= bindif(medic, "") %>"voicemenu 0 0"
+<%= bindif(medic, "\"voicemenu 0 0\"") %>
 <%= bindif(backpack, "open_charinfo_direct") %>
 <%= bindif(backpackComplete, "open_charinfo_backpack") %>
 <%= bindif(dropItem, "dropitem") %>
@@ -125,3 +125,4 @@ alias hide_weapon "r_drawviewmodel 0"
 <%= bindif(voice27, "\"voicemenu 2 7\"") %>
 <%= bindif(switchSpec, "+attack") %>
 <%= bindif(toggleReady, "player_ready_toggle") %>
+<%= bindif(closeHtmlMotd, "\"cmd closed_htmlpage\"") %>

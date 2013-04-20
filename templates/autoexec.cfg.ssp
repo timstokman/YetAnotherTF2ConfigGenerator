@@ -116,4 +116,23 @@ g_ragdoll_lvfadespeed 0
 ragdoll_sleepaftertime 0
 #end
 
+cl_disablehtmlmotd <%= disableHtmlMotd %>
+cl_first_person_uses_world_model <%= worldViewmodels %>
+
+//Credit to CasualX for this stuff
+
+#if(disableServerSounds)
+alias play
+alias sndplaydelay
+alias playgamesound
+alias soundfade
+#end
+
+#if(disableServerCommands)
+alias cl_spec_mode
+alias rpt_connect
+alias r_screenoverlay
+alias closed_htmlpage
+#end
+
 <%= autoexecExtraScript %>

@@ -41,11 +41,15 @@ object ConfigGenerator {
   def unbindif(key : String) = if(key == "all") "unbindall" else if(key == "nothing") "" else "unbind " + key
 
   def generateTemplatesWithVariableDeclarations {
+    var cache = new File(cacheDir);
+    if(!cache.exists)
+      cache.mkdir
+      
     configNames.foreach(configName => {
       val varDeclBuff = ByteBuffer.wrap(Setting.templateVariableDeclarations.getBytes)
       val from = new File(templateDir + File.separator + configName + configExtension)
       val to = new File(cacheDir + File.separator + configName + tmpExtension + configExtension)
-
+      
       if(to.exists)
         to.delete
         

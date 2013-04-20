@@ -62,3 +62,5 @@ Version 1.0-RC
 * Option to enter custom scripts for autoexec or each class seperate
 * Added new stuff that was added in recent tf2 patches
 * Added some missing binds
+* Add blocking sound/server commands
+* Add world viewmodels

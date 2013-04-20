@@ -161,6 +161,10 @@ object Setting {
     ClassAsIntListSetting("disguiseCycleClasses", "spy", 0, 'options, "Disguise cycle list"),
     ClassAsIntListSetting("disguiseFriendlyCycleClasses", "spy", 0, 'options, "Friendly disguise cycle list"),
     IntAsBooleanSetting("enableSpecTournamentMode", "Enable spectator tournament mode", "any", 0, Some(1), 'options),
+    IntAsBooleanSetting("disableHtmlMotd", "Disable html message of the day", "any", 0, Some(0), 'options),
+    BooleanSetting("disableServerSounds", "Disable servers playing sounds", "any", 0, Some(false), 'options),
+    BooleanSetting("disableServerCommands", "Disable annoying server commands", "any", 0, Some(false), 'options),
+    IntAsBooleanSetting("worldViewmodels", "Use world viewmodels", "any", 0, Some(0), 'options),    
     ClassDependencySetting(tf2Class => TextareaSetting("extraScripts", "Additional script", tf2Class, 0, None, 'options), false),
     TextareaSetting("autoexecExtraScript", "Additional script", "any", 0, None, 'options),
 
@@ -251,6 +255,7 @@ object Setting {
     BindSetting("destroyExit", "Destroy exit", "engineer"),
     BindSetting("switchSpec", "Switch spectator target (within spectator mode)", "any"),
     BindSetting("toggleReady", "Toggle ready", "any"),
+    BindSetting("closeHtmlMotd", "Close HTML MOTD", "any"),    
     BindSetting("voice01", "Voice Thanks", "any"),
     BindSetting("voice02", "Voice Go", "any"),
     BindSetting("voice03", "Voice Move Up", "any"),
