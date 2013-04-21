@@ -26,3 +26,5 @@ ivyXML :=
 mainClass := Some("yetanothertf2configgenerator.GUIRunner")
 
 assemblySettings
+
+seq(IzPack.settings: _*)

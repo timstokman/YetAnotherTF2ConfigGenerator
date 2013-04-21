@@ -1,0 +1,92 @@
+languages:
+  - eng
+
+info:
+  appName: YetAnotherTF2ConfigGenerator
+  appVersion: 1.0-RC
+  url: https://github.com/logophobia/YetAnotherTF2ConfigGenerator-Distribution
+  javaVersion: 1.6
+  createUninstaller: yes
+  runPrivileged:
+    enabled: yes
+    uninstaller: yes  
+  
+resources:
+  resource:
+    id: HTMLInfoPanel.info
+    src: $installSourceDir/info.html
+    parse: no
+  resource:
+    id: HTMLLicencePanel.licence
+    src: $installSourceDir/license.html
+    parse: no
+  installDirectory:
+    os: unix
+    path: /usr/local/yetanothertf2configgenerator
+  installDirectory:
+    os: windows
+    path: C:/Program Files/yetanothertf2configgenerator
+  installDirectory:
+    os: macosx
+    path: /usr/local/yetanothertf2configgenerator
+
+guiprefs:
+  resizable: yes
+  width: 600
+  height: 800
+
+panels:
+  panel:
+    className: HelloPanel
+  panel:
+    className: HTMLInfoPanel
+  panel:
+    className: HTMLLicencePanel
+  panel:
+    className: TargetPanel
+  panel:
+    className: InstallPanel
+  panel:
+    className: FinishPanel
+
+packs:
+  pack:
+    name: Core
+    required: true
+    preselected: true
+    description: The main application
+    file:
+      src: resources
+      targetDir: $INSTALL_PATH
+    file:
+      src: templates
+      targetDir: $INSTALL_PATH
+    file:
+      src: profiles
+      targetDir: $INSTALL_PATH
+    singleFile: 
+      src: target/${appName}-assembly-${appVersion}.jar
+      targetFile: $INSTALL_PATH/${appName}-${appVersion}.jar
+    singleFile:
+      src: README.TXT
+      targetFile: $INSTALL_PATH/README.TXT
+    singleFile:
+      src: CHANGELOG.TXT
+      targetFile: $INSTALL_PATH/CHANGELOG.TXT
+    singleFile:
+      src: LICENSE.TXT
+      targetFile: $INSTALL_PATH/LICENSE.TXT
+    singleFile:
+      src: TODO.TXT
+      targetFile: $INSTALL_PATH/TODO.TXT
+    singleFile:
+      src: KNOWN_BUGS.TXT
+      targetFile: $INSTALL_PATH/KNOWN_BUGS.TXT
+    singleFile:
+      src: $installSourceDir/start-unix.sh
+      targetFile: $INSTALL_PATH/start.sh
+      os: unix
+    singleFile:
+      src: $installSourceDir/start-windows.bat
+      targetFile: $INSTALL_PATH/start.bat
+      os: windows

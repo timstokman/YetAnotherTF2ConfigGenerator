@@ -1,0 +1,1 @@
+javaw -jar YetAnotherTF2ConfigGenerator-1.0-RC.jar

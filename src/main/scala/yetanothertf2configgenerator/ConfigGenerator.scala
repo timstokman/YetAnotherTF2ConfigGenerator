@@ -8,7 +8,7 @@ import java.nio.ByteBuffer
 
 object ConfigGenerator {
   val templateDir = "templates"
-  val cacheDir = "cache"
+  val cacheDir = System.getProperty("user.home") + File.separator + "yetanothertf2configgenerator-cache"
   val configExtension = ".cfg.ssp"
   val tmpExtension = ".tmp"
 
