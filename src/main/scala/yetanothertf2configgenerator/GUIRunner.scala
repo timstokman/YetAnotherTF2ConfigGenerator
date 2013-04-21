@@ -8,15 +8,15 @@ import TabbedPane._
 import GridBagPanel._
 import scala.collection.immutable.ListMap
 import settings._
-import java.io.{File, FileOutputStream, FileInputStream}
-import java.nio.ByteBuffer
 import javax.swing.JOptionPane
 import java.awt.Desktop
 import java.net.URI
 import scala.util.matching.Regex
+import java.io.{File, FileOutputStream, FileInputStream}
 
 object GUIRunner extends SwingApplication {
-  val profileDir = "profiles"
+  var profileCopy = "profiles"
+  val profileDir = System.getProperty("user.home") + File.separator + "yetanothertf2configgenerator-profiles"
   val helpURI = new URI("https://github.com/logophobia/YetAnotherTF2ConfigGenerator#faq")
   val aboutURI = new URI("https://github.com/logophobia/YetAnotherTF2ConfigGenerator#yet-another-tf2-config-generator")
   val configfileRegex = """.*\.cfg$"""
@@ -54,7 +54,11 @@ object GUIRunner extends SwingApplication {
   def createProfileMenu = {
     new Menu("Profiles") {
       val profileFile = """^(.*)\.xml$""".r
-      new File(profileDir).listFiles.foreach(file => {
+      val profiles = new File(profileDir)
+      if(!profiles.exists)
+        Util.copyDirectory(new File(profileCopy), profiles)
+        
+      profiles.listFiles.foreach(file => {
         file.getName match {
           case profileFile(profileName) => {
             contents += new MenuItem(Action(profileName) {
@@ -62,7 +66,7 @@ object GUIRunner extends SwingApplication {
                 Setting.applyProfile(ProfileManager.readProfile(profileName))
               } catch {
                 case e : Exception => {
-                  handleException(e)
+                  Util.handleException(e)
                 }
               }
             })
@@ -116,16 +120,9 @@ object GUIRunner extends SwingApplication {
     } catch {
       case e : Exception => {
         progress.close
-        handleException(e)
+        Util.handleException(e)
       }
     }
-  }
-
-  def handleException(e : Exception) {
-    val message = "Exception: " + e.getMessage
-    val longMessage = message + "\n" + e.getStackTrace.map(_.toString).mkString("\n")
-    Dialog.showMessage(null, message, "Error", Dialog.Message.Error)
-    Console.err.println(longMessage)
   }
 
   def saveProfile {
@@ -134,7 +131,7 @@ object GUIRunner extends SwingApplication {
         ProfileManager.writeProfile(profileName, Setting.getTemplateData)
       } catch {
         case e : Exception => {
-          handleException(e)
+          Util.handleException(e)
         }
       }
     })
@@ -155,29 +152,6 @@ object GUIRunner extends SwingApplication {
       case Some(dir : File) => action(dir)
       case None => Dialog.showMessage(null, "No valid steam directory or username set", "Error", Dialog.Message.Error)
     } 
-  }
-
-  def copyDirFiles(from : File, to : File, pattern : String) {
-    try {
-      from.listFiles.foreach(fromFile => {
-        if(fromFile.getName.matches(pattern)) {
-          val fromStream = new FileInputStream(fromFile)
-          val toStream = new FileOutputStream(new File(to.getPath + File.separator + fromFile.getName))
-          val fromChannel = fromStream.getChannel
-          val toChannel = toStream.getChannel
-          try {
-            fromChannel.transferTo(0, Long.MaxValue, toChannel)
-          } finally {
-            fromStream.close
-            toStream.close
-            fromChannel.close
-            toChannel.close
-          }
-        }
-      })
-    } catch {
-      case e : Exception => handleException(e)
-    }
   }
 
   def createMenuBar : MenuBar = new MenuBar {
@@ -203,14 +177,14 @@ object GUIRunner extends SwingApplication {
       contents += new MenuItem(Action("Backup config files") {
         tf2DirOrError(steamDir => {
           pickDir.foreach(backupDir => {
-            copyDirFiles(steamDir, backupDir, configfileRegex)
+            Util.copyDirFiles(steamDir, backupDir, configfileRegex)
           })
         })
       })
       contents += new MenuItem(Action("Restore config files") {
         tf2DirOrError(steamDir => {
           pickDir.foreach(backupDir => {
-            copyDirFiles(backupDir, steamDir, configfileRegex)
+            Util.copyDirFiles(backupDir, steamDir, configfileRegex)
           })
         })
       })

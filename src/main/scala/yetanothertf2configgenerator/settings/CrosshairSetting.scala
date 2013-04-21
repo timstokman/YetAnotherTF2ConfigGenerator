@@ -1,7 +1,7 @@
 package yetanothertf2configgenerator.settings
 
 import scala.swing._
-import yetanothertf2configgenerator.GUIRunner
+import yetanothertf2configgenerator.Util
 import event._
 import java.awt.{AlphaComposite, image}
 import image.BufferedImage
@@ -27,7 +27,7 @@ object CrosshairSetting {
           Some(ImageIO.read(new File(path)))
         } catch {
           case e: Exception => {
-            GUIRunner.handleException(e)
+            Util.handleException(e)
             None
           }
         }

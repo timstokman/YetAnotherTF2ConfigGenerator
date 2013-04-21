@@ -8,6 +8,7 @@ import java.nio.ByteBuffer
 
 object ConfigGenerator {
   val templateDir = "templates"
+  val cacheCopy = "cache"
   val cacheDir = System.getProperty("user.home") + File.separator + "yetanothertf2configgenerator-cache"
   val configExtension = ".cfg.ssp"
   val tmpExtension = ".tmp"
@@ -39,33 +40,11 @@ object ConfigGenerator {
   def bindif(key : String, to : String) = if(key == "nothing") "" else "bind " + key + " " + to   
   
   def unbindif(key : String) = if(key == "all") "unbindall" else if(key == "nothing") "" else "unbind " + key
-
-  def copyDirectory(from: File, to: File) {
-    if(from.isDirectory) {
-      if(!to.exists)
-        to.mkdir
-      
-      from.list.foreach(child => copyDirectory(new File(from, child), new File(to, child)))
-    } else {
-      val fromStream = new FileInputStream(from)
-      val toStream = new FileOutputStream(to)
-      val fromChannel = fromStream.getChannel
-      val toChannel = toStream.getChannel
-      try {
-        fromChannel.transferTo(0, Long.MaxValue, toChannel)
-      } finally {
-        fromStream.close
-        toStream.close
-        fromChannel.close
-        toChannel.close
-      }
-    }
-  }
   
   def generateTemplatesWithVariableDeclarations {
     var cache = new File(cacheDir);
     if(!cache.exists)
-      copyDirectory(new File("cache"), cache)
+      Util.copyDirectory(new File(cacheCopy), cache)
       
     configNames.foreach(configName => {
       val varDeclBuff = ByteBuffer.wrap(Setting.templateVariableDeclarations.getBytes)
@@ -92,7 +71,7 @@ object ConfigGenerator {
         }
       } catch {
         case e: Exception => {
-          GUIRunner.handleException(e)
+          Util.handleException(e)
         }
       }
     })
