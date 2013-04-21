@@ -40,10 +40,32 @@ object ConfigGenerator {
   
   def unbindif(key : String) = if(key == "all") "unbindall" else if(key == "nothing") "" else "unbind " + key
 
+  def copyDirectory(from: File, to: File) {
+    if(from.isDirectory) {
+      if(!to.exists)
+        to.mkdir
+      
+      from.list.foreach(child => copyDirectory(new File(from, child), new File(to, child)))
+    } else {
+      val fromStream = new FileInputStream(from)
+      val toStream = new FileOutputStream(to)
+      val fromChannel = fromStream.getChannel
+      val toChannel = toStream.getChannel
+      try {
+        fromChannel.transferTo(0, Long.MaxValue, toChannel)
+      } finally {
+        fromStream.close
+        toStream.close
+        fromChannel.close
+        toChannel.close
+      }
+    }
+  }
+  
   def generateTemplatesWithVariableDeclarations {
     var cache = new File(cacheDir);
     if(!cache.exists)
-      cache.mkdir
+      copyDirectory(new File("cache"), cache)
       
     configNames.foreach(configName => {
       val varDeclBuff = ByteBuffer.wrap(Setting.templateVariableDeclarations.getBytes)

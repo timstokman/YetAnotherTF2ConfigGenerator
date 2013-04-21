@@ -64,6 +64,9 @@ packs:
     file:
       src: profiles
       targetDir: $INSTALL_PATH
+    file:
+      src: cache
+      targetDir: $INSTALL_PATH      
     singleFile: 
       src: target/${appName}-assembly-${appVersion}.jar
       targetFile: $INSTALL_PATH/${appName}-${appVersion}.jar
