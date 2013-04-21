@@ -6,13 +6,20 @@ import io.xml.Xpp3Driver
 import settings.Setting
 
 object ProfileManager {
-  val profileDir = "profiles"
+  var profileCopy = "profiles"
+  val profileDir = System.getProperty("user.home") + File.separator + "yetanothertf2configgenerator-profiles"
   val profileExtension = ".xml"
 
   val xstream = new XStream(new Xpp3Driver)
   xstream.setMode(XStream.NO_REFERENCES);
   Setting.settings.foreach(setting => registerClass(setting.valueClass))
   xstream.alias("innerlist", classOf[collection.immutable.::[_]])
+  
+  def copyProfiles {
+    val profiles = new File(profileDir)
+    if(!profiles.exists)
+      Util.copyDirectory(new File(profileCopy), profiles)    
+  }
   
   def registerClass(cls : Class[_]) {
     xstream.processAnnotations(cls.asInstanceOf[Class[AnyRef]])

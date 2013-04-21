@@ -15,8 +15,6 @@ import scala.util.matching.Regex
 import java.io.{File, FileOutputStream, FileInputStream}
 
 object GUIRunner extends SwingApplication {
-  var profileCopy = "profiles"
-  val profileDir = System.getProperty("user.home") + File.separator + "yetanothertf2configgenerator-profiles"
   val helpURI = new URI("https://github.com/logophobia/YetAnotherTF2ConfigGenerator#faq")
   val aboutURI = new URI("https://github.com/logophobia/YetAnotherTF2ConfigGenerator#yet-another-tf2-config-generator")
   val configfileRegex = """.*\.cfg$"""
@@ -53,12 +51,10 @@ object GUIRunner extends SwingApplication {
 
   def createProfileMenu = {
     new Menu("Profiles") {
+      ProfileManager.copyProfiles
       val profileFile = """^(.*)\.xml$""".r
-      val profiles = new File(profileDir)
-      if(!profiles.exists)
-        Util.copyDirectory(new File(profileCopy), profiles)
         
-      profiles.listFiles.foreach(file => {
+      new File(ProfileManager.profileDir).listFiles.foreach(file => {
         file.getName match {
           case profileFile(profileName) => {
             contents += new MenuItem(Action(profileName) {
