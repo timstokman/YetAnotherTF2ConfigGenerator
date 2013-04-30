@@ -84,17 +84,15 @@ object GUIRunner extends SwingApplication {
 
   def getTF2Directory = {
     Setting.getSettingByName("steamDir").flatMap(dir => {
-      Setting.getSettingByName("steamUser").flatMap(user => {
-        if(dir.validateAndError && user.validateAndError) {
-          val cfgDir = new File(List(dir.value, "steamapps", user.value, "team fortress 2", "tf", "cfg").mkString(File.separator))
-          if(cfgDir.exists)
-            Some(cfgDir)
-          else
-            None
-        } else {
+      if(dir.validateAndError) {
+        val cfgDir = new File(List(dir.value, "steamapps", "common", "Team Fortress 2", "tf", "cfg").mkString(File.separator))
+        if(cfgDir.exists)
+          Some(cfgDir)
+        else
           None
-        }
-      })
+      } else {
+        None
+      }
     })
   }
 
@@ -146,7 +144,7 @@ object GUIRunner extends SwingApplication {
   def tf2DirOrError(action : File => Unit) {
     getTF2Directory match {
       case Some(dir : File) => action(dir)
-      case None => Dialog.showMessage(null, "No valid steam directory or username set", "Error", Dialog.Message.Error)
+      case None => Dialog.showMessage(null, "No valid steam directory set", "Error", Dialog.Message.Error)
     } 
   }
 

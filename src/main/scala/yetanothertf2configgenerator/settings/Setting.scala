@@ -118,7 +118,6 @@ object Setting {
   //complete list of all the settings
   lazy val settings = List[Setting[_, _ <: Component]](
     SteamDirectorySetting("steamDir", 'options),
-    SteamUsernameSetting("steamUser", 'options),
 
     ClassDependencySetting(tf2Class => WeaponDependencySetting(weapon => DoubleSetting("sensitivity", "Mouse sensitivity", tf2Class, weapon, Some(1.0), 'options, Some(0.0), None), true), true),
     ClassDependencySetting(tf2Class => WeaponDependencySetting(weapon => ViewmodelSwitchmodeSetting("viewmodelSwitchMode", "Viewmodel switch mode", tf2Class, weapon), true), true),

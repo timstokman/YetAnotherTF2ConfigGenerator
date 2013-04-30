@@ -42,9 +42,7 @@ object ConfigGenerator {
   def unbindif(key : String) = if(key == "all") "unbindall" else if(key == "nothing") "" else "unbind " + key
   
   def generateTemplatesWithVariableDeclarations {
-    var cache = new File(cacheDir);
-    if(!cache.exists)
-      Util.copyDirectory(new File(cacheCopy), cache)
+    Util.copyDirectory(new File(cacheCopy), new File(cacheDir))
       
     configNames.foreach(configName => {
       val varDeclBuff = ByteBuffer.wrap(Setting.templateVariableDeclarations.getBytes)
