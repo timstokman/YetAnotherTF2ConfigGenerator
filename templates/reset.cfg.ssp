@@ -81,6 +81,7 @@ alias hide_weapon "r_drawviewmodel 0"
 <%= bindif(saveReplay, "save_replay") %>
 <%= bindif(duck, "+duck") %>
 <%= bindif(taunt, "taunt") %>
+<%= bindif(tauntMenu, "+taunt") %>
 <%= bindif(say, "say") %>
 <%= bindif(teamSay, "say_team") %>
 <%= bindif(teamOnlyTalk, "+teamonly") %>

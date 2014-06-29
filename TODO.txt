@@ -1,4 +1,3 @@
-* show image default crosshairs based on class in the gui
 * viewmodel visibility toggle button
 * make dialogs copyable
 * easy recording/screenshotting binds, replacement for prec

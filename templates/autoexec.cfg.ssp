@@ -135,4 +135,6 @@ alias r_screenoverlay
 alias closed_htmlpage
 #end
 
+weapon1
+
 <%= autoexecExtraScript %>

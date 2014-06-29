@@ -64,3 +64,7 @@ Version 1.0-RC
 * Added some missing binds
 * Add blocking sound/server commands
 * Add world viewmodels
+
+Small update, still 1.0-RC
+* Add taunt menu
+* fix quickswitch keys that don't work without switching to weapon by num first

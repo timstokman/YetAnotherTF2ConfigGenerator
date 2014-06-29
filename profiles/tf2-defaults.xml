@@ -2,7 +2,7 @@
   <scala.collection.mutable.HashMap>
     <default/>
     <int>10</int>
-    <int>42</int>
+    <int>43</int>
     <boolean>false</boolean>
     <string>directWeapon5</string>
     <string>5</string>
@@ -38,6 +38,8 @@
     <string>MWHEELUP</string>
     <string>taunt</string>
     <string>g</string>
+    <string>tauntMenu</string>
+    <string>i</string>
     <string>voiceMenu3</string>
     <string>c</string>
     <string>nextInvWeapon</string>
